@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>primeiro script</title>
+    <style>
+        body{
+            background-color: rgb(29, 29, 124);
+            color: white;
+            font-weight: 2em;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>Olà, mundo!</h1>
+    <p>Já me livrei</p>
+
+    <script>
+       /* 
+       var n1 = window.prompt ('digite um numero') //string
+       var n2 = window.prompt ('digite outro numero') //string
+       var s = n1 + n2
+       window.alert ('A soma dos valores é ' + s) // concatenação
+       */
+
+       //o + tem a função de somar ou concatenar porém isso vai depender do tipo/typeof e no caso acima a soma de 1 + 2 = 12 porque o comando window.prompt retorna o valor como uma string e não como número.
+
+       // (number + number) para adição
+       // (string + string) para concatenação
+       /*
+       Para tranformar o valor do tipo para número temos algumas opções:
+
+       - Number.parseInt(n) que representa um numero Inteiro (int) exemplo: 5
+       - Number.parseFloat(n) que representa numero quebrado (float) exemplo: 5.5
+       - Number(n) que representa qualquer tipo de número (basicamente o js vai entender qual é qual)
+
+       logo, temos:
+        */
+        var n1 = Number(window.prompt('digite um número:'))
+        var n2 = Number(window.prompt('digite outro número:'))
+        var s = n1 + n2
+        window.alert('A soma é igual a: ' + String(s)) 
+        // também poderia dizer que: window.alert(`A soma entre ${n1} e ${n2} é igual a ${s}`)
+       
+    </script>
+</body>
+</html>
