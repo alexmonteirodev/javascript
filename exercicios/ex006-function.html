@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos DOM</title>
+    <style>
+        #area{
+            background: green;
+            color: white;
+            width: 200px;
+            height: 200px;
+            text-align: center;
+            line-height: 200px;
+
+        }
+    </style>
+</head>
+    <!--Para adicionar uma function pode ser de duas formas, direto dentro da tag da div, depois do id e o vscode já te ajuda com os nomes ou direto pelo script e o seu html fica mias limpo-->
+<body>
+    <div id="area" > <!--onclick="clicar()" onmouseenter="entrar()" onmouseout="sair()"-->
+        Interaja...
+    </div>
+
+    <script>
+
+        var a = window.document.getElementById('area') 
+        
+        //colocando a var a fora da funtion, ela serve para tudo mas isso não é bom fazer, apenas para enteder o exercício
+
+        a.addEventListener('click', clicar)
+        a.addEventListener('mouseenter', entrar)
+        a.addEventListener('mouseout', sair)
+
+        //addeventlistener é como se fosse um ouvido que escuta tudo que acontece no site e quando o evento x acontecer ele vai saber e vai te avisar.
+
+       function clicar() {
+        a.innerText = 'Clicou!'
+        a.style.background = 'red'
+       }
+       function entrar() {
+        a.innerText = 'Entrou!'
+       }
+       function sair() {
+        a.innerText = 'Saiu'
+        a.style.background = 'green'
+       }
+    </script>
+</body>
+</html>
