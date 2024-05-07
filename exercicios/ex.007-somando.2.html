@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos DOM</title>
+    <style>
+       input{
+        width: 100px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.206);
+       }
+       #res{
+        margin-top: 20px;
+       }
+    </style>
+</head>
+<body>
+    <h1>Somando números</h1>
+    <input type="number" name="in1" id="in1"> +
+    <input type="number" name="in2" id="in2">
+    <input id="somar" type="button" value="somar">
+    <div id="res">
+        Resultado...
+    </div>
+
+    <script>
+        var somar = window.document.getElementById('somar')
+        somar.addEventListener('click',clicar)
+        function clicar(params) {
+            var in1 = window.document.getElementById('in1')
+            var in2 = window.document.getElementById('in2')
+            var n1 = Number(in1.value)
+            var n2 = Number(in2.value)
+            var s = n1 + n2
+            var res = window.document.getElementById('res')
+            res.innerHTML = `A soma entre ${n1} e ${n2} é igual a <strong>${s}</strong>`
+        }
+    </script>
+</body>
+</html>
