@@ -22,17 +22,19 @@
             var r = window.document.getElementById('res')
             var b = window.document.getElementById('buscar')
             b.addEventListener("click", (clicar))
+            // var bra = 'BRASIL' (para economizar um uppercase e melhorar o codigo)
             function clicar() {
                 r.innerText = `Olá, sou seu assistente virtual!`
                 var resp = window.document.getElementById('resposta')
                 var bra = 'Brasil'
-                if (p.value!=bra) {
+                if (p.value.toUpperCase()!=bra.toUpperCase()) { // antes da comparação colocar em letrasmaiusuclas para bater o resultado e remover espaços do inicio e do fim
                     resp.innerText = `Você nasceu no(a) ${p.value}, logo, você é Estrangeiro!`
                 } else {
                     resp.innerText = `Você nasceu no(a) ${p.value}, logo, você é Brasileiro!`
                 }
             }
             // duvida: Brasil com b minusculo não é computado
+            
         </script>
     </main>
     <footer></footer>
