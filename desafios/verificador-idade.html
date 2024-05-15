@@ -4,33 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verificador de Idade</title>
+    <style>
+      *{
+        margin: 0px;
+        padding: 0px;
+      }
+      body{
+        background-color: rgba(0, 94, 255, 0.524);
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.2em;
+      }
+      main{
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.457);
+        border: 1px solid rgba(0, 0, 0, 0.461);
+        padding: 20px;
+        width: 50vw;
+        height: 70vh;
+        margin: auto;
+        margin-top: 30px;
+      }
+      h1{
+        color: white;
+        text-shadow: 0px 0px 2px rgba(255, 255, 255, 0.256);
+        text-align: center;
+        margin-top: 50px;
+      }
+      p{
+        margin-top: 20px;
+      }
+      footer{
+        text-align: center;
+        color: white;
+      }
+      #botao{
+        width: 100px;
+        height: 30px;
+        margin-top: 15px;
+      }
+      img{
+        border-radius: 100%;
+        width: 350px;
+        height: 350px;
+        margin: auto;
+      }
+      #div2{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+      }
+    </style>
 </head>
 <body>
     <header>
         <h1>Verificador de Idade</h1>
     </header>
     <main>
-        <div>
-            <p>Ano de Nascimento: <input type="number" name="idade selector" id="inidade"></p>
-            <p>Sexo: <select name="" id=""></select></p>
-            <form>
-                <p>Escolha suas frutas favoritas:</p>
-                <label>
-                  <input type="checkbox" name="frutas" value="maçã"> Maçã
-                </label><br>
-                <label>
-                  <input type="checkbox" name="frutas" value="banana"> Banana
-                </label><br>
-                <label>
-                  <input type="checkbox" name="frutas" value="laranja"> Laranja
-                </label><br>
-                <label>
-                  <input type="checkbox" name="frutas" value="uva"> Uva
-                </label>
-              </form>
+        <div id="div1">
+          <p>Ano de Nascimento: <input type="number" name="idade selector" id="inidade"></p>
+          <p>Sexo: 
+              <input type="radio" name="radsex" id="masc" checked> <!--checked é para já deixar checkado-->
+              <label for="mas">Masculino</label>
+              <input type="radio" name="radsex" id="fem">
+              <label for="fem">Feminino</label>
+          </p>
+          <input id="botao" type="button" value="verificar">
+        </div>
+        <div id="div2">
+          <p>Preencha os dados acima para ver o resultado!</p>
+          <img src="https://images.unsplash.com/photo-1710631245967-579e5a5bf021?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="img">
         </div>
     </main>
-    <footer></footer>
+    <footer>
+      <p>@CursoemVideo</p>
+    </footer>
    <!-- para criar o arquivo js em outro arquuivo pode-se usar: 
 
     <script src="script.js"></script> (assim, o vscode vai criar uma outra pagina como faz com o link do css)
