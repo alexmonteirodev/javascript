@@ -74,8 +74,8 @@
           <input id="botao" type="button" value="verificar">
         </div>
         <div id="div2">
-          <p>Preencha os dados acima para ver o resultado!</p>
-          <img src="https://images.unsplash.com/photo-1710631245967-579e5a5bf021?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="img">
+          <p id="res">Preencha os dados acima para ver o resultado!</p>
+          <img id="img" src="https://images.unsplash.com/photo-1710631245967-579e5a5bf021?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="img">
         </div>
     </main>
     <footer>
@@ -85,5 +85,56 @@
 
     <script src="script.js"></script> (assim, o vscode vai criar uma outra pagina como faz com o link do css)
     --> 
+
+    <script>
+        var verificar = document.getElementById('botao')
+        verificar.addEventListener("click", (clicar))
+        function clicar(params) {
+          var nasc = document.getElementById('inidade')
+          var ano = new Date()
+          var anoatual = ano.getFullYear()
+          if (nasc.value < anoatual || nasc.value.lenght == 0) { //ver como coloca o erro para 0 anos
+            var sexo = document.getElementsByName('radsex')
+            var genero = ''
+            var idade = anoatual - nasc.value
+            var res = document.getElementById('res')
+            var img = document.getElementById('img')
+            if (sexo[0].checked) {
+              var genero = 'masculino'
+              if (idade >= 1 && idade <= 12) {
+                //criança
+                res.innerText = `Você é uma criança de ${idade} anos do sexo ${genero}`
+                img.src = 'https://images.unsplash.com/photo-1489702932289-406b7782113c?q=80&w=2944&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+              } else if (idade > 12 && idade < 60) {
+                //adulto
+                res.innerText = `Você é um adulto de ${idade} anos do sexo ${genero}`
+                img.src = 'https://images.unsplash.com/photo-1595349384348-3235ad10009a?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+              } else {
+                //velhote
+                res.innerText = `Você é um idoso de ${idade} anos do sexo ${genero}`
+                img.src = 'https://images.unsplash.com/photo-1520853504280-249b72dc947c?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+              }
+            } else {
+              if (sexo[1].checked)
+                var genero = 'feminino'
+                if (idade >= 1 && idade <= 12) {
+                  //criança
+                  res.innerText = `Você é uma criança de ${idade} anos do sexo ${genero}`
+                  img.src = 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=2848&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                } else if (idade > 12 && idade < 60) {
+                  //adulto
+                  res.innerText = `Você é uma adulta de ${idade} anos do sexo ${genero}`
+                  img.src = 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                } else {
+                  //velhote
+                  res.innerText = `Você é uma idosa de ${idade} anos do sexo ${genero}`
+                  img.src = 'https://images.unsplash.com/photo-1581579438930-a0269719fde7?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                }
+            }
+          } else {
+            window.alert('[ERRO] Verifique os dados e tente novamente.')
+          }
+        }
+    </script>
 </body>
 </html>
