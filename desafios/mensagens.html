@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>desafio das mensagens</title>
+    <style>
+        section{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        .botao{
+            width: 80px;
+            height: 50px;
+            background-color: rgba(128, 128, 128, 0.256);
+            border: 1px solid black;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Desafio das mensagens</h1>
+    </header>
+    <main>
+        <section>
+            <div class="botao" id="botao1">Botão 1</div>
+            <div class="botao" id="botao2">Botão 2</div>
+            <div class="botao" id="botao3">Botão 3</div>
+        </section>
+    </main>
+    <footer></footer>
+
+
+    <script>
+        var botao1 = document.getElementById('botao1')
+        botao1.addEventListener('click', clicar1)
+        function clicar1() {
+            botao1.style.background = 'rgba(128, 128, 128, 0.899)'
+            window.alert(`Você clicou no botão 1`)
+        }
+        var botao2 = document.getElementById('botao2')
+        botao2.addEventListener('click', clicar2)
+        function clicar2() {
+            botao2.style.background = 'rgba(128, 128, 128, 0.899)'
+            window.alert(`Você clicou no botão 2`)
+        }
+        var botao3 = document.getElementById('botao3')
+        botao3.addEventListener('click', clicar3)
+        function clicar3() {
+            botao3.style.background = 'rgba(128, 128, 128, 0.899)'
+            window.alert(`Você clicou no botão 3`)
+        } 
+    </script>
+</body>
+</html>

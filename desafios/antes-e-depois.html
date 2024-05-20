@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>antes e depois</title>
+    <style>
+        #div{
+            width: 180px;
+            height: 65px;
+            background-color: rgba(128, 128, 128, 0.384);
+            border: 1px solid black;
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+    </style>
+</head>
+<body>
+    <header><h1>Antes e depois</h1></header>
+    <main>
+        <input id="div" type="button" value="Antecessor & Posterior">
+    </main>
+    <footer></footer>
+
+    <script>
+        var botao = document.getElementById('div')
+        botao.addEventListener('click', clicar)
+        function clicar() {
+            var numero = Number(window.prompt ('Digite um número!'))
+            if (!isNaN(numero)) { //porque não o num == Number?      !isNaN = verifica se 'numero' é valido
+                var antecessor = numero-1 //porque n funcionou o num-- ? porque o num-- altera o valor da variavel
+                var posterior = numero+1 //porque n funcionou o num++ ? porque o num-- altera o valor da variavel
+                window.alert(`Antes do ${numero}, temos o número ${antecessor}.  Depois do ${numero}, temos o número ${posterior}.`)
+            } else {
+                window.alert('Ta besta?')
+            }
+            
+        }
+
+        /*
+        poderia usar também: 
+
+        var numero = window.prompt ('Digite um número!')
+        var num = Number(numero)
+
+        (optei por não usar para me acostumar a usar menos quantidade de codigo possível)
+
+        */
+    </script>
+</body>
+</html>
