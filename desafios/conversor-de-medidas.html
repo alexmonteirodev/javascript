@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de medidas</title>
+    <style>
+        input{
+            height: 50px;
+            width: 100px;
+        }
+        div{
+            height: 300px;
+            width: 45vw;
+            border-radius: 5px;
+            margin-top: 50px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <header><h1>Conversor de medidas</h1></header>
+    <main>
+        <input id="button" type="button" value="Converter">
+        <div id="res"></div>
+    </main>
+    <footer></footer>
+
+    <script>
+        var button = document.getElementById('button')
+        button.addEventListener('click',clicar)
+        var res = document.getElementById('res')
+        function clicar() {
+            var distancia = window.prompt('Digite uma medida em metros (m).')
+            var km = distancia * 0.001
+            var cm = distancia * 100
+            var mm = distancia * 1000
+            if (!isNaN(distancia)) {
+                res.style.background = 'rgba(6, 6, 6, 0.125)'
+                res.innerHTML = `<h1>A medida de ${distancia} metros, corresponde a... </h1><br>${km} Quilômetros (Km)<br>${cm} Centímetros (Cm)<br>${mm} Milímetros (mm)`
+            } else {
+                window.alert(`[ERRO] O valor: "${distancia}" não é válido.`)
+            }
+        }
+    </script>
+</body>
+</html>

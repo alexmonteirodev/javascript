@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculando troco</title>
+    <style>
+        #botao{
+            height: 50px;
+        }
+
+    </style>
+</head>
+<body>
+    <header><h1>Calculando o troco</h1></header>
+    <main>
+        <input id="botao" type="button" value="Comprar produto">
+    </main>
+    <footer></footer>
+
+    <script>
+        var botao = document.getElementById('botao')
+        botao.addEventListener('click', clicar)
+        function clicar() {
+            var produto = window.prompt('Que produto você está comprando?')            
+            var preco = window.prompt(`Quanto custa ${produto} que você está comprando?`)
+            var pago = window.prompt(`Qual foi o valor que você deu para pagar ${produto} ?`)
+            var troco = pago - preco
+            if (!isNaN(troco) && troco>=0) {
+                window.alert(`Você comprou ${produto} que custou ${preco}. Deu ${pago} em dinheiro e vai receber ${troco} de troco. Volte sempre! `)
+            } else {
+                window.alert(`[ERRO] Verifique os dados e tente novamente.`)
+            }
+        }
+    </script>
+</body>
+</html>
