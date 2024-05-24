@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Temperaturas</title>
+    <style>
+        input{
+            height: 50px;
+            width: 100px;
+        }
+        div{
+            margin-top: 30px;
+            background-color: re;
+        }
+    </style>
+</head>
+<body>
+    <header><h1>Conversor de Temperaturas</h1></header>
+    <main>
+        <input id="botao" type="button" value="Converter">
+        <div id="res" >Clique no botão acima para iniciar.</div>
+    </main>
+    <footer></footer>
+
+    <script>
+        var botao = document.getElementById('botao')
+        botao.addEventListener('click',clicar)
+        function clicar() {
+            var temp = window.prompt('Digite a temperatura em graus celsius.')
+            if (!isNaN(temp)) {
+                var far = temp * 1.8 + 32
+                var kelv = Number(temp) + 273.15
+                var res = document.getElementById('res')
+                res.innerHTML = `<h2>A temperatura de ${temp}ºC, corresponde a...</h2><br>${kelv}ºK (Kelvin)<br>${far}ºF (Fahrenheit)`
+            } else {
+                window.alert('[ERRO] Digite um número válido.')
+            }
+        }
+    </script>
+</body>
+</html>
