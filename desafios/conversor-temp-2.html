@@ -23,8 +23,7 @@
             flex-direction: row;
             justify-content: center;
             align-items: center;
-            gap: 50px;
-            
+            gap: 50px;   
         }
         input{
             width: 150px;
@@ -45,6 +44,42 @@
             font-size: 2em;
             color: gray;
         }
+        @media (max-width: 450px){
+            main{
+            width: 80vw;
+            height: 60vh;
+            border-radius: 10px;
+            border: 1px solid rgba(142, 141, 141, 0.477);
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.068);
+            background-color: #FFFFFF;
+            margin: auto;
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;   
+        }
+        input{
+            width: 150px;
+            height: 60px;
+            border: 1px solid rgba(128, 128, 128, 0.328);
+            box-shadow: 0px 0px 5px rgba(127, 127, 127, 0.147);
+            text-align: center;
+            font-size: 2em;
+        }
+        select{
+            width: 156px;
+            height: 20px;
+            border: 1px solid rgba(128, 128, 128, 0.328);
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.052);
+            background-color: #F8F9FA;
+        }
+        p{
+            font-size: 2em;
+            color: gray;
+        }
+        }
     </style>
 </head>
 <body>
@@ -56,15 +91,14 @@
             <input id="temp1" type="temp1"> <br>
             <select name="temp1s" id="select1">
                 <option id="celsius1" value="Celsius">Grau Celsius</option>
-                <option id="kelvin1" value="Kelvin">Kelvin</option>
-                <option id="far1" value="Fahrenheit">Fahrenheit</option>
             </select>
         </div>
-        <p>=</p>
+        <div>
+            <p>=</p>
+        </div>
         <div>
             <input id="temp2" type="temp2"><br>
             <select name="temp2s" id="select2">
-                <option id="celsius2" value="Celsius">Grau Celsius</option>
                 <option id="kelvin2" value="Kelvin">Kelvin</option>
                 <option id="far2" value="Fahrenheit">Fahrenheit</option>
             </select>
@@ -78,9 +112,13 @@
         temp1.addEventListener('input',escrever)
         function escrever() {
             if (celsius1.selected && kelvin2.selected) {
-                window.alert('bom')
+                var kelv = Number(temp1.value) + 273.15
+                temp2.value = `${kelv}`
+            } else if (celsius1.selected && far2.selected) {
+                var far = Number(temp1.value) * 1.8 + 32
+                temp2.value = `${far}` //para escrever no input se usa o .value porque ele tem valor e não o innertext
             } else {
-                window.alert('azedo')
+                
             }
         }
     </script>
