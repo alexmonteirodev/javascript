@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>desconto</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        input{
+            width: 150px;
+            height: 50px;
+            border: 1px solid rgba(101, 100, 100, 0.43);
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.199) inset;
+        }
+        p{
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Calcular Desconto</h1>
+    </header>
+    <main>
+        <div id="botao"><input type="button" value="Desconto 10%"></div>
+        <div id="res">
+            <h2 id="h2"></h2>
+            <p id="p"></p><strong></strong>
+        </div>
+    </main>
+    <footer></footer>
+    
+    <script>
+       // addEventListener('load', load)
+       function load() {
+            window.alert('Adquira 10% de desconto inserindo o código NATAL2024')
+       }
+        var botao = document.getElementById('botao')
+        botao.addEventListener('click', clicar)
+        function clicar (){
+            var codigo = window.prompt('Insira o código promocional')
+            var h2 = document.getElementById('h2')
+            var p = document.getElementById('p')
+            var desconto = (3699.00 * 10)/100
+            var final = 3699.00 - desconto
+            if (codigo.toUpperCase() == 'NATAL2024') {
+                h2.innerHTML = 'Calculando desconto de 10% para smart watch SE 44mm...'
+                p.innerHTML = `O preço original era de R$ 3.699,00.<br>Você acaba de ganhar R$${desconto.toFixed(2).replace('.',',')} de desconto (-10%). <br>No fim, você vai pagar <strong>R$${final.toFixed(2).replace('.',',')}</strong> no produto Smart Watch SE 44mm.`
+            } else {
+                window.alert('[ERRO] Este código é invalido.')
+            }          
+        }
+    </script>
+</body>
+</html>
