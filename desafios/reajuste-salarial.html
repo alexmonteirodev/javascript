@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reajuste salarial</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        section{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        input{
+            height: 60px;
+            width: 150px;
+            border: 1px solid rgba(97, 97, 97, 0.468);
+            box-shadow: 0px 0px 5px rgba(165, 165, 165, 0.486) inset;
+        }
+        p{
+            line-height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header><h1>Reajuste Salarial</h1></header>
+    <main>
+        <section>
+            <input id="botao" type="button" value="Reajustar Salário">
+            <div>
+                <h2 id="h2"></h2>
+                <p id="p">Clique no botão acima para iniciar.</p>
+            </div>
+        </section>
+    </main>
+    <footer></footer>
+
+    <script>
+        var botao = document.getElementById('botao')
+        botao.addEventListener('click',clicar)
+        function clicar() {
+            var funcionario = window.prompt('Qual o nome do funcinário?')
+            var salario = Number(window.prompt(`Qual é o salário de ${funcionario}?`))
+            var porcentagem = Number(window.prompt(`O salário de ${funcionario} vai ser reajustado em qual porcentagem?`))
+            var aumento =  salario / 100 * porcentagem
+            var salariofinal = salario + aumento
+            if (isNaN(funcionario) && !isNaN(salario) && !isNaN(porcentagem)) { //não precisa do "typeof(funcionario )=== 'string'" porque o prompt sempre retorna string. Para isso basta colocar  a var no if para ela reconhecer que é uma informação essencial para prosseguir. FAZER O !ISNAN DE FORMA ISOLADA PARA CADA VALOR!
+                var h2 = document.getElementById('h2')
+                var p = document.getElementById('p')
+                h2.innerHTML = `${funcionario} recebeu um aumento salarial!`
+                p.innerHTML = `O salário atual era de R$ ${salario.toFixed(2).replace('.',',')}.<br>Com um aumento de ${porcentagem}%, o salário vai aumentar R$${aumento.toFixed(2).replace('.',',')} no próximo mês.<br>E a partir daí, ${funcionario} vai passar a ganhar R$ ${salariofinal.toFixed(2).replace('.',',')}.`
+            } else {
+                window.alert('[ERRO] Verifique os dados e tente novamente.')
+            }
+        }
+    </script>
+</body>
+</html>

@@ -30,7 +30,7 @@
         botao.addEventListener('click', clicar)
         function clicar() {
             var numero = Number(window.prompt ('Digite um número!'))
-            if (!isNaN(numero)) { //porque não o num == Number?      !isNaN = verifica se 'numero' é valido
+            if (!isNaN(numero)) { //porque não o num == Number?      !isNaN = verifica se 'numero' é valido/converte para numero
                 var antecessor = numero-1 //porque n funcionou o num-- ? porque o num-- altera o valor da variavel
                 var posterior = numero+1 //porque n funcionou o num++ ? porque o num-- altera o valor da variavel
                 window.alert(`Antes do ${numero}, temos o número ${antecessor}.  Depois do ${numero}, temos o número ${posterior}.`)
