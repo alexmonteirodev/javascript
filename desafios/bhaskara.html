@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resolvendo Bhaskara</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.126);
+        }
+        #botao{
+            width: 100px;
+            height: 60px;
+            border: 1px solid rgba(149, 149, 149, 0.536);
+            box-shadow: 0px 0px 5px rgba(133, 133, 133, 0.389) inset;
+        }
+        p{
+            line-height: 30px;
+            width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <header><h1>Resolvendo Bhaskara</h1></header>
+    <main>
+        <section>
+            <input id="botao" type="button" value="Calcular">
+            <h2></h2>
+            <p id="p">Considerando uma equção no formato <strong>a</strong>x<sup>2</sup> + <strong>b</strong>x + <strong>c</strong> = 0, aperte o botão acima para calcular o valor de <strong>Δ</strong>.</p>
+        </section>
+    </main>
+    <footer></footer>
+
+    <script>
+        var botao = document.getElementById('botao')
+        botao.addEventListener('click', clicar)
+        function clicar(params) {
+            var vala = Number(window.prompt('Qual é o valor de a?'))
+            var valb = Number(window.prompt('Qual é o valor de b?'))
+            var valc = Number(window.prompt('Qual é o valor de c?'))
+            if (!isNaN(vala) && !isNaN(valb) && !isNaN(valc)) {
+                var delta = valb**2-4*vala*valc
+                var h2 = document.getElementById('h2')
+                var p = document.getElementById('p')
+                p.innerHTML = `A equação atual é ${vala}x<sup>2</sup> + ${valb}x + ${valc} = 0<br>O cálculo realizado será Δ = ${valb}<sup>2</sup> - 4.${vala}.${valc}<br>O valor calculado foi <strong>Δ = ${delta}</strong>`
+            } else {
+                window.alert('[ERRO] Insira um número válido.')
+            }       
+        }
+    </script>
+</body>
+</html>
