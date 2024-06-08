@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificador de Idade</title>
+    <style>
+      *{
+        margin: 0px;
+        padding: 0px;
+      }
+      body{
+        background-color: rgba(0, 94, 255, 0.524);
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.2em;
+      }
+      section{
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.457);
+        border: 1px solid rgba(0, 0, 0, 0.461);
+        padding: 20px;
+        width: 50vw;
+        height: 25vh;
+        margin: auto;
+        margin-top: 30px;
+      }
+      h1{
+        color: white;
+        text-shadow: 0px 0px 2px rgba(255, 255, 255, 0.256);
+        text-align: center;
+        margin-top: 50px;
+      }
+      p{
+        margin-top: 20px;
+      }
+      footer{
+        text-align: center;
+        color: white;
+      }
+      #botao{
+        width: 100px;
+        height: 30px;
+        margin-top: 15px;
+      }
+      @media(max-width: 760px){
+        section{
+        width: 80vw;       
+        }
+      }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Vamos contar</h1>
+    </header>
+    <main>
+       <section>
+        <div><p>Início: <input type="number" name="" id="inicionum"></p></div>
+        <div><p>Fim: <input type="number" name="" id="fimnum"></p></div>
+        <div><p>Passo: <input type="number" name="" id="passonum"></p></div>
+        <input id="botao" type="button" value="contar">
+        <p id="res">Preparando a contagem...</p>
+       </section>
+    </main>
+    <footer>
+      <p>@CursoemVideo</p>
+    </footer>
+
+    <script>
+        var inicionum = document.getElementById('inicionum') 
+        var fimnum = document.getElementById('fimnum') 
+        var passonum = document.getElementById('passonum') 
+        var botao = document.getElementById('botao')
+        botao.addEventListener('click', clicar)
+        function clicar(params) {
+            if (inicionum.value.length !== 0 && fimnum.value.length !== 0 && passonum.value.length !== 0) {
+                window.alert('deu bom ')
+            } else {
+                window.alert('deu ruim')
+            }
+           
+        }
+        /*   for (var inicionum; inicionum <= fimnum; passonum) {
+            var res = document.getElementById('res')
+            res.innerHTML = `teste`
+            
+           }*/
+    </script>
+    
+</body>
