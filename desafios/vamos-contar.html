@@ -21,7 +21,7 @@
         border: 1px solid rgba(0, 0, 0, 0.461);
         padding: 20px;
         width: 50vw;
-        height: 25vh;
+        /*NÃO COLOCAR UM HEIGHT PARA A DIV ACOMPANHAR A RESPOSTA E NÃO DESENQUADRAR*/
         margin: auto;
         margin-top: 30px;
       }
@@ -68,24 +68,66 @@
     </footer>
 
     <script>
-        var inicionum = document.getElementById('inicionum') 
-        var fimnum = document.getElementById('fimnum') 
-        var passonum = document.getElementById('passonum') 
-        var botao = document.getElementById('botao')
-        botao.addEventListener('click', clicar)
-        function clicar(params) {
-            if (inicionum.value.length !== 0 && fimnum.value.length !== 0 && passonum.value.length !== 0) {
-                window.alert('deu bom ')
-            } else {
-                window.alert('deu ruim')
-            }
-           
-        }
-        /*   for (var inicionum; inicionum <= fimnum; passonum) {
-            var res = document.getElementById('res')
-            res.innerHTML = `teste`
+      var inicio = document.getElementById('inicionum')
+      var fim = document.getElementById('fimnum')
+      var passo = document.getElementById('passonum')
+      var res = document.getElementById('res')
+
+      var botao = document.getElementById('botao')
+      botao.addEventListener('click', clicar)
+
+      function clicar(params) {
+        if (inicio.value.length !== 0 && fim.value.length !== 0 && passo.value.length !== 0) {
+          var i = Number(inicio.value) //porque tem que por .value aqui se o typeof ja mudou sem o value?
+          var f = Number(fim.value)
+          var p = Number(passo.value)
+          res.innerHTML = 'Contando: <br>' //res fora do for para não interferir no loop
+          if (i<=f) {
+            for (var c = i; c <= f; c = c + p) { //contagem progressiva
             
-           }*/
+            res.innerHTML += `${c} \u{1F449}  ` //se colocar o contando aqui, ele vai repitir junto com o loop por isso tem que vir antes
+          }
+          } else {
+            for (var c = i; c <= f; c = c - p) { //contagem regressiva
+            
+            res.innerHTML += `${c} \u{1F449}  ` //se colocar o contando aqui, ele vai repitir junto com o loop por isso tem que vir antes
+          }
+          }
+          res.innerHTML += ' Fim \u{1F3c1}'
+        } else {
+          window.alert('[ERRO] Verifique os dados e tente novamente. ')
+        }        
+      }
+ 
+
+
+/*
+- SIMPLESMENTE A CONTAGEM
+      function clicar(params) {
+        if (inicio.value.length !== 0 && fim.value.length !== 0 && passo.value.length !== 0) {
+          var i = Number(inicio.value) //porque tem que por .value aqui se o typeof ja mudou sem o value?
+          var f = Number(fim.value)
+          var p = Number(passo.value)
+          res.innerHTML = 'Contando: <br>' //res fora do for para não interferir no loop
+          for (var c = i; c <= f; c = c + p) {
+            
+            res.innerHTML += `${c} \u{1F449}  ` //se colocar o contando aqui, ele vai repitir junto com o loop por isso tem que vir antes
+          }
+          res.innerHTML += ' Fim \u{1F3c1}'
+        } else {
+          window.alert('[ERRO] Verifique os dados e tente novamente. ')
+        }        
+      }
+*/
+
+/*
+- SIMPLESMENTE O FOR
+          for (var c = i; c <= f; c = c + p) {
+            
+            res.innerHTML += `${c} \u{1F449}  ` //se colocar o contando aqui, ele vai repitir junto com o loop por isso tem que vir antes
+          }
+*/
+
     </script>
     
 </body>
