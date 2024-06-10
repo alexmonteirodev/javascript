@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tabuada</title>
+    <style>
+        *{
+          margin: 0px;
+          padding: 0px;
+        }
+        body{
+          background-color: rgba(0, 94, 255, 0.524);
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 1.2em;
+        }
+        section{
+          background-color: white;
+          border-radius: 10px;
+          box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.457);
+          border: 1px solid rgba(0, 0, 0, 0.461);
+          padding: 20px;
+          width: 50vw;
+          /*NÃO COLOCAR UM HEIGHT PARA A DIV ACOMPANHAR A RESPOSTA E NÃO DESENQUADRAR*/
+          margin: auto;
+          margin-top: 30px;
+        }
+        h1{
+          color: white;
+          text-shadow: 0px 0px 2px rgba(255, 255, 255, 0.256);
+          text-align: center;
+          margin-top: 50px;
+        }
+        #div1{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            align-content: center;
+            gap: 10px;
+        }
+        select{
+            width: 150px;
+            padding: 2px;
+            margin-top: 20px;
+        }
+        footer{
+          text-align: center;
+          color: white;
+        }
+        #botao{
+          width: 100px;
+          height: 30px;
+          border: 1px solid rgba(111, 111, 111, 0.48);
+          border-radius: 3px;
+          box-shadow: 0px 0px 3px rgba(129, 129, 129, 0.256) inset;
+        }
+        @media(max-width: 760px){
+          section{
+          width: 80vw;       
+          }
+        }
+      </style>
+  </head>
+  <body>
+      <header>
+          <h1>Tabuada</h1>
+      </header>
+      <main>
+        <section>
+            <div id="div1">
+                <p>Número:</p>
+                <input type="number" name="" id="num">
+                <input id="button" type="button" value="Gerar Tabuada">
+            </div>
+            <div id="res">
+                <select name="tabuada" id="tabuada">
+                    
+                </select>
+            </div>
+        </section>
+      </main>
+      <footer>
+        <p>@CursoemVideo</p>
+      </footer>
+
+      <script>
+        var num = document.getElementById('num')
+        var button = document.getElementById('button')
+        var res = document.getElementById('res')
+        var tab = document.getElementById('tabuada')
+        button.addEventListener('click',tabuada)
+
+        function tabuada(params) {
+            if (num.value.length !== 0) {
+                var number = Number(num.value)
+                var c = 1
+                tab.innerHTML = ''
+                while (c <= 10) {
+                    var item = document.createElement('option')
+                    item.text = `${number} x ${c} = ${number*c}`
+                    tab.appendChild(item) //appendChild = adicionar o elemento filho, vulgo 'item'
+                    c++
+                }
+                tab.size = '10'
+                
+            } else {
+                window.alert('[ERRO] Verifique os dados e tente novamente.')
+            }
+        }
+      </script>
+</html>
