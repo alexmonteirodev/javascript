@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisador de Números</title>
+    <style>
+        body{
+            background-color: #508edada;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0px;
+            padding: 0px;
+        }
+        h1{
+            color: white;
+            text-align: center;
+        }
+        section{
+            background-color: white;
+            width: 410px;
+            padding: 10px;
+            border-radius: 10px;
+            margin: auto;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.544);
+        }
+        #div1{
+            display: flex;
+            flex: row;
+            align-items: center;
+            gap: 3px;
+        }
+        #number{
+            height: 15px;
+        }
+        #add{
+            height: 20px;
+        }
+        #slct{
+            width: 145px;
+            height: 100px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header><h1>Analizador de números</h1></header>
+    <main>
+        <section>
+            <div id="div1">
+                <p>Número (entre 1 e 100):</p>
+                <input type="number" name="number" id="number">
+                <input type="button" value="Adicionar" id="add">
+            </div>
+            <div>
+                <select name="slct" id="slct"></select><br>
+                <input type="button" value="Finalizar">
+            </div>
+            <div id="res"></div>
+        </section>
+    </main>
+    <footer></footer>
+
+    <script>
+       
+        var add = document.getElementById('add')
+        var slct = document.getElementById('slct')
+        
+        add.addEventListener('click', adicionar)
+
+        function adicionar(params) {
+            var n = Number(document.getElementById('number').value)
+            var numeros = []
+
+            if (n >= 0 && n <= 100 ) {
+                numeros.push(n)
+                var item = document.createElement('option')
+                slct.appendChild(item)
+                item.text += `Valor ${n} adicionado.`
+                console.log(numeros)
+            } else {
+                window.alert('Este número é inválido ou já foi adicionado.')
+            }
+
+
+
+            
+            
+        }
+    </script>
+</body>
+</html>
