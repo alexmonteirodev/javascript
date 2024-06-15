@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ano Bissexto</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <header><h1>Ano Bissexto</h1></header>
+    <main>
+        <section>
+            <div><input type="button" value="Verificar" id="botao"></div>
+            <div id="res"><h2 id="h2"></h2><p id="p">Informe um ano para saber se ele é bissexto.</p></div>
+        </section>
+    </main>
+    <footer></footer>
+
+    <script>
+        var botao = document.getElementById('botao')
+        var h2 = document.getElementById('h2')
+        var p = document.getElementById('p')
+
+        botao.addEventListener('click',verificar)
+
+        function verificar(params) {
+            var ano = Number(window.prompt('Qual ano deseja verificar?'))
+            if (ano.toString().length > 4 || isNaN(ano)) { //tem que converter para string para ele contar o tanto de letras.
+                window.alert('Insira um ano válido')
+            } else if  ((ano%4 == 0 || (ano%400 == 0 && ano%100 !== 0))) {
+                h2.innerHTML = `Analizando o ano de ${ano}...`
+                p.innerHTML = `O ano de ${ano} <strong>É BISSEXTO</strong> `
+            } else {  
+                 h2.innerHTML = `Analizando o ano de ${ano}...`
+                p.innerHTML = `O ano de ${ano} <strong>NÃO É BISSEXTO</strong> `
+            }
+        }
+        //na linha 32 porque não posso usar o && !isNaN(ano)?
+    </script>
+</body>
+</html>
