@@ -12,7 +12,7 @@ var diasem = agora.getDay()
 
 console.log(diasem) //se fose usar o if ia ter mto aninhamento e como os dias da semana são elementos fixos (o js entende como numeros/elementos) que nunca se alteram é melhor usar um switch;
 
-switch (diasem) {
+switch (diasem) { //é igual um if, liea-se = if diasem == dia 0, console(domingo)... 
     case 0:
         console.log('Domingo')
         break;

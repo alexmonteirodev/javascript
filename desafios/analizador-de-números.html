@@ -37,8 +37,10 @@
         }
         #slct{
             width: 145px;
-            height: 100px;
             margin-bottom: 5px;
+        }
+        #res{
+            line-height: 40px;
         }
     </style>
 </head>
@@ -52,8 +54,8 @@
                 <input type="button" value="Adicionar" id="add">
             </div>
             <div>
-                <select name="slct" id="slct"></select><br>
-                <input type="button" value="Finalizar">
+                <select name="slct" id="slct" size="6"></select><br>
+                <input id="final" type="button" value="Finalizar">
             </div>
             <div id="res"></div>
         </section>
@@ -64,28 +66,44 @@
        
         var add = document.getElementById('add')
         var slct = document.getElementById('slct')
+        var numeros = []
+        
         
         add.addEventListener('click', adicionar)
 
         function adicionar(params) {
             var n = Number(document.getElementById('number').value)
-            var numeros = []
-
-            if (n >= 0 && n <= 100 ) {
+            var  tab = document.getElementById('slct')
+            if (n >= 0 && n <= 100) {
                 numeros.push(n)
                 var item = document.createElement('option')
-                slct.appendChild(item)
-                item.text += `Valor ${n} adicionado.`
-                console.log(numeros)
+                tab.appendChild(item)
+                item.innerHTML = `Valor ${n} adicionado.`
             } else {
                 window.alert('Este número é inválido ou já foi adicionado.')
-            }
-
-
-
-            
-            
+            }    
         }
+
+        var final = document.getElementById('final')
+        var res = document.getElementById('res')
+        final.addEventListener('click',finalizar)
+
+        function finalizar(params) {
+            numeros.sort() //testar jeito pedro
+            var pos = numeros.length
+            var soma = numeros[0]
+           /*
+            12
+            7
+            5
+           */
+            
+            for (var c = 1; c < numeros.length; c++) { //for para saber quantos numeros o cliente vai por E c = 1 porque se fosse = 0 ele somaria ele mesmo a primeira vez
+                soma = soma + numeros[c]
+            }
+            res.innerHTML = `Ao todo, temos ${numeros.length} números cadastrados.<br>O maior valor informado foi ${numeros[numeros.length -1]}.<br>O menor valor informado foi ${numeros[0]}.<br>Somando todos os valores, temos ${soma}.<br>A média dos valores digitados é $.`
+        }
+        //tudo que seja criado fora pode usar dentro (depois), tudo que criar dentro não pode usar fora (antes). Pq o js le o codigo de cima para baixo (falando de var antes do for)
     </script>
 </body>
 </html>
