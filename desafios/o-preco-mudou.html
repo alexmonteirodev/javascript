@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O preco mudou</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0px;
+            margin-left: 10px;
+        }
+        input{
+            height: 50px;
+            width: 80px;
+            box-shadow: 0px 0px 5px rgba(3, 3, 3, 0.232);
+            border-color: rgba(8, 8, 8, 0.288);
+        }
+        p{
+            line-height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header><h2>Preço mudou</h2></header>
+    <main>
+        <input id="botao" type="button" value="Verificar">
+        <div id="res"><p>Clique no botão acima para analisar a mudança de preço.</p></div>
+    </main>
+    <footer></footer>
+
+    <script>
+        var botao = document.getElementById('botao')
+        var res = document.getElementById('res')
+
+        botao.addEventListener('click', verificar)
+
+        function verificar(params) {
+            var ant = Number(window.prompt('Qual era o preço anterior do produto?'))       
+            var atual = Number(window.prompt('Qual era o preço atual do produto?'))
+            var difs = ant - atual
+            var difa = atual - ant
+            var variacaop = (atual - ant)/ant * 100 //(valor novo - valor antigo )/antigo * 100
+            var variacaon = (ant - atual)/atual * 100
+            
+            if (ant >= 0 && atual >= 0 && ant !== atual && atual<ant) {
+                res.innerHTML = `<h2>Analisando os valores informados...</h2><p>O produto custava R$ ${ant.toFixed(2)} e agora custa R$ ${atual.toFixed(2)}.<br>Hoje o produto está mais barato.<br>O preço abaixou R$ ${difs.toFixed(2)} em relação ao preço anterior.<br>Uma variação de ${variacaop.toFixed(2)}% pra baixo.</p>`
+            } else if (atual>ant) {
+                res.innerHTML = `<h2>Analisando os valores informados...</h2><p>O produto custava R$ ${ant.toFixed(2)} e agora custa R$ ${atual.toFixed(2)}.<br>Hoje o produto está mais caro.<br>O preço subiu R$ ${difa.toFixed(2)} em relação ao preço anterior.<br>Uma variação de ${variacaop.toFixed(2)}% pra cima.</p>`
+            } else {
+                window.alert('[ERRO] Insira um valor válido.')
+            }
+        }
+    </script>
+</body>
+</html>
