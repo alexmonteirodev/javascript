@@ -11,3 +11,5 @@ console.log(num) //mostra os valores do vetor
 console.log(`O vetor tem ${num.length} posições`) //mostra o numero de elementos dentro do vetor
 
 console.log(num[0]) //mostra o valor que ocupa a posição 0 (pode usar em template string: `O valor é ${num[0]}`)
+
+
