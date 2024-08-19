@@ -91,18 +91,25 @@ var idadeNatalia = +'25'
 
 if (idadeAlex > idadeNatalia) {
     console.log('maior')
-} else{
+} else if (idadeAlex === idadeNatalia) {
+    console.log('é igual')
+} else {
     console.log('menor')
 }
+
 // Qual valor é retornado na seguinte expressão?
-var expressao = (5 - 2) && (5 - ' ') && (5 - 2); //false
+var expressao = (5 - 2) && (5 - ' ') && (5 - 2);
+console.log(expressao)
 
 // Verifique se as seguintes variáveis são Truthy ou Falsy
 var nome = 'Andre'; //true
 var idade = 28; //true
 var possuiDoutorado = false; //false
 var empregoFuturo; //false - undefined
-var dinheiroNaConta = 0; // true
+var dinheiroNaConta = 0; // false - (0 é false)
+
+console.log(!!nome, !!idade, !!possuiDoutorado, !!empregoFuturo, !!dinheiroNaConta) //verifica se os valores são true ou false, usando !!
+
 
 // Compare o total de habitantes do Brasil com China (valor em milhões)
 var brasil = 207;
@@ -111,15 +118,15 @@ var china = 1340;
 console.log(`A China tem ${china-brasil} milhões de pessoas a mais que o Brasil.`)
 
 // O que irá aparecer no console?
-if(('Gato' === 'gato') && (5 > 2)) {
+if(('Gato' === 'gato') && (5 > 2)) { //expressao de && retorna o primeiro false ou ultimo true (true&&true)
   console.log('Verdadeiro');
 } else {
   console.log('Falso');
 }
 
 // O que irá aparecer no console?
-if(('Gato' === 'gato') || (5 > 2)) {
-  console.log('Gato' && 'Cão');
+if(('Gato' === 'gato') || (5 > 2)) { //o || busca até achar um verdadeiro (5>2 é true)
+  console.log('Gato' && 'Cão'); //ambas sao strings, portanto, verdadeiras, o && mostra o ultimo true
 } else {
   console.log('Falso');
 }
