@@ -83,7 +83,14 @@ outrosDados(); // retorna um erro
 // EXERCÍCIOS:
 
 // Crie uma função para verificar se um valor é Truthy
-
+function verificaTruthy(params) {
+    if (condition) {
+        return true
+    } else {
+        return false
+    }
+}
+verificaTruthy()
 // Crie uma função matemática que retorne o perímetro de um quadrado
 // lembrando: perímetro é a soma dos quatro lados do quadrado
 
