@@ -14,9 +14,9 @@ console.log(areaQuadrado(5))
 //-------------------------------------------------------------------------------------------------------
 //exemplo 3 - parâmetro X argumento:
 
-function imc(peso, altura) { // peso, altura são os parâmetros
+function imc(peso, altura) { // peso, altura são os -parâmetros-
     const imc = peso / (altura ** 2)
-    return imc //se no lugar do return tivesse um console.log, ao passar os argumentos, o valor já sairia direto, porém sairia um undefined junto, por isso, usar return
+    return imc //se no lugar do return tivesse um console.log, ao passar os -argumentos-, o valor já sairia direto, porém sairia um undefined junto, por isso, usar return
 }
 imc(80, 1.80) //80 e 1.80 são os argumentos
 console.log(imc(80,1.80))
@@ -82,37 +82,52 @@ outrosDados(); // retorna um erro
 
 // EXERCÍCIOS:
 
-// Crie uma função para verificar se um valor é Truthy
+// Crie uma função para verificar se um valor é Truthy - ACERTOU MIZERAVI
 function verificaTruthy(params) {
-    if (condition) {
-        return true
+    return !!params
+}
+
+// Crie uma função matemática que retorne o perímetro de um quadrado - lembrando: perímetro é a soma dos quatro lados do quadrado - ACERTOU MIZERAVI
+function somaPerimetro(lados) {
+    return soma = lados*4
+}
+console.log(somaPerimetro(2))
+// Crie uma função que retorne o seu nome completo, ela deve possuir os parâmetros: nome e sobrenome - ACERTOU MIZERAVI
+function completeName(name, surname) {
+    return name + ' ' + surname
+}
+completeName('Alex','Monteiro')
+// Crie uma função que verifica se um número é par
+function verificadorPairNumbers(number) {
+    var calc = number%2
+    if (calc === 0) {
+        return `O número ${number} é par.`
     } else {
-        return false
+        return `O número ${number} é ímpar.`
     }
 }
-verificaTruthy()
-// Crie uma função matemática que retorne o perímetro de um quadrado
-// lembrando: perímetro é a soma dos quatro lados do quadrado
+verificadorPairNumbers(6)
+// Crie uma função que retorne o tipo de dado do argumento passado nela (typeof)
 
-// Crie uma função que retorne o seu nome completo
-// ela deve possuir os parâmetros: nome e sobrenome
-
-// Crie uma função que verifica se um número é par
-
-// Crie uma função que retorne o tipo de
-// dado do argumento passado nela (typeof)
+function typeValue(params) {
+    return typeof params
+}
 
 // addEventListener é uma função nativa do JavaScript
 // o primeiro parâmetro é o evento que ocorre e o segundo o Callback
 // utilize essa função para mostrar no console o seu nome completo
 // quando o evento 'scroll' ocorrer.
 
+addEventListener('scroll', function name(params) {
+    return console.log('Alex')
+})
+
 // Corrija o erro abaixo
+var totalPaises = 193;
 function precisoVisitar(paisesVisitados) {
-    var totalPaises = 193;
     return `Ainda faltam ${totalPaises - paisesVisitados} países para visitar`;
   }
-  function jaVisitei(paisesVisitados) {
+function jaVisitei(paisesVisitados) {
     return `Já visitei ${paisesVisitados} do total de ${totalPaises} países`;
   }
   precisoVisitar(20);
