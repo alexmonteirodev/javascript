@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        
+        //exemplo 5:
+        addEventListener('click', function clicando() {
+            console.log('Oi')
+        })
+
+        //exemplo 6:
+        function terceiraIdade(idade) {
+            if (typeof idade === !isNaN) {
+                return 'Por favor, preencha um número'
+            } else if (idade >= 60) {
+                return true
+            } else {
+                return false
+            }
+        }
+        terceiraIdade(60)
+
+        //exemplo 7:
+        //var totalPaises = 193
+
+        function faltaVisitar(paisesVisitados) {
+            let totalPaises = 193
+            return `Falta visitar ${totalPaises - paisesVisitados} países.`
+        }
+        faltaVisitar(20)
+    </script>
+</body>
+</html>
