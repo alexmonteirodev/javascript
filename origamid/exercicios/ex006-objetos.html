@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>objetos</title>
+</head>
+<body>
+    <script>
+       console.log(Math.random())
+
+       var quadrado = { //objeto
+            lados: 4, //propriedade (variável)
+            area: function (lado) { //propriedade (método)
+                return lado*lado
+            },
+            perimetro: function (lado) {
+                return this.lados * lado //this é o objeto, escrever this.lados = quadrado.lados
+            },
+        }
+        console.table(quadrado)
+    </script>
+</body>
+</html>
