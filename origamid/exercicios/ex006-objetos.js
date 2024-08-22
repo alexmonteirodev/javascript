@@ -52,4 +52,89 @@ console.table //organiza o objeto em tabela, só visualmente, não altera o cód
 //exemplo:
 var pi = Math.PI
 console.log(pi)
+//-------------------------------------------------------------------------------------------------------
+// Dot Notation Get & Set:
+var menu = {
+    width: 800,
+    height: 50,
+    backgroundColor: '#84E'
+}
 
+// GET (acesse propriedades de um objeto usando .):
+var bg = menu.backgroundColor
+console.log(bg)
+
+//SET (quando substitui o valor de uma propriedade utilizando .)
+menu.backgroundColor = '#000'
+
+// Adicionando valor ao objeto:
+menu.color = 'red'
+console.log(menu)
+//-------------------------------------------------------------------------------------------------------
+// Escopo:
+var height = 200
+var menu = {
+    width: 900,
+    height: 100,
+    backgroundColor: 'red',
+    metadeHeight(){
+        return this.height /2 //this.height = menu.height. Obs: se não tivesse o this, ele ia puxar o height da variavel acima
+    },
+}
+console.log(menu.metadeHeight())
+//-------------------------------------------------------------------------------------------------------
+// Protótipo e Herança:
+
+// ao criar um objeto você utiliza uma funcionalidade do JS/uma função de JS que se chama Object e daí se da a possibilidade de criar um objeto, ou seja, através dessa funcionalidade pre definida e assim como essa funcionalidade, existem também métodos já pré definidos para um Object e ao criar um objeto você herda tbm esses métodos/funções do object ('elemento pai') para seu objeto ('Elemento filho') e saber bem essas propriedades e métodos pre definidos, é saber bem JS.
+
+var menu ={
+    width: 800,
+}
+menu.hasOwnProperty('width') // true (verifica se existe x propriedade no objeto)
+menu.hasOwnProperty('height') // false
+
+'Alex'.length // diz quantos caracteres tem a string
+console.log('Alex'.length)
+//-------------------------------------------------------------------------------------------------------
+
+// EXERCÍCIOS:
+
+// Crie um objeto com os seus dados pessoais. Deve possuir pelo menos duas propriedades nome e sobrenome
+var pessoa ={
+    nome: 'ALex',
+    sobrenome: 'Monteiro',
+    aprendendoJs(){
+        return 'Estou aprendendo JS!'
+    },
+}
+
+// Crie um método no objeto anterior, que mostre o seu nome completo
+pessoa.nomeCompleto = function name(params) {
+    return `Meu nome completo é ${this.nome} ${pessoa.sobrenome}!`
+}
+console.log(pessoa.nomeCompleto())
+
+// Modifique o valor da propriedade preco para 3000
+var carro = {
+    preco: 1000,
+    portas: 4,
+    marca: 'Audi',
+  }
+  carro.preco = 3000 //você setou um novo valor (set)
+  console.log(carro)
+  // Crie um objeto de um cachorro que represente um labrador, preto com 10 anos, que late ao ver um homem
+  var cachorro={
+    raca: 'Labrador',
+    cor: 'black',
+    idade: '10 anos',
+    latir(pessoa){
+        if (pessoa === 'homem') {
+            return 'Au Au'
+        } else {
+            return ''
+        }
+        
+    },
+  }
+  console.log(cachorro.latir('homem'))
+  
