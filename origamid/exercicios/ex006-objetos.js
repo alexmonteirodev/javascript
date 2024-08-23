@@ -137,4 +137,43 @@ var carro = {
     },
   }
   console.log(cachorro.latir('homem'))
-  
+//-------------------------------------------------------------------------------------------------------
+// Tudo é objeto: strings, números, booleans, objetos e mais, possuem propriedades e métodos. Por isso são objetos.
+var nome = 'André'
+
+nome.length // 5
+nome.charAt(1) // 'n' mostra o caracter daquela posição
+nome.replace('ré', 'rei') // 'Andrei' essa função não altera a variável, para isso, crie outra variavel ou adicione essa função diretamente nela - var nomeMinusculo = nome.toLowerCase()
+
+//numeros:
+var altura = 1.8
+
+altura.toString() // '1.8' transforma para string
+altura.toFixed() // '2' arredonda
+
+//funções:
+function areaQuadrado(lado) {
+    return lado*lado    
+}
+areaQuadrado.toString() 
+// function areaQuadrado(lado) {
+//     return lado*lado    
+// }
+areaQuadrado.length // 1 length da função retorna quantos paramentros são usados nela nesse caso 1 (lado)
+addEventListener.length // nesse caso seriam o resultado seria 2, um do evento e outro do nome
+
+// EXERCÍCIOS PART2:
+
+// nomeie 3 propriedades ou métodos de strings
+var s = 'nome'
+s.includes()
+s.length
+s.toLocaleLowerCase()
+// nomeie 5 propriedades ou métodos de elementos do DOM
+document.addEventListener()
+document.getElementById()
+document.querySelector()
+//innerHtml
+// id - retorna o id da tag html
+// busque na web um objeto (método) capaz de interagir com o clipboard, clipboard é a parte do seu computador que lida com o CTRL + C e CTRL + V
+read()
