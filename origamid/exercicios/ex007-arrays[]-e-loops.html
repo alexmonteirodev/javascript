@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>arrays e loops</title>
+</head>
+<body>
+    <script>
+        var videoGames = ['Switch', 'PS4', 'XBox']
+        for (let index = 0; index < videoGames.length; index++) {
+            console.log(videoGames[index])
+            if (videoGames[index] === 'PS4') { //condição para parar o loop
+                break //serve para parar o loop 
+            }            
+        }
+        var frutas = ['Banana', 'Maçã', 'Pera', 'Abacaxi', 'Uva']
+        frutas.forEach(function (item, index, array) {
+            console.log(item, index, array)
+        })
+
+        console.log(frutas.indexOf('Uva')) //mostra a posição no array
+
+        //EXERCÍCIOS:
+
+        // Crie uma array com os anos que o Brasil ganhou a copa: 1959, 1962, 1970, 1994, 2002
+
+        var anosDaCopa = [1959, 1962, 1970, 1994, 2002]
+
+        // Interaja com a array utilizando um loop, para mostrar no console a seguinte mensagem, `O brasil ganhou a copa de ${ano}`
+
+        for (let index = 0; index < anosDaCopa.length; index++) {
+            console.log(`O Brasil ganhou a copa de ${anosDaCopa[index]}`)
+        }
+
+        // Interaja com um loop nas frutas abaixo e pare ao chegar em Pera
+
+        var frutas = ['Banana', 'Maçã', 'Pera', 'Uva', 'Melância']
+
+        for (let index = 0; index < frutas.length; index++) {
+            console.log(frutas[index])
+            if (frutas[index] === 'Pera') {
+                break
+            }
+        }
+        // Coloque a última fruta da array acima em uma variável, sem remover a mesma da array.
+
+        var ultimoItemFrutas = frutas.length // length = 5 elementos mas o último elemtno do array é o 4 
+        console.log(frutas[frutas.length-1])// portanto total de elemento -1 = ao ultimo elemento
+
+        var res = frutas[frutas.length-1]
+
+    </script>
+</body>
+</html>
