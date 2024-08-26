@@ -11,6 +11,9 @@ var pessoa = { //objeto
     possuiFaculdade: true, //propriedade (variável)
 }
 pessoa.nome //André
+pessoa.altura = 'alto' //adicionando propriedade ao objeto pessoa
+console.log(pessoa)
+
 //-------------------------------------------------------------------------------------------------------
 //Métodos (É uma propriedade que possui uma função no local do seu valor):
 var quadrado = { //objeto
