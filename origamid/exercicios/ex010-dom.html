@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+<body>
+    <h1>Exemplo</h1>
+    <h2 class="titulo2 teste">testando no h2</h2>
+
+    <script>
+        // DOM: É uma interface que representa documentos HTML e XML através de objetos. Com ela é possível manipular a estrutura, estilo e conteúdo destes documentos.
+
+        const titulo = document.querySelector('h1')
+        titulo.innerHTML = 'mudou'
+
+        // Toda tag html é representada pelo objeto Element e por isso herda os seus métodos e propriedades. Element é um tipo de objeto Node.
+        // Element. (ao escrever element. pode-se ver suas propriedades e metodos do ES6 )
+
+        titulo.innerText //retorna o texto
+        titulo.classList //retorna as classes
+        titulo.id //retorna o id
+        titulo.offsetHeight // retorna a altura do elemento
+
+        titulo.addEventListener('click', callback1) //ativa a função callback no click no titulo
+        function callback1(params) {
+        
+        }
+        //ou pode passar a função direto
+        titulo.addEventListener('click', function callback(params) {
+            
+        })
+        //-------------------------------------------------------------------------------------------------------
+
+        // EXERCÍCIOS:
+
+        // Retorne o url da página atual utilizando o objeto window
+        const href = window.location.href
+        console.log(href)
+        // Seleciona o primeiro elemento da página que possua a classe ativo
+        const h2class = document.querySelector('.titulo2')
+        console.log(h2class.classList)
+        console.log(h2class.classList.length)
+        console.log(h2class.classList[0])
+        console.log(h2class.classList[1])
+        
+        // Retorne a linguagem do navegador
+        console.log(window.navigator.languages) //coloquei window.navigator e lendo as propriedades encontrei languages
+        // Retorne a largura da janela 
+        console.log(window.screen.availWidth + 'px')
+
+    </script>
+</body>
+</html>
