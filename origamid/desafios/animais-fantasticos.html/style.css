@@ -1,0 +1,62 @@
+@charset 'UTF-8';
+*{
+    margin: 0px;
+    padding: 0px;
+}
+:root{
+    --background-color: #faf6ed ;
+    --color: #222;
+    --font: -webkit-font-smoothing: antialiased;
+    --yellow: #fb5
+
+}
+
+img{
+    display: block;
+    max-width: 100%; /*para a img ficar 'responsiva' e não estourar o container. Obs: se fosse só width, a imagem ia crescer do tamanho da pg e com o max, ela só cresce até o tamanho natural*/
+}
+ul{
+    list-style: none;
+}
+body{
+    background-color: var(--background-color);
+    color: var(--color);
+    font-family: var(--font);
+    display: grid; /*repare que o display grid foi adicionado no body e .e ativado no .menu*/
+    grid-template-columns: 1fr 120px minmax(300px, 800px) 1fr;
+}
+.menu{
+    grid-column: 3/5;
+    margin-top: 2rem; /* 2*16px (rem = unidade relativa do site como se fosse um vw/vh)-A rem ("root em") é o tamanho de fonte do elemento-raiz do documento. OBS: 'EM' usa o tamanho da fonte do elemento pai e 'REM' usa o tamanho da fonte do <html>*/
+    margin-bottom: 2rem;
+    background-color: var(--yellow);
+}
+.menu ul{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.menu li a{
+    display: block;
+    padding: 10px;
+    margin-right: 10px;
+    color: var(--color);
+    text-decoration: none;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    letter-spacing: .1em; /*espaçamento entre letras*/
+}
+
+.grid-section{
+    grid-column: 2/4;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 100px 300px 1fr;
+    grid-gap: 20px;
+    margin-bottom: 4rem;
+}
