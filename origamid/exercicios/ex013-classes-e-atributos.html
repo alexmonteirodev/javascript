@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animais Fantasticos</title>
+    <style>
+        @charset 'UTF-8';
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
+*{
+    margin: 0px;
+    padding: 0px;
+}
+:root{
+    --background-color: #faf6ed ;
+    --color: #222;
+    --font: -webkit-font-smoothing: antialiased;
+    --font2: Playfair Display SC;
+    --yellow: #fb5;
+    --orange: #e54;
+
+}
+
+img{
+    display: block;
+    max-width: 100%; /*para a img ficar 'responsiva' e não estourar o container. Obs: se fosse só width, a imagem ia crescer do tamanho da pg e com o max, ela só cresce até o tamanho natural*/
+}
+ul{
+    list-style: none;
+}
+body{
+    background-color: var(--background-color);
+    color: var(--color);
+    font-family: var(--font);
+    display: grid; /*repare que o display grid foi adicionado no body e .e ativado no .menu*/
+    grid-template-columns: 1fr 120px minmax(300px, 800px) 1fr;
+}
+.menu{
+    grid-column: 3/5;
+    margin-top: 2rem; /* 2*16px (rem = unidade relativa do site como se fosse um vw/vh)-A rem ("root em") é o tamanho de fonte do elemento-raiz do documento. OBS: 'EM' usa o tamanho da fonte do elemento pai e 'REM' usa o tamanho da fonte do <html>*/
+    margin-bottom: 2rem;
+    background-color: var(--yellow);
+}
+.menu ul{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.menu li a{
+    display: block;
+    padding: 10px;
+    margin-right: 10px;
+    color: var(--color);
+    text-decoration: none;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    letter-spacing: .1em; /*espaçamento entre letras*/
+}
+
+.grid-section{
+    grid-column: 2/4;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 100px 300px 1fr;
+    grid-gap: 20px;
+    margin-bottom: 4rem;
+}
+.titulo{
+    font-family: var(--font2), georgia;
+    font-size: 6rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    grid-column: 1/4;
+}
+.animais-descricao h2{
+    font-family: monospace;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    margin-bottom: 1rem;
+    color: var(--orange);
+}
+.animais-descricao h2::before{
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 10px;
+    margin-right: 10px;
+    background-color: var(--yellow);
+}
+.animais-descricao p{
+    font-family: Helvetica, Arial, sans-serif;
+    margin-bottom: 1rem;
+}
+.animais-lista{
+    height: 360px;
+    overflow-y: scroll; /*define o que o que passar no eixo y será visivel com scroll */
+    grid-column: 2;
+}
+.animais-lista::-webkit-scrollbar{
+    width: 18px;
+}
+.animais-lista::-webkit-scrollbar-thumb{ /*distancia da imagem e disfarçando o scroll - (thumb é a parte de rola a pag)*/
+    background-color: var(--yellow);
+    border-left:4px solid var(--background-color); 
+    border-right: 4px solid var(--background-color);
+}
+.animais-lista::-webkit-scrollbar-track{/*track = background do scroll*/
+    background-color: var(--background-color);
+}
+.animais-descricao{
+    grid-column: 3;
+    margin-bottom: 3rem;
+}
+.faq-lista{
+    grid-column: 2/4;
+}
+.faq-lista dt{
+    font-family: monospace;
+    font-weight: bold;
+    margin-top: 2rem;
+    margin-bottom: .5rem;
+    color: var(--orange);
+    font-size: 1.5rem;
+}
+.faq-lista dt::before{
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 10px;
+    margin-right: 10px;
+    background-color: var(--yellow);
+}
+.faq-lista dd{
+    font-family: Helvetica, Arial, sans-serif;
+    margin-bottom: .5rem;
+    margin-left: 30px;
+}
+.mapa{
+    grid-column: 2;
+}
+.dados{
+    grid-column: 3;
+}
+.dados li{
+    margin-bottom: 1rem;
+    font-family:Helvetica,  Arial, sans-serif;
+}
+.dados li::before{
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 10px;
+    margin-right: 10px;
+    background-color: var(--yellow);
+}
+.copy{
+    grid-column: 3/5;
+    margin-bottom: 2rem;
+    background-color: var(--yellow);
+}
+.copy p{
+    padding: 20px;
+    font-family: monospace;
+    font-weight: bold;
+}
+@media (max-width: 700px) {
+    body {
+      grid-template-columns: 1fr;
+    }
+    .menu, .grid-section, .copy {
+      grid-column: 1;
+    }
+    .grid-section {
+      grid-template-columns: 100px 1fr;
+      grid-gap: 10px;
+    }
+    .animais-lista {
+      grid-column: 1;
+    }
+    .faq-lista, .dados, .mapa {
+      grid-column: 1 / 3;
+    }
+    .grid-section h1 {
+      font-size: 3rem;
+    }
+    .menu {
+      margin-top: 0px;
+    }
+    .copy {
+      margin-bottom: 0px;
+    }
+  }
+    </style>
+</head>
+<body>
+    
+    <nav class="menu azul">
+        <ul>
+            <li><a href="#animais">Animais</a></li> <!--#animais encaminha para o id animais-->
+            <li><a href="#faq">Faq</a></li>
+            <li><a href="#contato">Contato</a></li>
+            <li><a href="https://www.origamid.com" target="_blank">Dev></a></li>
+        </ul>
+    </nav>
+    <section class="grid-section animais" id="animais">
+        <h1 class="titulo">Animais Fantasticos</h1>
+        <ul class="animais-lista">
+            <li>
+                <img src="ex011-imgs/imagem1.jpg" alt="">
+            </li>
+            <li>
+                <img src="ex011-imgs/imagem2.jpg" alt="esquilo">
+            </li>
+            <li>
+                <img src="ex011-imgs/imagem3.jpg" alt="">
+            </li>
+            <li>
+                <img src="ex011-imgs/imagem4.jpg" alt="">
+            </li>
+            <li>
+                <img src="ex011-imgs/imagem5.jpg" alt="">
+            </li>
+            <li>
+                <img src="ex011-imgs/imagem6.jpg" alt="">
+            </li>
+        </ul>
+        <div class="animais-descricao">
+            <section>
+                <h2>Raposa</h2>
+                <p>As raposas são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.</p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
+                <p>De cerca de 40 espécies reconhecidas como raposas, somente 12 pertencem ao gênero Vulpes das "raposas verdadeiras", do qual a raposa vermelha é a mais comum.</p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
+            </section>
+            <section>
+                <h2>Esquilo</h2>
+                <p>Os esquilos são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.</p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
+                <p>De cerca de 40 espécies reconhecidas como raposas, somente 12 pertencem ao gênero Vulpes das "raposas verdadeiras", do qual a raposa vermelha é a mais comum.</p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
+            </section>
+            <section>
+                <h2>Urso</h2>
+                <p>Os esquilos são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.</p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
+                <p>De cerca de 40 espécies reconhecidas como raposas, somente 12 pertencem ao gênero Vulpes das "raposas verdadeiras", do qual a raposa vermelha é a mais comum.</p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
+            </section>
+            <section>
+                <h2>Lobo</h2>
+                <p>Os esquilos são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.
+                </p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.
+                </p>
+                <p>De cerca de 40 espécies reconhecidas como raposas, somente 12 pertencem ao gênero Vulpes das "raposas verdadeiras", do qual a raposa vermelha é a mais comum.
+                </p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.
+                </p>
+            </section>
+            <section>
+                <h2>Macaco</h2>
+                <p>Os esquilos são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.</p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
+                <p>De cerca de 40 espécies reconhecidas como raposas, somente 12 pertencem ao gênero Vulpes das "raposas verdadeiras", do qual a raposa vermelha é a mais comum.</p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
+            </section>
+            <section>
+                <h2>Leão</h2>
+                <p>Os esquilos são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.</p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
+                <p>De cerca de 40 espécies reconhecidas como raposas, somente 12 pertencem ao gênero Vulpes das "raposas verdadeiras", do qual a raposa vermelha é a mais comum.</p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
+            </section>
+        </div>
+    </section>
+    <section class="grid-section faq" id="faq">
+        <h1 class="titulo">FAQ</h1>
+        <dl class="faq-lista"> <!--definition list (lista com definição boa para perguntas e respostas)-->
+            
+            <dt>Qual a idade dos animais?</dt> <!--definition term (pergunta)-->
+            <dd>As raposas são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.
+            </dd> <!--definition description (resposta)-->
+            
+            <dt>Eles são fantásticos?</dt>
+            <dd>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.
+            </dd>
+
+            <dt>Qual a diferença?</dt>
+            <dd>As raposas são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.
+            </dd>
+
+            <dt>Como proteger?</dt>
+            <dd>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.
+            </dd>
+
+        </dl>
+    </section>
+    <section class="grid-section contato" id="contato">
+        <h1 class="titulo">Contato</h1>
+        <div class="mapa">
+            <img src="ex011-imgs/mapa.png" alt="">
+        </div>
+        <ul class="dados">
+            <li>contato@exemplo.com</li>
+            <li>+99 (99) 9999-9999 </li>
+            <li>Rua do conde nª21</li>
+            <li>São Paulo - SP</li>
+        </ul>
+    </section>
+
+    <footer class="copy">
+        <p>Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // //ClassList: retorna uma lista com as classes do elemento. Permite adicionar, remover e verificar se contém.
+        // const menu = document.querySelector('.menu')
+        // console.log(menu.classList)
+
+        // menu.classList.add('teste')
+        // menu.classList.remove('azul')
+
+        // //classlist é novo, antigamente o pessoal usava o classname, porém ele substitui o valor:
+        // menu.className = 'substituiu' //class menu antes era 'menu teste' e agora virou 'substituiu'
+        // //para add uma class antigamente então faziam assim (concatenavam):
+        // menu.className = menu.className + ' vermelho' //espaço antes do ' vermelho' é para uma palavra não grudar na outro e ao inves de ter duas classes ter só uma por ex: 'substituiuvermelho' e 'substituiu vermelho' - poderia fazer tbm -> menu.className += ' vermelho'
+
+        // //exemplos de classlist:
+        // /*
+        // const x = document.querySelector('.x');
+
+        // x.className; // string
+        // x.classList; // lista de classes
+        // x.classList.add('ativo'); //adiciona classe
+        // x.classList.add('ativo', 'mobile'); // duas classes
+        // x.classList.remove('ativo'); //remove classe
+        // x.classList.toggle('ativo'); // adiciona/remove a classe
+        // x.classList.contains('ativo'); // true ou false
+        // x.classList.replace('ativo', 'inativo');
+        // */
+        // //-----------------------------------------------------------------------------------------------
+
+        // //attributes: atributos são tipo class, id, data. Retorna um array-like com os atributos do elemento
+
+        // const animais = document.querySelector('#animais')
+        // console.log(animais.attributes)
+        // console.log(animais.attributes.class)
+        // console.log(animais.attributes[0])
+        // //-----------------------------------------------------------------------------------------------
+
+        // //getAttribute e setAttribute: métodos que retornam ou definem de acordo com o atributo selecionado
+
+        // //setAttribute: adiciona um atributo e um valor
+        // const img = document.querySelector('img')
+        // img.setAttribute('alt', 'é uma raposa') //<img src="ex011-imgs/imagem1.jpg" alt="é uma raposa">
+
+        // //getAttribute: retorna atributo
+        // const img2 = document.querySelectorAll('img')[1]
+        // console.log(img2.getAttribute('alt'))
+
+        // //obs: também existe o hasAttribute que retorna um boolean se tem ou n tem x atributo:
+        // console.log(img2.hasAttribute('tittle')) //false
+
+        // //tbm existe o removeAttribute que remove o atributo
+        //-----------------------------------------------------------------------------------------------
+        
+        //EXERCÍCIOS:
+
+        // Adicione a classe ativo a todos os itens do menu
+        const allMenuItems = document.querySelectorAll('.menu a')
+        console.log(allMenuItems)
+        allMenuItems.forEach((params) => { //adiciona 'class ativo' em todos
+            return params.classList.add('ativo')
+        })
+
+
+        // Remove a classe ativo de todos os itens do menu e mantenha apenas no primeiro
+        allMenuItems.forEach((params) => { //remove 'class ativo' de todos
+            params.classList.remove('ativo')
+        })
+        allMenuItems[0].classList.add('ativo') //adiciona 'class ativo' no primeiro (array-like)
+
+
+        // Verifique se as imagens possuem o atributo alt
+        const imgs = document.querySelectorAll('img')
+        console.log(imgs)
+
+        imgs.forEach((params) => {
+            const possuiAtributo = params.hasAttribute('alt')
+            console.log(params, possuiAtributo) //pode passar os params antes para mostrar um a um
+        })
+
+
+        // Modifique o href do link externo no menu
+        const linkExterno = document.querySelector('a[href^="https:"]')
+        console.log(linkExterno)
+        linkExterno.setAttribute('href', 'https://www.google.com') //se coloco o link em "", ao clicar da erro, portanto colocar sem ""
+
+
+    </script>
+</body>
+</html>

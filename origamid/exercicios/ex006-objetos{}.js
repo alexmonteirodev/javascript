@@ -13,7 +13,7 @@ var pessoa = { //objeto
 pessoa.nome //André
 pessoa.altura = 'alto' //adicionando propriedade ao objeto pessoa
 console.log(pessoa)
-
+// repare que objeto está em branco, propriedade em cinza e métodos em amarelo na legenda
 //-------------------------------------------------------------------------------------------------------
 //Métodos (É uma propriedade que possui uma função no local do seu valor):
 var quadrado = { //objeto
