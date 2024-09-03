@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animais Fantasticos</title>
+    <style>
+        @charset 'UTF-8';
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
+*{
+    margin: 0px;
+    padding: 0px;
+}
+:root{
+    --background-color: #faf6ed ;
+    --color: #222;
+    --font: -webkit-font-smoothing: antialiased;
+    --font2: Playfair Display SC;
+    --yellow: #fb5;
+    --orange: #e54;
+
+}
+
+img{
+    display: block;
+    max-width: 100%; /*para a img ficar 'responsiva' e não estourar o container. Obs: se fosse só width, a imagem ia crescer do tamanho da pg e com o max, ela só cresce até o tamanho natural*/
+}
+ul{
+    list-style: none;
+}
+body{
+    background-color: var(--background-color);
+    color: var(--color);
+    font-family: var(--font);
+    display: grid; /*repare que o display grid foi adicionado no body e .e ativado no .menu*/
+    grid-template-columns: 1fr 120px minmax(300px, 800px) 1fr;
+}
+.menu{
+    grid-column: 3/5;
+    margin-top: 2rem; /* 2*16px (rem = unidade relativa do site como se fosse um vw/vh)-A rem ("root em") é o tamanho de fonte do elemento-raiz do documento. OBS: 'EM' usa o tamanho da fonte do elemento pai e 'REM' usa o tamanho da fonte do <html>*/
+    margin-bottom: 2rem;
+    background-color: var(--yellow);
+}
+.menu ul{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.menu li a{
+    display: block;
+    padding: 10px;
+    margin-right: 10px;
+    color: var(--color);
+    text-decoration: none;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    letter-spacing: .1em; /*espaçamento entre letras*/
+}
+
+.grid-section{
+    grid-column: 2/4;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 100px 300px 1fr;
+    grid-gap: 20px;
+    margin-bottom: 4rem;
+}
+.titulo{
+    font-family: var(--font2), georgia;
+    font-size: 6rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    grid-column: 1/4;
+}
+.animais-descricao h2{
+    font-family: monospace;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    margin-bottom: 1rem;
+    color: var(--orange);
+}
+.animais-descricao h2::before{
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 10px;
+    margin-right: 10px;
+    background-color: var(--yellow);
+}
+.animais-descricao p{
+    font-family: Helvetica, Arial, sans-serif;
+    margin-bottom: 1rem;
+}
+.animais-lista{
+    height: 360px;
+    overflow-y: scroll; /*define o que o que passar no eixo y será visivel com scroll */
+    grid-column: 2;
+}
+.animais-lista::-webkit-scrollbar{
+    width: 18px;
+}
+.animais-lista::-webkit-scrollbar-thumb{ /*distancia da imagem e disfarçando o scroll - (thumb é a parte de rola a pag)*/
+    background-color: var(--yellow);
+    border-left:4px solid var(--background-color); 
+    border-right: 4px solid var(--background-color);
+}
+.animais-lista::-webkit-scrollbar-track{/*track = background do scroll*/
+    background-color: var(--background-color);
+}
+.animais-descricao{
+    grid-column: 3;
+    margin-bottom: 3rem;
+}
+.faq-lista{
+    grid-column: 2/4;
+}
+.faq-lista dt{
+    font-family: monospace;
+    font-weight: bold;
+    margin-top: 2rem;
+    margin-bottom: .5rem;
+    color: var(--orange);
+    font-size: 1.5rem;
+}
+.faq-lista dt::before{
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 10px;
+    margin-right: 10px;
+    background-color: var(--yellow);
+}
+.faq-lista dd{
+    font-family: Helvetica, Arial, sans-serif;
+    margin-bottom: .5rem;
+    margin-left: 30px;
+}
+.mapa{
+    grid-column: 2;
+}
+.dados{
+    grid-column: 3;
+}
+.dados li{
+    margin-bottom: 1rem;
+    font-family:Helvetica,  Arial, sans-serif;
+}
+.dados li::before{
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 10px;
+    margin-right: 10px;
+    background-color: var(--yellow);
+}
+.copy{
+    grid-column: 3/5;
+    margin-bottom: 2rem;
+    background-color: var(--yellow);
+}
+.copy p{
+    padding: 20px;
+    font-family: monospace;
+    font-weight: bold;
+}
+@media (max-width: 700px) {
+    body {
+      grid-template-columns: 1fr;
+    }
+    .menu, .grid-section, .copy {
+      grid-column: 1;
+    }
+    .grid-section {
+      grid-template-columns: 100px 1fr;
+      grid-gap: 10px;
+    }
+    .animais-lista {
+      grid-column: 1;
+    }
+    .faq-lista, .dados, .mapa {
+      grid-column: 1 / 3;
+    }
+    .grid-section h1 {
+      font-size: 3rem;
+    }
+    .menu {
+      margin-top: 0px;
+    }
+    .copy {
+      margin-bottom: 0px;
+    }
+  }
+    </style>
+</head>
+<body>
+    
+    <nav class="menu azul">
+        <ul>
+            <li><a href="#animais">Animais</a></li> <!--#animais encaminha para o id animais-->
+            <li><a href="#faq">Faq</a></li>
+            <li><a href="#contato">Contato</a></li>
+            <li><a href="https://www.origamid.com" target="_blank">Dev></a></li>
+        </ul>
+    </nav>
+    <section class="grid-section animais" id="animais">
+        <h1 class="titulo">Animais Fantasticos</h1>
+        <ul class="animais-lista">
+            <li>
+                <img src="ex011-imgs/imagem1.jpg" alt="">
+            </li>
+            <li>
+                <img src="ex011-imgs/imagem2.jpg" alt="esquilo">
+            </li>
+            <li>
+                <img src="ex011-imgs/imagem3.jpg" alt="">
+            </li>
+            <li>
+                <img src="ex011-imgs/imagem4.jpg" alt="">
+            </li>
+            <li>
+                <img src="ex011-imgs/imagem5.jpg" alt="">
+            </li>
+            <li>
+                <img src="ex011-imgs/imagem6.jpg" alt="">
+            </li>
+        </ul>
+        <div class="animais-descricao">
+            <section>
+                <h2>Raposa</h2>
+                <p>As raposas são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.</p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
+                <p>De cerca de 40 espécies reconhecidas como raposas, somente 12 pertencem ao gênero Vulpes das "raposas verdadeiras", do qual a raposa vermelha é a mais comum.</p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
+            </section>
+            <section>
+                <h2>Esquilo</h2>
+                <p>Os esquilos são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.</p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
+                <p>De cerca de 40 espécies reconhecidas como raposas, somente 12 pertencem ao gênero Vulpes das "raposas verdadeiras", do qual a raposa vermelha é a mais comum.</p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
+            </section>
+            <section>
+                <h2>Urso</h2>
+                <p>Os esquilos são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.</p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
+                <p>De cerca de 40 espécies reconhecidas como raposas, somente 12 pertencem ao gênero Vulpes das "raposas verdadeiras", do qual a raposa vermelha é a mais comum.</p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
+            </section>
+            <section>
+                <h2>Lobo</h2>
+                <p>Os esquilos são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.
+                </p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.
+                </p>
+                <p>De cerca de 40 espécies reconhecidas como raposas, somente 12 pertencem ao gênero Vulpes das "raposas verdadeiras", do qual a raposa vermelha é a mais comum.
+                </p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.
+                </p>
+            </section>
+            <section>
+                <h2>Macaco</h2>
+                <p>Os esquilos são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.</p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
+                <p>De cerca de 40 espécies reconhecidas como raposas, somente 12 pertencem ao gênero Vulpes das "raposas verdadeiras", do qual a raposa vermelha é a mais comum.</p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
+            </section>
+            <section>
+                <h2>Leão</h2>
+                <p>Os esquilos são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.</p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
+                <p>De cerca de 40 espécies reconhecidas como raposas, somente 12 pertencem ao gênero Vulpes das "raposas verdadeiras", do qual a raposa vermelha é a mais comum.</p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
+            </section>
+        </div>
+    </section>
+    <section class="grid-section faq" id="faq">
+        <h1 class="titulo">FAQ</h1>
+        <dl class="faq-lista"> <!--definition list (lista com definição boa para perguntas e respostas)-->
+            
+            <dt>Qual a idade dos animais?</dt> <!--definition term (pergunta)-->
+            <dd>As raposas são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.
+            </dd> <!--definition description (resposta)-->
+            
+            <dt>Eles são fantásticos?</dt>
+            <dd>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.
+            </dd>
+
+            <dt>Qual a diferença?</dt>
+            <dd>As raposas são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.
+            </dd>
+
+            <dt>Como proteger?</dt>
+            <dd>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.
+            </dd>
+
+        </dl>
+    </section>
+    <section class="grid-section contato" id="contato">
+        <h1 class="titulo">Contato</h1>
+        <div class="mapa">
+            <img src="ex011-imgs/mapa.png" alt="">
+        </div>
+        <ul class="dados">
+            <li>contato@exemplo.com</li>
+            <li>+99 (99) 9999-9999 </li>
+            <li>Rua do conde nª21</li>
+            <li>São Paulo - SP</li>
+        </ul>
+    </section>
+
+    <footer class="copy">
+        <p>Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // //height e width: Estas são propriedades e métodos dos objetos Element e HTMLElement, a maioria delas são Read Only(apenas para leitura, não pode ser editada).
+        
+        // const animais = document.querySelector('.animais-descricao')
+        // console.log(animais.clientHeight) //retorna o height
+        // console.log(animais.clientWidth) //retorna o width
+
+        // const imgs = document.querySelector('.animais-lista')
+        // console.log(imgs.clientHeight) //360px (o que foi delimitado)
+        // console.log(imgs.scrollHeight) //752px (height contando com o scroll)
+        // //-----------------------------------------------------------------------------------------------
+
+        // //offsettop e offsetleft:
+        // // x.offsetTop; //Distancia entre o topo do elemento e o topo da pagina
+
+        // // x.offsetLeft; //Distância entre o canto esquerdo do elemento e o canto esquerdo da pagina
+        // //-----------------------------------------------------------------------------------------------
+        
+        // //IMPORTANTE: lembra só desse getbounding que é sucesso.
+        // //getBoundingClientRect: Método que retorna um objeto com valores de width, height, distâncias do elemento e mais.
+
+        // const rect = imgs.getBoundingClientRect() //guarda esse e pronto que com esse da pra ver tudo
+        // console.log(rect.height) //retorna height do elemento
+        // console.log(rect.width) //retorna widht do elemento
+        // console.log(rect.top) //retorna distância entre o topo do elemento e o scroll (aqui se pode fazer validacoes como por ex: quando passar do elemento x faça y com ifelse)ex:
+
+        // if (rect.top < 0) {
+        //     console.log('passou do elemento')
+        // }
+        // //-----------------------------------------------------------------------------------------------
+
+        // //window:
+        // console.log(window.outerWidth) //retorna width da dimensão da tela 1920px (assim da pra saber se é usuario de pc ou mobile por exemplo)
+        // console.log(window.outerHeight)//retorna height da dimensão da tela 1920px
+
+        // console.log(window.innerWidth) //retorna width da tela (se tiver com dev tolls vai subtrair o tamanho dele)
+        // console.log(window.innerHeight)//retorna height da tela (menos aba de pesquisa)
+
+
+        // console.log(window.pageYOffset); // distância total do scroll vertical
+        // console.log(window.pageXOffset); // distância total do scroll horizontal
+        // //-----------------------------------------------------------------------------------------------
+  
+        // //matchMedia: Utilize um media-querie como no CSS para verificar a largura do browser
+        // const small = window.matchMedia('(max-width: 600px)') //atenção no ()
+        // if (small.matches) {
+        //     console.log('tela menor que 600px')
+        // } else {
+        //     console.log('tela maior que 600px')
+        // }
+        //-----------------------------------------------------------------------------------------------
+
+        //EXERCÍCIOS:
+
+        // Verifique a distância da primeira imagem em relação ao topo da página
+        const img = document.querySelector('.animais-lista')
+        const distanciaTopo = img.getBoundingClientRect()
+        console.log(distanciaTopo)
+
+        console.log(distanciaTopo.top) //retorna distancia atual (se scrollar a distancia vai diminuir)
+        console.log(img.offsetTop) //retorna distancia (se scrollar a distancia vai continuar igual)
+
+        // Retorne a soma da largura de todas as imagens
+
+                                // const allImgs = document.querySelectorAll('img')
+                                // allImgs.forEach(function name(params) {
+                                //     console.log(params.getBoundingClientRect())
+                                // })
+
+        //obs: o width está dando zero porque as imagens ainda não carregaram (o js carrega antes das imgens que estão no servidor) e para que apareça os widths tem que usar um evento que carregue a pagina e o nome desse evento é onload (tem que atribuir uma função de callback), seguindo então...
+        function somaImagens() {
+            const allImgs = document.querySelectorAll('img')
+            let soma = 0 //atribui 0 ao soma para que dentro do loop ele comece em 0
+            allImgs.forEach(function name(params) {
+                //console.log(params.getBoundingClientRect())
+                let i = params.getBoundingClientRect()
+                // console.log(i.width)
+                soma = soma + i.width //soma = 0 + width da imagem 1,2,3,4...
+            })
+            console.log(soma) //mostrar fora do loop pra não dar ruim
+      }
+
+        window.onload = function () {
+            somaImagens()
+        }
+
+
+        // Verifique se os links da página possuem o mínimo recomendado para telas utilizadas com o dedo. (48px/48px de acordo com o google)
+
+        const links = document.querySelectorAll('a')
+        
+
+
+        // Se o browser for menor que 720px, adicione a classe menu-mobile ao menu
+
+    </script>
+</body>
+</html>
