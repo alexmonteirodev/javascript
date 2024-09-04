@@ -380,6 +380,8 @@ body{
         console.log(distanciaTopo.top) //retorna distancia atual (se scrollar a distancia vai diminuir)
         console.log(img.offsetTop) //retorna distancia (se scrollar a distancia vai continuar igual)
 
+
+
         // Retorne a soma da largura de todas as imagens
 
                                 // const allImgs = document.querySelectorAll('img')
@@ -398,21 +400,55 @@ body{
                 soma = soma + i.width //soma = 0 + width da imagem 1,2,3,4...
             })
             console.log(soma) //mostrar fora do loop pra não dar ruim
-      }
+            }
 
-        window.onload = function () {
-            somaImagens()
-        }
+            window.onload = function () {
+                somaImagens()
+            }
+
+        //     function load() {
+        //     const allImgs = document.querySelectorAll('img')
+        //     console.log(firstImg.offsetWidth)
+        //     let soma = 0
+        //     allImgs.forEach((params) => {
+        //         console.log(params.offsetWidth)
+        //         soma += params.offsetWidth
+        //     })
+        //     console.log(soma)
+        // }
+
+        // window.onload = () => {load()}
+
 
 
         // Verifique se os links da página possuem o mínimo recomendado para telas utilizadas com o dedo. (48px/48px de acordo com o google)
 
-        const links = document.querySelectorAll('a')
-        
+        const allLinks = document.querySelectorAll('a')
+        allLinks.forEach((params, index) => {
+            console.log(params.offsetWidth, index)
+            console.log(params.offsetHeight, index)
+
+            if (params.offsetWidth >= 48 && params.offsetHeight >= 48) {
+                console.log(params, 'Possui boa acessibilidade')
+            } else {
+                console.log(params, 'Não possui boa acessibilidade')
+                
+            }
+        })
+    
 
 
         // Se o browser for menor que 720px, adicione a classe menu-mobile ao menu
 
+        const browserSize = window.matchMedia('(max-width: 720px)').matches
+        if (browserSize) {
+            const menu = document.querySelector('.menu')
+            menu.classList.add('menu-mobile')
+        }
+        // const menu = document.querySelector('.menu')
+        // if (window.innerHeight < 720) {
+        // menu.classList.add('menu-mobile')
+        // }
     </script>
 </body>
 </html>
