@@ -196,6 +196,9 @@ body{
       margin-bottom: 0px;
     }
   }
+  .amarelo{
+    background-color: rgba(150, 150, 28, 0.588);
+  }
     </style>
 </head>
 <body>
@@ -317,90 +320,109 @@ body{
     <footer class="copy">
         <p>Todos os direitos reservados.</p>
     </footer>
-
     <script>
-        // //ClassList: retorna uma lista com as classes do elemento. Permite adicionar, remover e verificar se contém.
-        // const menu = document.querySelector('.menu')
-        // console.log(menu.classList)
+        //addEventListener: adiciona uma função ao elemento, esta chamada de callback, que será ativada assim que certo evento ocorrer neste elemento.
+        const img = document.querySelector('img')
 
-        // menu.classList.add('teste')
-        // menu.classList.remove('azul')
-
-        // //classlist é novo, antigamente o pessoal usava o classname, porém ele substitui o valor:
-        // menu.className = 'substituiu' //class menu antes era 'menu teste' e agora virou 'substituiu'
-        // //para add uma class antigamente então faziam assim (concatenavam):
-        // menu.className = menu.className + ' vermelho' //espaço antes do ' vermelho' é para uma palavra não grudar na outro e ao inves de ter duas classes ter só uma por ex: 'substituiuvermelho' e 'substituiu vermelho' - poderia fazer tbm -> menu.className += ' vermelho'
-
-        // //exemplos de classlist:
-        // /*
-        // const x = document.querySelector('.x');
-
-        // x.className; // string
-        // x.classList; // lista de classes
-        // x.classList.add('ativo'); //adiciona classe
-        // x.classList.add('ativo', 'mobile'); // duas classes
-        // x.classList.remove('ativo'); //remove classe
-        // x.classList.toggle('ativo'); // adiciona/remove a classe
-        // x.classList.contains('ativo'); // true ou false
-        // x.classList.replace('ativo', 'inativo');
-        // */
-        // //-----------------------------------------------------------------------------------------------
-
-        // //attributes: atributos são tipo class, id, href, data. Retorna um array-like com os atributos do elemento
-
-        // const animais = document.querySelector('#animais')
-        // console.log(animais.attributes)
-        // console.log(animais.attributes.class)
-        // console.log(animais.attributes[0])
-        // //-----------------------------------------------------------------------------------------------
-
-        // //getAttribute e setAttribute: métodos que retornam ou definem de acordo com o atributo selecionado
-
-        // //setAttribute: adiciona um atributo e um valor
-        // const img = document.querySelector('img')
-        // img.setAttribute('alt', 'é uma raposa') //<img src="ex011-imgs/imagem1.jpg" alt="é uma raposa">
-
-        // //getAttribute: retorna atributo
-        // const img2 = document.querySelectorAll('img')[1]
-        // console.log(img2.getAttribute('alt'))
-
-        // //obs: também existe o hasAttribute que retorna um boolean se tem ou n tem x atributo:
-        // console.log(img2.hasAttribute('tittle')) //false
-
-        // //tbm existe o removeAttribute que remove o atributo
+        //elemento.addEventListner(event, callback, options)
+        img.addEventListener('click', () => {
+            console.log('clicou')
+        })
         //-----------------------------------------------------------------------------------------------
-        
-        //EXERCÍCIOS:
 
-        // Adicione a classe ativo a todos os itens do menu
-        const allMenuItems = document.querySelectorAll('.menu a')
-        console.log(allMenuItems)
-        allMenuItems.forEach((params) => { //adiciona 'class ativo' em todos
-            return params.classList.add('ativo')
-        })
+        // Callback: Boas práticas: é boa prática separar a função de callback do addEventListener, ou seja, declarar uma função ao invés de passa diretamente uma função anônima. (é bom para separar o código, ou seja, melhor de ver e para alguem que esteja analizando entender o código e na hora de fazer um debug para achar um erro, fazendo de forma separada, a função deixa de ser anônima então assim, passa pelo debug e fica mais facil de encontrar um erro por exemplo)ex:
 
+        const imagem = document.querySelector('img')
+        imagem.addEventListener('click', callback)
+        function callback() {
+            console.log('clicou')
+        }
 
-        // Remove a classe ativo de todos os itens do menu e mantenha apenas no primeiro
-        allMenuItems.forEach((params) => { //remove 'class ativo' de todos
-            params.classList.remove('ativo')
-        })
-        allMenuItems[0].classList.add('ativo') //adiciona 'class ativo' no primeiro (array-like)
+        //outros exemplos de como se pode fazer:
+        // img.addEventListener('click', callback); // 🚀
 
+        // img.addEventListener('click', callback()); // undefined
 
-        // Verifique se as imagens possuem o atributo alt
-        const imgs = document.querySelectorAll('img')
-        console.log(imgs)
+        // img.addEventListener('click', function() {
+        // console.log('Clicou');
+        // })
 
-        imgs.forEach((params) => {
-            const possuiAtributo = params.hasAttribute('alt')
-            console.log(params, possuiAtributo) //pode passar os params antes para mostrar um a um
-        })
+        // img.addEventListener('click', () => {
+        // console.log('Clicou');
+        // })
+        //-----------------------------------------------------------------------------------------------
 
+        //Event: O primeiro parâmetro do callback é referente ao evento que ocorreu.
 
-        // Modifique o href do link externo no menu
-        const linkExterno = document.querySelector('a[href^="https:"]')
-        console.log(linkExterno)
-        linkExterno.setAttribute('href', 'https://www.google.com') //se coloco o link em "", ao clicar da erro, portanto colocar sem ""
+        const foto = document.querySelector('img');
+
+        function callback(e) { //Geralmente utilizam 'e' como nome do parâmetro 'event'
+        console.log(e); //esse evento como mostra no console tambem possui suas propriedades e metodos
+        }
+
+        img.addEventListener('click', callback);
+
+        //propriedades do event:
+        // const currentTarget = e.currentTarget; // this (reporta um elemento geral, ao clicar em qualquer das imagens, no console será reportado um clique na ul da classe animais lista)
+       
+        // const target = e.target; // exatamente onde o clique ocorreu (se clica na imagem 1 aparece a img1 no console, se clica na img2, aparece img2 no console)
+       
+        // const type = e.type; // tipo de evento (retorna 'click')
+       
+        // const path = event.path;
+       
+        // console.log(currentTarget, target, type, path);
+        //-----------------------------------------------------------------------------------------------
+
+        //Event.preventDefault(): Previne o comportamento padrão do evento no browser. No caso de um link externo, por exemplo, irá previnir que o link seja ativado.
+
+        const linkExterno = document.querySelector('a[href^="http"]')
+        linkExterno.addEventListener('click', handleLink)
+
+        function handleLink(event) {
+            event.preventDefault()
+            console.log(event)
+        }
+        //-----------------------------------------------------------------------------------------------
+
+        //This: A palavra chave this é uma palavra especial de JavaScript, que pode fazer referência a diferentes objetos dependendo do contexto. No caso de eventos, ela fará referência ao elemento em que addEventListener foi adicionado.
+
+        const raposa = document.querySelector('img');
+
+        function callback(event) {
+        console.log(this); // this = raposa (faz referencia ao elemento)
+        console.log(this.getAttribute('src'));
+        }
+
+        raposa.addEventListener('click', callback);
+        //-----------------------------------------------------------------------------------------------
+
+        //Outros tipos de Eventos: Existem diversos eventos como click, scroll, resize, keydown, keyup, mouseenter e mais. Eventos podem ser adicionados a diferentes elementos, como o window e document também.
+
+        const h1 = document.querySelector('h1');
+
+        function callback(event) {
+        console.log(event.type, event);
+        }
+
+        // h1.addEventListener('click', callback);
+        // h1.addEventListener('mouseenter', callback);
+        // window.addEventListener('scroll', callback);
+        // window.addEventListener('resize', callback);
+        // window.addEventListener('keydown', callback);
+        //-----------------------------------------------------------------------------------------------
+
+        //Keyboard: Você pode adicionar atalhos para facilitar a navegação no seu site, através de eventos do keyboard.
+
+        function handleKeyboard(event) {
+        if(event.key === 'a')
+            document.body.classList.toggle('amarelo');
+        else if(event.key === 'v')
+            document.body.classList.toggle('vermelho');
+        }
+
+        window.addEventListener('keydown', handleKeyboard);
+
 
 
     </script>
