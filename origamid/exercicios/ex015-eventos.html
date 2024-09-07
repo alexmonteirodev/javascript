@@ -199,6 +199,9 @@ body{
   .amarelo{
     background-color: rgba(150, 150, 28, 0.588);
   }
+.sizeP{
+    font-size: 150%; /*1.5em é = 150%. por isso tem que usar o 'em' em css, porque é medida relativa*/
+  }
     </style>
 </head>
 <body>
@@ -321,110 +324,171 @@ body{
         <p>Todos os direitos reservados.</p>
     </footer>
     <script>
-        //addEventListener: adiciona uma função ao elemento, esta chamada de callback, que será ativada assim que certo evento ocorrer neste elemento.
-        const img = document.querySelector('img')
+        // //addEventListener: adiciona uma função ao elemento, esta chamada de callback, que será ativada assim que certo evento ocorrer neste elemento.
+        // const img = document.querySelector('img')
 
-        //elemento.addEventListner(event, callback, options)
-        img.addEventListener('click', () => {
-            console.log('clicou')
-        })
-        //-----------------------------------------------------------------------------------------------
-
-        // Callback: Boas práticas: é boa prática separar a função de callback do addEventListener, ou seja, declarar uma função ao invés de passa diretamente uma função anônima. (é bom para separar o código, ou seja, melhor de ver e para alguem que esteja analizando entender o código e na hora de fazer um debug para achar um erro, fazendo de forma separada, a função deixa de ser anônima então assim, passa pelo debug e fica mais facil de encontrar um erro por exemplo)ex:
-
-        const imagem = document.querySelector('img')
-        imagem.addEventListener('click', callback)
-        function callback() {
-            console.log('clicou')
-        }
-
-        //outros exemplos de como se pode fazer:
-        // img.addEventListener('click', callback); // 🚀
-
-        // img.addEventListener('click', callback()); // undefined
-
-        // img.addEventListener('click', function() {
-        // console.log('Clicou');
-        // })
-
+        // //elemento.addEventListner(event, callback, options)
         // img.addEventListener('click', () => {
-        // console.log('Clicou');
+        //     console.log('clicou')
         // })
-        //-----------------------------------------------------------------------------------------------
+        // //-----------------------------------------------------------------------------------------------
 
-        //Event: O primeiro parâmetro do callback é referente ao evento que ocorreu.
+        // // Callback: Boas práticas: é boa prática separar a função de callback do addEventListener, ou seja, declarar uma função ao invés de passa diretamente uma função anônima. (é bom para separar o código, ou seja, melhor de ver e para alguem que esteja analizando entender o código e na hora de fazer um debug para achar um erro, fazendo de forma separada, a função deixa de ser anônima então assim, passa pelo debug e fica mais facil de encontrar um erro por exemplo)ex:
 
-        const foto = document.querySelector('img');
+        // const imagem = document.querySelector('img')
+        // imagem.addEventListener('click', callback)
+        // function callback() {
+        //     console.log('clicou')
+        // }
 
-        function callback(e) { //Geralmente utilizam 'e' como nome do parâmetro 'event'
-        console.log(e); //esse evento como mostra no console tambem possui suas propriedades e metodos
-        }
+        // //outros exemplos de como se pode fazer:
+        // // img.addEventListener('click', callback); // 🚀
 
-        img.addEventListener('click', callback);
+        // // img.addEventListener('click', callback()); // undefined
 
-        //propriedades do event:
-        // const currentTarget = e.currentTarget; // this (reporta um elemento geral, ao clicar em qualquer das imagens, no console será reportado um clique na ul da classe animais lista)
+        // // img.addEventListener('click', function() {
+        // // console.log('Clicou');
+        // // })
+
+        // // img.addEventListener('click', () => {
+        // // console.log('Clicou');
+        // // })
+        // //-----------------------------------------------------------------------------------------------
+
+        // //Event: O primeiro parâmetro do callback é referente ao evento que ocorreu.
+
+        // const foto = document.querySelector('img');
+
+        // function callback(e) { //Geralmente utilizam 'e' como nome do parâmetro 'event'
+        // console.log(e); //esse evento como mostra no console tambem possui suas propriedades e metodos
+        // }
+
+        // img.addEventListener('click', callback);
+
+        // //propriedades do event:
+        // // const currentTarget = e.currentTarget; // this (reporta um elemento geral, ao clicar em qualquer das imagens, no console será reportado um clique na ul da classe animais lista)
        
-        // const target = e.target; // exatamente onde o clique ocorreu (se clica na imagem 1 aparece a img1 no console, se clica na img2, aparece img2 no console)
+        // // const target = e.target; // exatamente onde o clique ocorreu (se clica na imagem 1 aparece a img1 no console, se clica na img2, aparece img2 no console)
        
-        // const type = e.type; // tipo de evento (retorna 'click')
+        // // const type = e.type; // tipo de evento (retorna 'click')
        
-        // const path = event.path;
+        // // const path = event.path;
        
-        // console.log(currentTarget, target, type, path);
-        //-----------------------------------------------------------------------------------------------
+        // // console.log(currentTarget, target, type, path);
+        // //-----------------------------------------------------------------------------------------------
 
-        //Event.preventDefault(): Previne o comportamento padrão do evento no browser. No caso de um link externo, por exemplo, irá previnir que o link seja ativado.
+        // //Event.preventDefault(): Previne o comportamento padrão do evento no browser. No caso de um link externo, por exemplo, irá previnir que o link seja ativado.
 
-        const linkExterno = document.querySelector('a[href^="http"]')
-        linkExterno.addEventListener('click', handleLink)
+        // const linkExterno = document.querySelector('a[href^="http"]')
+        // linkExterno.addEventListener('click', handleLink)
 
-        function handleLink(event) {
-            event.preventDefault()
-            console.log(event)
+        // function handleLink(event) {
+        //     event.preventDefault()
+        //     console.log(event)
+        // }
+        // //-----------------------------------------------------------------------------------------------
+
+        // //This: A palavra chave this é uma palavra especial de JavaScript, que pode fazer referência a diferentes objetos dependendo do contexto. No caso de eventos, ela fará referência ao elemento em que addEventListener foi adicionado.
+
+        // const raposa = document.querySelector('img');
+
+        // function callback(event) {
+        // console.log(this); // this = raposa (faz referencia ao elemento)
+        // console.log(this.getAttribute('src'));
+        // }
+
+        // raposa.addEventListener('click', callback);
+        // //-----------------------------------------------------------------------------------------------
+
+        // //Outros tipos de Eventos: Existem diversos eventos como click, scroll, resize, keydown, keyup, mouseenter e mais. Eventos podem ser adicionados a diferentes elementos, como o window e document também.
+
+        // const h1 = document.querySelector('h1');
+
+        // function callback(event) {
+        // console.log(event.type, event);
+        // }
+
+        // // h1.addEventListener('click', callback);
+        // // h1.addEventListener('mouseenter', callback);
+        // // window.addEventListener('scroll', callback);
+        // // window.addEventListener('resize', callback);
+        // // window.addEventListener('keydown', callback);
+        // //-----------------------------------------------------------------------------------------------
+
+        // //Keyboard: Você pode adicionar atalhos para facilitar a navegação no seu site, através de eventos do keyboard.
+
+        // function handleKeyboard(event) {
+        // if(event.key === 'a')
+        //     document.body.classList.toggle('amarelo');
+        // else if(event.key === 'v')
+        //     document.body.classList.toggle('vermelho');
+        // }
+
+        // window.addEventListener('keydown', handleKeyboard);
+        // //-----------------------------------------------------------------------------------------------
+
+        // //forEach e Eventos: addeventlistner é adcionado á um único elemento, então para add em mais elementos, é necessário um loop:
+
+        // const imgsAll = document.querySelectorAll('img')
+        // imgsAll.forEach((params) => {
+        //     //console.log(params)
+        //     params.addEventListener('click', handleImg)
+        // })
+        // function handleImg(params) {
+        //     console.log(params.target)
+        // }
+        // //-----------------------------------------------------------------------------------------------
+
+        //EXERCÍCIOS:
+        // Quando o usuário clicar nos links internos do site, adicione a classe ativo ao item clicado e remova dos demais itens caso eles possuam a mesma. Previna o comportamento padrão desses links
+        const linksInternos = document.querySelectorAll('a[href^="#"]')
+
+        linksInternos.forEach((params) => {
+            // console.log(params)
+            const f = params.addEventListener('click', clickonlink)
+        })
+        function clickonlink(e) {
+            console.log(e)
+            e.preventDefault() //previne comportamento do link
+            linksInternos.forEach((params) => { //loope que remove todas class 'ativo'
+                params.classList.remove('ativo')
+            })
+            e.currentTarget.classList.add('ativo') //add class 'ativo'
         }
-        //-----------------------------------------------------------------------------------------------
 
-        //This: A palavra chave this é uma palavra especial de JavaScript, que pode fazer referência a diferentes objetos dependendo do contexto. No caso de eventos, ela fará referência ao elemento em que addEventListener foi adicionado.
 
-        const raposa = document.querySelector('img');
+        // Selecione todos os elementos do site começando a partir do body ao clique mostre exatamente quais elementos estão sendo clicados
 
-        function callback(event) {
-        console.log(this); // this = raposa (faz referencia ao elemento)
-        console.log(this.getAttribute('src'));
+        const allElements = document.querySelectorAll('body *') //asterisco serve para selecionar tudo assim como no CSS.
+
+        allElements.forEach((params) => {//foreach para falar com cada elemento
+            params.addEventListener('click', allElementsF) //add eventlistner a todos elementos
+        })
+
+        function allElementsF(params) {
+            console.log(params.currentTarget)
         }
 
-        raposa.addEventListener('click', callback);
-        //-----------------------------------------------------------------------------------------------
 
-        //Outros tipos de Eventos: Existem diversos eventos como click, scroll, resize, keydown, keyup, mouseenter e mais. Eventos podem ser adicionados a diferentes elementos, como o window e document também.
+        // Utilizando o código anterior, ao invés de mostrar no console, remova o elemento que está sendo clicado, o método remove() remove um elemento
+        
+        // function allElementsF(params) {
+        //    params.currentTarget.remove()
+        // }
 
-        const h1 = document.querySelector('h1');
 
-        function callback(event) {
-        console.log(event.type, event);
+        // Se o usuário clicar na tecla (t), aumente todo o texto do site. 
+
+
+        window.addEventListener('keydown', sizeP)
+        function sizeP(params) {
+            console.log(params.key)
+            if (params.key === 't') {
+            document.documentElement.classList.toggle('sizeP') //toggle adiciona(se n tiver) e tira(se tiver)
+                
+            }
         }
-
-        // h1.addEventListener('click', callback);
-        // h1.addEventListener('mouseenter', callback);
-        // window.addEventListener('scroll', callback);
-        // window.addEventListener('resize', callback);
-        // window.addEventListener('keydown', callback);
-        //-----------------------------------------------------------------------------------------------
-
-        //Keyboard: Você pode adicionar atalhos para facilitar a navegação no seu site, através de eventos do keyboard.
-
-        function handleKeyboard(event) {
-        if(event.key === 'a')
-            document.body.classList.toggle('amarelo');
-        else if(event.key === 'v')
-            document.body.classList.toggle('vermelho');
-        }
-
-        window.addEventListener('keydown', handleKeyboard);
-
-
-
+        //obs: documentElement = html
     </script>
 </body>
 </html>
