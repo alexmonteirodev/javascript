@@ -202,6 +202,9 @@ body{
 .sizeP{
     font-size: 150%; /*1.5em é = 150%. por isso tem que usar o 'em' em css, porque é medida relativa*/
   }
+  .azul{
+    background-color: rgba(45, 45, 170, 0.489);
+  }
     </style>
 </head>
 <body>
@@ -340,7 +343,7 @@ body{
 
         console.log(lista.children[lista.children.length -1])
         console.log(lista.querySelector('li:last-child'))
-        //-----------------------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------------------
 
         //ELEMENT VS NODE: Elements representam um elemento html, ou seja, uma tag. Node representa um nó e pode ser um elemento (element), texto, comentário, quebra de linha e mais.
 
@@ -350,6 +353,88 @@ body{
 
         lista.firstChild // primeiro node child (#text)
         lista.childNodes //todos os node childs (NodeList(13) [text, li, text, li, text, li, text, li, text, li, text, li, text])
+        //---------------------------------------------------------------------------------------------
+
+        //MANIPULANDO ELEMENTOS: è possível mover os elementos no dom com métodos de Node
+        //4 mais usados:
+        // appendChild() - move elemento para último filho
+        // insertBefore() - move elemento para outra posição
+        // removeChild() - remove algum filho, passa dentro do () o item que quer remover
+        // replaceChild() - substitui elementos
+
+        // appendChild:
+        const titulo = document.querySelector('h1')
+        const descricao = document.querySelector('.animais-descricao')
+
+        //item pai.appendChild(item que quero mover):
+        descricao.appendChild(titulo) //move elemento para posição de último filho
+
+        // insertBefore:
+        // item pai.insertBefore(elemento que está movendo para posição antes do elemento depois da virgula, elemento que tem que ser filho do item pai)
+        //ou seja, insertbefore é dizer coloque elemento B entre A e C, sendo que C tem que ser filho de A
+        // A.insertBefore(B,C)
+        //no exemplo, mapa é filho de contato
+        const contato = document.querySelector('#contato')
+        const mapa = document.querySelector('.mapa')
+        contato.insertBefore(descricao, mapa)
+
+        // removeChild:
+        // elemento pai.removeChild(elemento que quero remover)
+        const faq = document.querySelector('.faq')
+        const tituloFaq = document.querySelectorAll('.titulo')[0]
+        faq.removeChild(tituloFaq)
+
+        // replaceChild:
+        const contato2 = document.querySelector('.contato h1')
+        const ul = document.querySelector('.contato ul')
+        //elemento pai.replaceChild(elemento que quero colocar no lugar, elemento que quero qque seja substituido)
+        contato.replaceChild(contato2, ul)
+        //---------------------------------------------------------------------------------------------
+
+        //NOVOS ELEMENTOS: podemos criar novocs elementos com o método 'createElemetn()'
+
+        const novoh1 = document.createElement('h1')
+        novoh1.innerText = 'Novo Título'
+        novoh1.classList.add('novo-titulo')
+
+        mapa.appendChild(novoh1) //repare que a class mapa tem um filho que é o elemento(tag html) img e logo após foi add o novoh1
+        //---------------------------------------------------------------------------------------------
+
+        //CLONAR ELEMENTOS: Todo elemento selecionado é único. Para criarmos um novo elemento baseado no anterior, é necessário cloná-lo, usando método 'cloneNode()'
+
+        // a, b e novoTitulo são iguais, ou seja, se alterar um, vai alterar tudo porque todos puxam o 'ument.querySelector('h1')'
+        const a = document.querySelector('h1');
+        const b = document.querySelector('h1');
+        const novoTitulo = titulo;
+
+        //para clonar um elemento e poder editar sem mexer no anterior é só usar:
+        const cloneTitulo = a.cloneNode(true) 
+        //true = clona os filhos desse elemento também
+        //false = clona somente o elemento (tag)
+
+        const tituloContato = document.querySelectorAll('h1')[2]
+        const tituloContato2 = tituloContato.cloneNode(true)
+        tituloContato2.classList.add('azul')
+        mapa.appendChild(tituloContato2)
+        //---------------------------------------------------------------------------------------------
+
+        //EXERCÍCIOS:
+        
+        // Duplique o menu e adicione ele em copy
+
+        // Selecione o primeiro DT da dl de Faq
+
+        // Selecione o DD referente ao primeiro DT
+
+        // Substitua o conteúdo html de .faq pelo de .animais
+
+
+
+
+
+
+
+
     </script>
 </body>
 </html>
