@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+    </ul>
+
+    <script>
+//exemplo real(ex de um objeto, ou seja, ao mudar a propriedade ele reescreve por cima e não serve como modelo):
+/*
+        const Dom = {
+            seletor: 'li',
+            element() {
+                //console.log(this.seletor) //obs: lembrar de por o this porque esta falando com o objeto se não, va erro.
+                return document.querySelector(this.seletor)
+
+            },
+            ativar(){ //no console escreve: dom.ativar()
+            // isso: 
+                //const elementoSelecionado = document.querySelector('li')
+                //elementoSelecionado.classList.add('ativo')
+            // é igual a isso: 
+                //const elementoSelecionado = this.element()
+                //elementoSelecionado.classList.add('ativo')
+            // que é igual a isso:
+                this.element().classList.add('ativo')
+                
+            },
+        }
+        Dom.ativar() //ativa na li
+
+        Dom.seletor = 'ul' //muda o seletor
+        Dom.ativar() // ativa na ul
+        //obs: observe que ao mudar o seletor, ele reescreve a variavel e toda hora muda e não serve como um modelo que possa ser replicável.
+*/
+
+//exemplo Real (igual o de cima, porém, usando constructor function):
+
+        function Dom(params) {
+            //this.seletor = params //seletor: 'li',
+            this.element = function() { //element(){}
+                //console.log(this.seletor) //obs: lembrar de por o this porque esta falando com o objeto se não, va erro.
+                return document.querySelector(params) //(this.seletor)
+            }
+            this.ativar = function(){ //ativar(){}
+                this.element().classList.add('ativo')
+            }
+            /* poderia usar parametro para class para add a class que quiser:
+            this.ativar = function(classe){ 
+                this.element().classList.add(classe)
+            }
+            e usar: 
+            const html = new Dom('html')
+            html.ativar('nova-classe')
+            */
+        }
+
+        const li = new Dom('li') //console - li.ativar()
+        const ul = new Dom('ul')//console - ul.ativar()
+//-----------------------------------------------------------------------------------------------------
+    
+// EXERCÍCIOS:
+
+        // Transforme o objeto abaixo em uma Constructor Function
+        /*
+        const pessoa = {
+        nome: 'Nome pessoa',
+        idade: 0,
+        andar() {
+            console.log(this.nome + ' andou');
+        }
+        }
+        */
+        function Pessoa(nomePessoa, idadePessoa) {
+            this.nome = nomePessoa
+            this.idade = idadePessoa
+            this.andar = function(){
+                console.log(this.nome + ' andou!')
+            }
+        }
+        const Alex = new Pessoa('Alex', 26)
+        
+
+
+        // Crie 3 pessoas, João - 20 anos, Maria - 25 anos, Bruno - 15 anos
+        const joao = new Pessoa('João', 20)
+        const maria = new Pessoa('Maria', 25)
+        const bruno = new Pessoa('Bruno', 15)
+
+
+        // Crie uma Constructor Function (Dom) para manipulação de listas de elementos do dom. Deve conter as seguintes propriedades e métodos:
+
+        // elements, retorna NodeList com os elementos selecionados
+        // addClass(classe), adiciona a classe a todos os elementos
+        // removeClass(classe), remove a classe a todos os elementos
+
+        function Dom(params) {
+            this.element = function () {
+                return document.querySelectorAll(params)
+            }
+            this.addClass = function(classe) {
+                this.element().forEach((params) => { //queryAll e como é pra add em todos, precisa do foreach
+                    params.classList.add(classe)
+                });
+            }
+            this.removeClass = function(classeToRemove) {
+                this.element().forEach((params) => {
+                    params.classList.remove(classeToRemove)
+                });
+            }
+        }
+
+
+        const lista = new Dom('li')
+        lista.element() //NodeList (elements)
+        lista.addClass() //addClass(classe)
+        lista.removeClass()// removeClass(classe)
+        
+
+
+
+
+
+    </script>
+</body>
+</html>

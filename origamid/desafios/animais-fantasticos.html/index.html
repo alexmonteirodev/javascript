@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
+    <!-- obs importante: caso o usuario desabilite o js o conteudo vai se perder com a animação então para deixar ao menos o conteudo na pagina sem a animação -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animais Fantasticos</title>
+    <script>
+        document.documentElement.className += ' js' //concatenar(para não escrever por cima de en) + espaço para não virar a class 'enjs' e classname ao invez de classlist para se adaptar a tecnologias mais antigas. documentElement = HTML. E add a class .js (elemento pai)
+    </script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-    <nav class="menu">
+    <nav class="menu azul js-menu">
         <ul>
             <li><a href="#animais">Animais</a></li> <!--#animais encaminha para o id animais-->
             <li><a href="#faq">Faq</a></li>
@@ -16,14 +19,14 @@
             <li><a href="https://www.origamid.com" target="_blank">Dev></a></li>
         </ul>
     </nav>
-    <section class="grid-section animais" id="animais">
+    <section class="grid-section animais js-scroll" id="animais">
         <h1 class="titulo">Animais Fantasticos</h1>
-        <ul class="animais-lista">
+        <ul class="animais-lista js-tabmenu"> <!-- add class com js antes para mostrar que essa class é manipulada lá para separar caso seja alterada para o css o algo do tipo -->
             <li>
                 <img src="imgs/imagem1.jpg" alt="">
             </li>
             <li>
-                <img src="imgs/imagem2.jpg" alt="">
+                <img src="imgs/imagem2.jpg" alt="esquilo">
             </li>
             <li>
                 <img src="imgs/imagem3.jpg" alt="">
@@ -38,12 +41,10 @@
                 <img src="imgs/imagem6.jpg" alt="">
             </li>
         </ul>
-        <div class="animais-descricao">
+        <div class="animais-descricao js-tabcontent">
             <section>
                 <h2>Raposa</h2>
                 <p>As raposas são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.</p>
-                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
-                <p>De cerca de 40 espécies reconhecidas como raposas, somente 12 pertencem ao gênero Vulpes das "raposas verdadeiras", do qual a raposa vermelha é a mais comum.</p>
                 <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
             </section>
             <section>
@@ -87,9 +88,9 @@
             </section>
         </div>
     </section>
-    <section class="grid-section faq" id="faq">
+    <section class="grid-section faq js-scroll" id="faq">
         <h1 class="titulo">FAQ</h1>
-        <dl class="faq-lista"> <!--definition list (lista com definição boa para perguntas e respostas)-->
+        <dl class="faq-lista js-accordion"> <!--definition list (lista com definição boa para perguntas e respostas)-->
             
             <dt>Qual a idade dos animais?</dt> <!--definition term (pergunta)-->
             <dd>As raposas são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.
@@ -109,7 +110,7 @@
 
         </dl>
     </section>
-    <section class="grid-section contato" id="contato">
+    <section class="grid-section contato js-scroll" id="contato">
         <h1 class="titulo">Contato</h1>
         <div class="mapa">
             <img src="imgs/mapa.png" alt="">
@@ -121,7 +122,6 @@
             <li>São Paulo - SP</li>
         </ul>
     </section>
-
     <footer class="copy">
         <p>Todos os direitos reservados.</p>
     </footer>

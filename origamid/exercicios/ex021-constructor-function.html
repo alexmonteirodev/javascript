@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //Objeto: Ao criar um objeto e tentar usar ele como modelo para outros, não funciona porque ele reescreve por cima, para usar um modelo precisamos que uma função construtora. Ex:
+
+        const carro = {
+            marca: 'Marca',
+            preco: 2000,
+        }
+        const honda = carro
+        honda.marca = 'Honda'
+        honda.preco = 5000
+
+        console.log(carro)
+
+    //Constructor function: para usar um objeto de modelo, devemos usar a constructor function que é responsável por construir novos objetos sempre que chamamos ela.
+
+        function Carro() { //repare que carro inicia com 'C' maiúsculo, em geral, ao ver uma function assim, se trata de uma constructor function. (Isso se chama pascal case)
+            //console.log(this) //this = objeto Carro
+            this.marca = 'Marca'
+            this.preco = 0
+        }
+        const fiat = new Carro() //new serve para denominar que é um "novo objeto"
+        fiat.marca = 'Fiat'
+        fiat.preco = '10000'
+        console.log(fiat)
+
+        const bmw = new Carro()
+        bmw.marca = 'BMW'
+        bmw.preco = 7000
+        console.log(bmw)
+
+    //New Keyword: A palavra chave 'new' é responsável por criar um novo objeto baseado na função que passarmos a frente dela.
+
+        /*
+        const ferrari = new Carro();
+
+        // 1 Cria um novo objeto
+        ferrari = {};
+
+        // 2 Define o protótipo
+        ferrari.prototype = Carro.prototype;
+
+        // 3 Aponta a variável this para o objeto
+        this = ferrari;
+
+        // 4 Executa a função, substituindo this pelo objeto
+        ferrari.marca = 'Marca';
+        ferrari.preco = 0;
+
+        // 5 Retorna o novo objeto
+        return ferrari = {
+        marca: 'Marca',
+        preco: 0,
+        }
+        */
+
+    //Parâmetros e Argumentos: Podemos passar argumentos que serão utilizados no momentos da criação do objeto.
+        //exemplo 1:
+        function Moto(marcaMoto, precoMoto) {
+            this.marca = marcaMoto
+            this.preco = precoMoto
+        }
+        
+        const kawasaki = new Moto('z400', 4000)
+        console.log(kawasaki)
+
+        //exemplo 2: (também pode realizar funções no meio do caminho)
+        function Moto2(marcaMoto2, precoMoto2) {
+            const taxa = 1.2 //20%
+            const precoFinal =  precoMoto2 * taxa
+            this.marca = marcaMoto2
+            this.preco = precoFinal
+        }
+        const yamaha = new Moto2('Yamaha', 10000)
+        console.log(yamaha)
+    </script>
+</body>
+</html>

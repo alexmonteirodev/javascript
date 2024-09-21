@@ -94,6 +94,7 @@ body{
     height: 360px;
     overflow-y: scroll; /*define o que o que passar no eixo y será visivel com scroll */
     grid-column: 2;
+    cursor: pointer;
 }
 .animais-lista::-webkit-scrollbar{
     width: 18px;
@@ -120,6 +121,7 @@ body{
     margin-bottom: .5rem;
     color: var(--orange);
     font-size: 1.5rem;
+    cursor: pointer;
 }
 .faq-lista dt::before{
     content: '';
@@ -189,3 +191,54 @@ body{
       margin-bottom: 0px;
     }
   }
+  .js .js-tabcontent section{ /* o primeiro .js se refere ao elemtno pai html adicionado no script acima */
+    display: none;
+  }
+  .js-tabcontent section.ativo{
+    display: block;
+    animation: show .5s forwards;/* show = nome da animação; 5s = tempo de duração; forwards = manter no seu ultimo estado */
+  }
+  @keyframes show {
+    from{ /* from = saindo de  */
+        opacity: 0;
+        transform: translate3d(-30px,0,0);/* translate3d = eixos x,y,z ou seja, -30 vai pudar para esquerda no eixo x*/
+    }
+    to{/* to = para */
+        opacity: 1;
+        transform: translate3d(0,0,0);
+    }
+  }
+  .js .js-accordion dd{ /*lembrando que o .js na frente é do html para mostrar conteudo caso o js esteja desabilitado*/
+    display: none;
+  }
+  .js-accordion dd.ativo{
+    display: block;
+    animation: faqslide .5s forwards;
+}
+.js-accordion dt::after{
+    content: '◦';
+    margin-left: 5px;  
+}
+.js-accordion dt.ativo::after{
+    content: '•';
+}
+@keyframes faqslide {
+    from{
+        opacity: 0;
+        transform: translate3d(0,-20px,0);
+    }
+    to{
+        opacity: 1;
+        transform: translate3d(0,0,0);
+    }
+}
+.js .js-scroll{ 
+    /* não usou display:none pq se não o elemento seria adicinado na tela e ela daria um pulo, já com o trnasform o elemento já está na tela e por isso não pula, porque ele não é adicionado com o block*/
+    opacity: 0;
+    transform: translate3d(-30px,0,0);
+    transition: .3s;
+}
+.js .js-scroll.ativo{
+    opacity: 1; /* opacidade faz o elemento sumir e aparecer */
+    transform: translate3d(0,0,0); 
+}
