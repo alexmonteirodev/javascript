@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+// Prototype: a propriedade prototype é um objeto adicionado a uma função quando a mesma é criada.
+        //basicamente é criar uma propriedade para o objeto constructor(Pessoa) que é única, como se fosse adicionar uma nova propriedade a um objeto só que ao inves de criar no modelo Pessoa, cria só na "cópia"(const andre = new Pessoa('andre', 28))
+
+        function Pessoa(nome, idade) {
+            this.nome = nome
+            this.idade = idade            
+        }
+
+        const andre = new Pessoa('André', 28)
+
+        console.log(Pessoa.prototype) // retorna o objeto (pq prototype só está em função, então, retorna o objeto)
+        console.log(andre.prototype) // undefined (retorna undefined pq prototype só está em função e andre é objeto)
+
+// Função.prototype: é possível adicionar novas propriedades e métodos ao objeto prototype.
+
+        Pessoa.prototype.andar = function () { //repare que não é a função ativada, no caso é Pessoa sem os ()
+            return this.nome + ' andou'
+        } 
+        //Pessoa.prototype.andar() - usar no console - retorna undefined porque esta buscando a f Pessoa diretamente
+        // andre.andar() - usar no console - da certo porque puxa da const andre
+
+        /*
+        obs: se cria uma f no prototype como se fosse criar uma nova propriedade no objeto:
+        const pessoa = {
+        nome: 'andre',
+        }
+        pessoa.altura = 'alto'
+        como se fosse: "pessoa.andar = console.log('andre andou')"
+        */
+
+// porque criar um prototype? 
+
+    //pra que quando for criar um objeto novo, vai recriar a a função por exemplo e as vezes vc só quer aquela função para aquele objeto, ou seja, o prototype é unico do objeto criado. ex:
+        //existe um constructor com a função abraçar...
+        /*
+        function Pessoa(nome, idade){
+            this.nome = nome
+            this.idade = idade
+            this.abracar = function(){
+                return 'abraçou'
+            }
+        }
+        */
+       // se criar um novo objeto pra Pessoa:
+       /*
+       const andre = new Pessoa('andre',28)
+       */
+        // o objeto andre vai herdar a função abraçar e toda vez que criar outro objeto ele tbm vai herdar e vamos supor que eu só queira a função abraçar para o andre, posso usar o prototype:
+
+        /*
+        Pessoa.prototype.abracar = function(){
+            return 'abraçou'
+        }
+        andre.abracar()
+        
+        ...assim, ao criar outro objeto ele não vai herdar a função abraçar (ps: tem que apagar o this.abracar lá da função)
+        */
+// herança de prototype:
+        //o objeto possui acesso aos métodos e propriedades do protòtipo do construtor responsável por criar este objeto. O objeto abaxio possui acesso a métodos que nunca definimos, mas são herdados do protótipo de Object.
+
+        Object.prototype //escrever no console
+        andre.toString()
+        andre.inPrototypeOf()
+        andre.valueOf()
+
+        //ou seja, prototype tem métodos dentro dele já de fábrica que são herdados quando usamos ele
+
+    </script>
+</body>
+</html>
