@@ -6,6 +6,11 @@
     <title>Document</title>
 </head>
 <body>
+    <ul>
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+    </ul>
     <script>
 // Prototype: a propriedade prototype é um objeto adicionado a uma função quando a mesma é criada.
         //basicamente é criar uma propriedade para o objeto constructor(Pessoa) que é única, como se fosse adicionar uma nova propriedade a um objeto só que ao inves de criar no modelo Pessoa, cria só na "cópia"(const andre = new Pessoa('andre', 28))
@@ -19,6 +24,8 @@
 
         console.log(Pessoa.prototype) // retorna o objeto (pq prototype só está em função, então, retorna o objeto)
         console.log(andre.prototype) // undefined (retorna undefined pq prototype só está em função e andre é objeto)
+
+        //O objeto criado utilizando o construtor, possui acesso aos métodos e propriedades do protótipo deste construtor. Lembrando, prototype é uma propriedade de funções apenas.
 
 // Função.prototype: é possível adicionar novas propriedades e métodos ao objeto prototype.
 
@@ -68,11 +75,105 @@
         //o objeto possui acesso aos métodos e propriedades do protòtipo do construtor responsável por criar este objeto. O objeto abaxio possui acesso a métodos que nunca definimos, mas são herdados do protótipo de Object.
 
         Object.prototype //escrever no console
-        andre.toString()
-        andre.inPrototypeOf()
-        andre.valueOf()
+        // andre.toString()
+        // andre.inPrototypeOf()
+        // andre.valueOf()
 
         //ou seja, prototype tem métodos dentro dele já de fábrica que são herdados quando usamos ele
+//__proto__:  
+        //significa qual o protótipo daquele elemento, por exemplo, se escrever:
+
+        const lista = document.querySelectorAll('li') //[[Prototype]]: NodeList
+        Array.prototype.slice.call(lista) // [[Prototype]]: Array(0)
+
+        //o protótipo é de uma node list, ou eja, herda-se pelo prototipo os metodos de uma nodelist
+
+// Construtores Nativos: o que importa é o valor que retorna
+        //Objetos, Funções, Números, Strings e outros tipos de dados são criados utilizando construtores. Esses construtores possuem um protótipo com propriedades e métodos, que poderão ser acessadas pelo tipo de dado.
+        
+        //exemplo 1:
+        const pais = 'Brasil';
+        const cidade = new String('Rio');
+
+        console.log(pais.charAt(0)); // B - mostra a letra do index 0
+        cidade.charAt(0); // R
+
+        String.prototype;
+
+        //exemplo 2:
+        const carro ={
+            marca: 'Ford',
+            preco: 2000,
+            andar() {
+                return true
+            }
+        }
+        // typeof carro = retorna objeto, logo, prototype vai herdar métodos de object
+        // typeof carro.marca = retorna string, prototype de string
+        // typeof carro.preco = retorna number, prototype de number (number.prototype)
+        // typeof carro.andar() = retorna boolean (pq executou), logo, tem acesso a prototype de boolean
+        //  typeof carro.andar O retorna função (pq n executou), acessa proto de function
+
+
+        //importante: repare que quando se acessa propriedades de objetos você tem acesso ao prototype do valor retornado, ex:
+        /*
+        ex1:
+        carro.andar. = cada ponto está acessando um elemento que tem seu proto, ou seja,
+        objeto.função (e usando o ponto pode puxar o prototype do elemento em sí diretamente)
+
+        ex2:
+        carro-retorna objeto-.andar-retorna função-()-retorna boolean-
+        */
+    // Método do objeto vs protótipo
+        //Nos objetos nativos existem métodos linkados diretamente ao Objeto e outros linkados ao protótipo. (dado.constructor.name, retorna o nome do construtor)
+
+        Array.prototype.slice.call(lista)
+        Array.from(lista)
+
+        // Retorna uma lista com os métodos / propriedades
+        Object.getOwnPropertyNames(Array)
+        Object.getOwnPropertyNames(Array.prototype)
+
+        // [1,2,3].slice(); // existe
+        // [1,2,3].from(); // não existe
+
+
+//-----------------------------------------------------------------------------------------------------
+    // EXERCÍCIOS:
+
+    // Crie uma função construtora de Pessoas. Deve conter nome, sobrenome e idade.
+    function Pessoa(nome, sobrenome, idade) {
+        this.nome = nome
+        this.sobrenome = sobrenome
+        this.idade = idade
+    }
+
+    const alex = new Pessoa('Alex', 'Monteiro', 26)
+    console.log(alex.sobrenome)
+
+    // Crie um método no protótipo que retorne o nome completo da pessoa
+    Pessoa.prototype.nomeCompleto = function name(params) {
+        return alex.nome + ' ' + alex.sobrenome
+    }
+    // Liste os métodos acessados por dados criados com 
+    console.log(NodeList.prototype) //NodeList
+    console.log(HTMLCollection.prototype) // HTMLCollection
+    console.log(Document.prototype) //Document
+
+    // Liste os construtores dos dados abaixo
+    const li = document.querySelector('li');
+
+    li; //object
+    li.click; //function
+    li.innerText; //string
+    li.value; // number
+    li.hidden; // boolean
+    li.offsetLeft; //number
+    li.click(); //undefined
+
+    // Qual o construtor do dado abaixo:
+    li.hidden.constructor.name; //boolean
+
 
     </script>
 </body>

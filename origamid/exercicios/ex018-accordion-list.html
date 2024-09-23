@@ -363,34 +363,6 @@ body{
         <p>Todos os direitos reservados.</p>
     </footer>
     <script>
-//navegação por tabs: (interação entre fotos e conteúdo)
-        function initTabNav() { //essa função serve para isolar o escopo 
-        const tabMenu = document.querySelectorAll('.js-tabmenu li')
-        const tabContent = document.querySelectorAll('.js-tabcontent section')
-
-
-        if (tabMenu.length && tabContent.length) { //if para confirmar se o item selecionado (.js-tabcontent section) existe = !!tabMenu.length = true && !!tabContent.length = true porque sao numeros maiores que 0 (0 = false)
-
-
-            function activeTab(params) {
-                tabContent.forEach((params) => {
-                    params.classList.remove('ativo')
-                })
-                tabContent[params].classList.add('ativo')
-                }
-
-            tabMenu.forEach((img, index) => {
-            //console.log(img, index)
-            img.addEventListener('click', function name(params) {
-                activeTab(index)
-            })
-            //o problema é que após isso, ao abrir a pagina o conteudo esta em branco e para deixar um texto inicial da raposa basta adicionar a class ativo na section da raposa ou fazer por js da seguinte forma:
-            tabContent[0].classList.add('ativo')
-            })
-        }
-        }
-        initTabNav()
-
 //accordion list(faq, interação entre pergunta e resposta):
         function accordionList() {
             const faqQuestion = document.querySelectorAll('.js-accordion dt')
