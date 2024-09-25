@@ -163,7 +163,9 @@
     // Liste os construtores dos dados abaixo
     const li = document.querySelector('li');
 
-    li; //object
+    // x.constructor.name
+
+    li; //HTMLLIElement
     li.click; //function
     li.innerText; //string
     li.value; // number
@@ -172,9 +174,10 @@
     li.click(); //undefined
 
     // Qual o construtor do dado abaixo:
-    li.hidden.constructor.name; //boolean
+    li.hidden.constructor.name; //string - retorna "boolean"
 
 
+    //RESUMINDO: a questão é entender porque por exemplo quando coloca li.innerText tem acesso ao uppercase e quando coloca o li.click não tem?- porque o li.innerText retorna uma string e o li.click retorna uma função e string tem acesso ao prototype do construtor string e o construtor string possui no prototype dele o método touppercase. é isso.
     </script>
 </body>
 </html>

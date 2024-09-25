@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+    </ul>
+    <script>
+// Native:
+        //Objetos nativos são aqueles definidos na especificação da linguagem e são implementados independente do host.
+
+        // Construtores de objetos nativos  (ex: já é nativo do JS)
+        Object
+        String
+        Array
+        Function
+//-----------------------------------------------------------------------------------------------------
+// Host:
+        //Objetos do host são aqueles implementados pelo próprio ambiente. Por exemplo no browser possuímos objetos do DOM, como DomList, HTMLCollection e outros. Em Node.js os objetos do Host são diferentes, já que não estamos em um ambiente do browser.
+       
+        // Objetos do browser
+        NodeList
+        HTMLCollection
+        Element
+//-----------------------------------------------------------------------------------------------------
+// User:
+        //Objetos do user, são os objetos definidos pelo seu aplicativo. Ou seja, qualquer objeto que você criar ou que importar de alguma biblioteca externa.
+        const Pessoa = {
+            nome: 'André',
+        }
+//-----------------------------------------------------------------------------------------------------
+// forma de verificar se existe uma técnologia em um browser:
+        console.log(typeof Array.from) //function
+        console.log(typeof Array.fromafdfkajfbjf) //undefined
+        //se der undefined é que não existe, logo...
+        console.log(typeof Array.from !== 'undefined') //true - existe
+        console.log(typeof Array.fromafdfkajfbjf !== 'undefined') //false - não existe
+//-----------------------------------------------------------------------------------------------------
+// API
+        //Application Programming Interface, é uma interface de software criada para a interação com outros softwares. Ou seja, toda interação que fazemos com o browser utilizando Objetos, Métodos e Propriedades, estamos na verdade interagindo com a API do browser.
+
+        // diferença entre UI e API: 
+        // UI: user interface depende do usuario ir na tela e clicar (comandos em geral) em um botao para realizar uma ação. Exemplo, abrir o console e clicar na aba console.
+        // API: utiliza outro programa de computador através de códigos para interagir com a interface também.
+        // Ambas interagem com outra coisa
+//-----------------------------------------------------------------------------------------------------
+
+// EXERCÍCIOS:
+// Liste 5 objetos nativos
+    // Object
+    // String
+    // function
+    // Array
+    // Number
+
+// Liste 5 objetos do browser
+    // window
+    // history
+    // document
+    // HTMLCollection
+    // NodeList - ƒ NodeList() { [native code] }
+    //obs: tenta escrever window no node, vai dar is not defined
+
+// Liste 2 Métodos, Propriedades ou Objetos presentes no Chrome que não existem no Firefox
+
+        if (typeof document.webkitHidden == 'undefined') {
+            console.log('não existe')
+        } else {
+            console.log('existe')
+        }
+    </script>
+</body>
+</html>
