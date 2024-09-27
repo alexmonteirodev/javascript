@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+    </ul>
+    <script>
+// String:
+        //É a construtora de strings, toda string possui as propriedades e métodos do prototype de String.
+//-----------------------------------------------------------------------------------------------------
+
+    //str.lenght:
+        //Propriedade com o total de caracteres da string.
+        const comida = 'Pizza' //retorna string
+        const agua = new String('Agua') // retorna objeto
+        //mas ambos são strings (constructor.name) o mais usado é o .lenght que retorna a quantidade de caracteres:
+        console.log(comida.length)
+        
+        // da pra acessar a string como se fosse um array:
+        const frase = 'A melhor comida'
+        console.log(frase[0]) //espaço tbm conta
+        console.log(frase[frase.length -1]) //último caracter - a
+//-----------------------------------------------------------------------------------------------------
+
+    //str.charAt(n)
+        //retorna o caracter de acordo com o index de (n). "como se fosse usar um array[]"
+
+        const linguagem = 'JavaScript'
+        linguagem.charAt(0) // J
+        linguagem.charAt(2) // v
+        linguagem.charAt(linguagem.length-1) // t
+//-----------------------------------------------------------------------------------------------------
+    
+    //str.concat(str2, str3, ...)
+        // Concatena as strings e retorna o resultado. (mais facil usar o + para concatenar)
+        const frase1 = 'A melhor linguagem é'
+        const frase2 = ' JavaScript'
+
+        const fraseCompleta = frase1.concat(frase2, '!!') //ou frase1 + frase2
+        console.log(fraseCompleta)
+//-----------------------------------------------------------------------------------------------------
+    
+    //str.includes(search, position)
+        //procura pela string exata dentro de outra string. A procura é case sensitive ('Ba' != 'ba').
+
+        const fruta = 'banana'
+        const listaFrutas = 'melancia, banana, laranja'
+
+        listaFrutas.includes(fruta) // true
+        fruta.includes(listaFrutas) // false
+
+        //position = começa a procurar a partir do index x
+        listaFrutas.includes(fruta,11) // false - porque do 11 pra frente não tem banana escrito (primeiro a de b"a"nana, a partir daí a palavra banana não existe mais )
+//-----------------------------------------------------------------------------------------------------
+
+    //str.ednsWith(search) e str.starsWith(search)
+        // começa com e termia com. A procura é case sesitive (letra igual). obs: não altera a string só retorna uma resposta
+
+        const carro = 'ford'
+        
+        carro.endsWith('rd') //true
+        carro.endsWith('r') //false
+        carro.startsWith('fo') // true
+        carro.startsWith('fr') // false
+//-----------------------------------------------------------------------------------------------------
+
+        //str.slice(start, end)
+            //corta a string de acordo com os valores de start e end.
+
+            const transacao1 = 'Depósito de cliente'
+            const transacao2 = 'Depósito de fornecedor'
+            const transacao3 = 'Taxa de camisas'
+
+            transacao1.slice(0,3) // Dep
+            transacao2.slice(0,3) // Dep
+            transacao3.slice(0,3) // Tax
+
+            transacao1.slice(5) //ito de cliente (corta os 5 primeiros caracteres) obs: não corta o index e sim o caracter
+            transacao1.slice(0,-2) //Depósito de clien (corta os dois últimos caracteres)
+            transacao1.slice(-5) //iente (me da os 5 últimos caracteres)
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
