@@ -79,16 +79,130 @@
             const transacao3 = 'Taxa de camisas'
 
             transacao1.slice(0,3) // Dep
-            transacao2.slice(0,3) // Dep
-            transacao3.slice(0,3) // Tax
-
             transacao1.slice(5) //ito de cliente (corta os 5 primeiros caracteres) obs: não corta o index e sim o caracter
             transacao1.slice(0,-2) //Depósito de clien (corta os dois últimos caracteres)
             transacao1.slice(-5) //iente (me da os 5 últimos caracteres)
 
+            //obs: tem o str.substring(start, end) que é a mesma coisa que o slice mas não funciona com numero negativo
+//-----------------------------------------------------------------------------------------------------
 
+        //str.indexOf(search) e str.lastIndexOf(search)
+            // Retorna o index da string, assim que achar o primeiro resultado ele já retorna. NO caso do lastIndexOf ele retorna o último resultado.
 
+            const instrumento = 'Guitarra'
 
+            instrumento.indexOf('i') // 2
+            instrumento.lastIndexOf('r') // 6
+//-----------------------------------------------------------------------------------------------------
+
+        //str.padStart(n, str) e str.padEnd(n, str)
+            //Aumenta o tamanho da string para o valor de n. Ou seja, uma string com 8 caracteres, se passarmos n = 10, ela passará a ter 10 caracteres. O preenchimento é feito com espaços, caso não seja declarado o segundo argumento.
+
+            const listaPrecos = ['R$ 99', 'R$ 199', 'R$ 12000'];
+
+            listaPrecos[0].padStart(10, '.') // '.....R$ 99'
+            listaPrecos[0].padEnd(10, '.') // 'R$ 99.....'
+
+            listaPrecos.forEach((params) => {
+                console.log(params.padStart(30, '.'))
+            })
+//-----------------------------------------------------------------------------------------------------
+
+        //str.repeat(n)
+            // repete a string (n) vezes
+
+            const frase3 = 'Ta'
+            frase3.repeat(5) // 'TaTaTaTaTa'
+//-----------------------------------------------------------------------------------------------------
+
+        //str.replace(regexp|substr, newstr|function)
+            //Troca parte da string por outra. Podemos utilizar uma regular expression ou um valor direto. Se usarmos um valor direto ele irá trocar apenas o primeiro valor que encontrar.
+
+            let listaItens = 'Camisas Bonés Calças Bermudas Vestidos Saias';
+            listaItens = listaItens.replace(/[ ]+/g, ', ');
+            console.log(listaItens)
+            
+            let preco = 'R$ 1200,43';
+            preco = preco.replace(',', '.'); // 'R$ 1200.43'
+//-----------------------------------------------------------------------------------------------------
+
+        //str.split(padrao)
+            //Divide a string de acordo com o padrão passado e retorna uma array.
+
+            const listaRoupas = 'Camisas, Bonés, Calças, Bermudas, Vestidos, Saias'
+
+            console.log(listaRoupas.split(', ')) //', + espaço', onde tiver o que eu coloquei nos parentes, vai cortar e criar um array
+
+            const arrayListaRoupas = listaRoupas.split(', ')
+
+            //exemplo2:
+            const htmlText = '<div>O melhor item</div><div>A melhor lista</div>';
+            const htmlArray = htmlText.split('div');
+            const htmlNovo = htmlArray.join('section'); //join() é um método de array que add algo no final do item, no caso como foi retirado o item div, se adiciona no lugar e assim muda a tag
+//-----------------------------------------------------------------------------------------------------
+
+        //str.toLowerCase() e str.toUpperCase()
+            //Retorna a string em letras maiúsculas ou minúsculas. Bom para verificarmos input de usuários.
+
+            const sexo1 = 'Feminino';
+            const sexo2 = 'feminino';
+            const sexo3 = 'FEMININO';
+
+            sexo1.toLowerCase() === 'feminino' // true
+            sexo2.toUpperCase() === 'FEMININO' // true
+//-----------------------------------------------------------------------------------------------------
+
+        // str.trim(), str.trimStart(), str.trimEnd()
+            //Remove espaço em branco do início ou final de uma string. O que tiver dentro da string ele não remove.
+
+            const valor = '  R$ 23.00   ' 
+            valor.trim(); // 'R$ 23.00' - remove do inicio e do final
+            valor.trimStart(); // 'R$ 23.00   ' - remove do inicio
+            valor.trimEnd(); // '  R$ 23.00' - remove do final
+//-----------------------------------------------------------------------------------------------------
+
+        // EXERCICIOS:
+
+        // Utilizando o foreach na array abaixo, some os valores de Taxa e os valores de Recebimento
+
+        const transacoes = [
+        {
+            descricao: 'Taxa do Pão',
+            valor: 'R$ 39',
+        },
+        {
+            descricao: 'Taxa do Mercado',
+            valor: 'R$ 129',
+        },
+        {
+            descricao: 'Recebimento de Cliente',
+            valor: 'R$ 99',
+        },
+        {
+            descricao: 'Taxa do Banco',
+            valor: 'R$ 129',
+        },
+        {
+            descricao: 'Recebimento de Cliente',
+            valor: 'R$ 49',
+        },
+        ];      
+
+        // Retorne uma array com a lista abaixo
+        const transportes = 'Carro;Avião;Trem;Ônibus;Bicicleta';
+
+        // Substitua todos os span's por a's
+        const html = `<ul>
+                        <li><span>Sobre</span></li>
+                        <li><span>Produtos</span></li>
+                        <li><span>Contato</span></li>
+                    </ul>`;
+
+        // Retorne o último caracter da frase
+        const frase4 = 'Melhor do ano!';
+
+        // Retorne o total de taxas
+        const transacoes2 = ['Taxa do Banco', '   TAXA DO PÃO', '  taxa do mercado', 'depósito Bancário', 'TARIFA especial'];
 
 
 
