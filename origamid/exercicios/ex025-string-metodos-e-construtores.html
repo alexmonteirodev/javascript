@@ -6,11 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <ul>
-        <li>item 1</li>
-        <li>item 2</li>
-        <li>item 3</li>
-    </ul>
+
     <script>
 // String:
         //É a construtora de strings, toda string possui as propriedades e métodos do prototype de String.
@@ -186,7 +182,27 @@
             descricao: 'Recebimento de Cliente',
             valor: 'R$ 49',
         },
-        ];      
+        ]; 
+
+        function limparValores(params) {
+            return +params.valor.replace('R$','').trim() //limpou mas continua sendo string e com o + na frente converte para numero se tirar o + da pra ver pelo console que ele concatena ao em vez de somar ou englobar tudo em () e usar o Number
+        }
+
+        let totalTaxas = 0
+        let totalReceb = 0
+
+        transacoes.forEach((params) => {
+            const valoresLimpos = limparValores(params)
+            if (params.descricao.slice(0,4) === 'Taxa') { //includes('Taxa') não é tão bom pq poderia ter escrito taxa em algum recebimento e já daria errado
+                totalTaxas += valoresLimpos //+ para converter para numero
+            } if (params.descricao.slice(0,4) === 'Rece') {
+                totalReceb += valoresLimpos
+            } 
+        })
+        console.log(`Total de taxas é R$ ${totalTaxas}`)
+        console.log(`Total de recebimentos é R$ ${totalReceb}`)
+
+
 
         // Retorne uma array com a lista abaixo
         const transportes = 'Carro;Avião;Trem;Ônibus;Bicicleta';
