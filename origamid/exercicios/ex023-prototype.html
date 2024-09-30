@@ -178,6 +178,14 @@
 
 
     //RESUMINDO: a questão é entender porque por exemplo quando coloca li.innerText tem acesso ao uppercase e quando coloca o li.click não tem?- porque o li.innerText retorna uma string e o li.click retorna uma função e string tem acesso ao prototype do construtor string e o construtor string possui no prototype dele o método touppercase. é isso.
+
+    // método do prototipo pode passar direto na variavel se for metodo do construtor tem que passar no objeto, ex:
+    const preco = 2.99
+    preco.toFixed() // toFixed tem no prototype de number
+    
+
+    Number.isNaN(4+5) // false - isNaN não tem no prototype de Number
+    preco.isNaN()// ERRO: preco.isNaN is not a function, por isso: isNaN(preco)
     </script>
 </body>
 </html>

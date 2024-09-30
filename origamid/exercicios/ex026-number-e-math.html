@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number e Math</title>
+</head>
+<body>
+
+    <script>
+    //Number:
+        // É a construtora de números, todo número possui as propriedades e métodos do prototype de Number. Number também possui alguns métodos.
+
+        const ano = 2018;
+        const preco = new Number(99);
+//-----------------------------------------------------------------------------------------------------
+   
+    // Number.isNaN() e Number.isInteger()
+        //isNaN() é um método de Number, ou seja, não faz parte to protótipo. isInteger() verifica se é uma integral.
+
+        //isNaN():
+        Number.isNaN(NaN) //true
+        Number.isNaN(4+5) // false
+        !Number.isNaN(4+5) // true
+
+        //isInteger(): (connfere se é número interio/integral, isso é, sem virgula/ponto)
+        Number.isInteger(20) //true
+        Number.isInteger(20.6) //false
+//-----------------------------------------------------------------------------------------------------
+
+    // Number.parseFloat() e Number.parsetInt()
+        //parseFloat() serve para retornarmos um número a partir de uma string. A String deve começar com um número. parseInt recebe também um segundo parâmetro que é o Radix, 10 é para decimal.
+
+        //parseFloat(): número com decimal
+        parseFloat('99.50'); // Mesma função sem o Number
+        Number.parseFloat('99.50'); // 99.5
+        Number.parseFloat('100 Reais'); // 100
+        Number.parseFloat('R$ 100'); // NaN
+
+        //parseInt(): número inteiro
+        parseInt('99.50', 10); // 99
+        parseInt(5.43434355555, 10); // 5
+        Number.parseInt('100 Reais', 10); // 100
+//-----------------------------------------------------------------------------------------------------
+
+    // Number.toFixed(decimais)
+        // Arredonda o número com base no total de casas decimais do argumento. Se usar só o toFixed() sem nada no argumento, ele arredonda pra antes da virgula/ponto, e usando o argumento (parametro = decimais) você escolhe quantas casas decimais quer e no final de tudo ele arredonda
+
+        const numero = 10.23232
+        console.log(numero.toFixed()) //atenção: retorna string '10', repare que no console o número sai em cinza/branco e quando é número sai em azul/roxo
+        console.log(+numero.toFixed()) //retorna number 10
+
+
+        const preco2 = 2.99;
+        preco.toFixed(); // 3
+
+        const carro = 1000.455;
+        carro.toFixed(2) // 1000.46
+
+        const preco3 = 1499.49;
+        preco2.toFixed() // 1499
+//-----------------------------------------------------------------------------------------------------
+
+    // Number.toString()
+        // Transforma o número em uma string com base no Radix. Use o 10 para o sistema decimal.
+
+        const preco4 = 2.99;
+        preco.toString(10); // '2.99'
+//-----------------------------------------------------------------------------------------------------
+
+    // Number.toLocaleString(lang, options)
+        //Formata o número de acordo com a língua e opções passadas.
+
+        let valor = 48.49
+        valor = valor.toLocaleString('pt-BR', {style: "currency", currency: 'BRL'})
+        console.log(valor)
+//-----------------------------------------------------------------------------------------------------
+
+    //Math:
+        // É um Objeto nativo que possui propriedades e métodos de expressões matemáticas comuns.
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math
+
+        Math.PI // 3.14159
+        Math.E // 2.718
+        Math.LN10 // 2.303
+
+    //Math.abs(), Math.ceil(), Math.floor() e Math.round()
+        //abs() retorna o valor absoluto, ou seja, transforma negativo em positivo. ceil() arredonda para cima, retornando sempre uma integral e floor para baixo. round() arredonda para o número integral mais próximo.
+
+        Math.abs(-5.5); // 5.5 - retorna o valor absoluto, ou seja, transforma negativo em positivo
+        Math.ceil(4.8334); // 5 - arredonda para cima, retornando sempre uma integral e floor para baixo
+        Math.ceil(4.3); // 5 - arredonda para cima, retornando sempre uma integral e floor para baixo
+        Math.floor(4.8334); // 4 - arredonda para cima, retornando sempre uma integral e floor para baixo
+        Math.floor(4.3); // 4 - arredonda para cima, retornando sempre uma integral e floor para baixo
+        Math.round(4.8334); // 5 - arredonda para o número integral mais próximo
+        Math.round(4.3); // 4 - arredonda para o número integral mais próximo
+
+        //obs: lembrar que floor é chão, então arredonda pra baixo. Já o Round é redondo e segue a matematica normal, ex: de 4.5 é pra cima e de 4.49 é pra baixo.
+//-----------------------------------------------------------------------------------------------------
+
+    //Math.max(), Math.min() e Math.random()
+        //max() retorna o maior número de uma lista de argumentos, min() o menor número e random() um número aleatório entre 0 e 1.
+
+        Math.max(5,3,10,42,2); // 42
+        Math.min(5,3,10,42,2); // 2
+        
+        Math.random(); // 0.XXX (entre 0 e 1)
+        Math.floor(Math.random() * 100); // entre 0 e 100
+        Math.floor(Math.random() * 500);  // entre 0 e 500
+
+        // Número random entre 72 e 32
+        Math.floor(Math.random() * (72 - 32 + 1)) + 32; 
+        //Math.floor(Math.random() * (max - min + 1)) + min;
+//-----------------------------------------------------------------------------------------------------
+
+    // EXERCÍCIOS:
+
+    // Retorne um número aleatório entre 1050 e 2000
+    let aleatorio = Math.floor(Math.random()*(2000-1050 +1) + 1050 )
+    console.log(aleatorio)
+//-----------------------------------------------------------------------------------------------------
+
+    // Retorne o maior número da lista abaixo
+    const numeros = '4, 5, 20, 8, 9';
+
+    const numerosArr = numeros.split(', ')
+
+    // numerosArr.forEach((params) => {
+    //     return Math.max(params)
+    // })
+    // console.log(Math.max(numerosLista))
+//-----------------------------------------------------------------------------------------------------
+    
+    // Crie uma função para limpar os preços e retornar os números com centavos arredondados depois retorne a soma total
+    const listaPrecos = ['R$ 59,99', ' R$ 100,222', 'R$ 230  ', 'r$  200'];
+
+//funcao que limpa precos (1.tirar r$ e espacos)
+
+console.log(listaPrecos)
+
+   function limpaPrecos(params) {
+     listaPrecos.forEach((params)=> {
+        let numerosLimpos = +params.replace(',', '.').toLocaleLowerCase().replace('r$', '').trim()
+        console.log(numerosLimpos)
+     })
+   }
+   
+let x = limpaPrecos(listaPrecos)
+
+// funcao que retorna centavos arredondados
+
+function centavosArredondados(params) {
+    Math.round(params)
+}
+
+// soma total
+let total = 0
+function soma(params) {
+    listaPrecos.forEach((params) => {
+        console.log(params)
+    })
+}
+
+    </script>
+</body>
+</html>
