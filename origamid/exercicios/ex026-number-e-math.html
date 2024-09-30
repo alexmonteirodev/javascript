@@ -123,12 +123,11 @@
     // Retorne o maior número da lista abaixo
     const numeros = '4, 5, 20, 8, 9';
 
-    const numerosArr = numeros.split(', ')
+    const arrayNumeros = numeros.split(', ')
 
-    // numerosArr.forEach((params) => {
-    //     return Math.max(params)
-    // })
-    // console.log(Math.max(numerosLista))
+   //spread operator = ... - passa cada item da array como um argumento
+    const maiorNumero = Math.max(...arrayNumeros) // como se fosse arrayNumeros[0], arrayNumeros[1], arrayNumeros[2]...
+    console.log(maiorNumero)
 //-----------------------------------------------------------------------------------------------------
     
     // Crie uma função para limpar os preços e retornar os números com centavos arredondados depois retorne a soma total
@@ -136,31 +135,24 @@
 
 //funcao que limpa precos (1.tirar r$ e espacos)
 
-console.log(listaPrecos)
+    console.log(listaPrecos)
 
-   function limpaPrecos(params) {
-     listaPrecos.forEach((params)=> {
-        let numerosLimpos = +params.replace(',', '.').toLocaleLowerCase().replace('r$', '').trim()
-        console.log(numerosLimpos)
-     })
-   }
-   
-let x = limpaPrecos(listaPrecos)
+    function limpaPrecos(params) {
+        params = +params.replace(',', '.').toLocaleLowerCase().replace('r$', '').trim()
+        return params
+    }
+    console.log(limpaPrecos(listaPrecos[0]))
 
-// funcao que retorna centavos arredondados
-
-function centavosArredondados(params) {
-    Math.round(params)
-}
-
-// soma total
-let total = 0
-function soma(params) {
+    let soma = 0 
     listaPrecos.forEach((params) => {
-        console.log(params)
+        soma += limpaPrecos(params)
     })
-}
+    console.log(soma.toFixed(2))
 
+
+
+
+    
     </script>
 </body>
 </html>
