@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+</head>
+<body>
+
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+    <script>
+    // Arrays:
+        //Arrays armazenam uma coleção de elementos. Estes podem ser strings, arrays, boolean, number, functions, objects e mais.
+
+        const instrumentos = ['Guitarra', 'Baixo', 'Violão'];
+        const precos = [49, 99, 69, 89];
+
+        const dados = [
+            new String('Tipo 1'), 
+            ['Carro', 'Portas', {cor: 'Azul', preco: 2000}], 
+            function andar(nome) { console.log(nome) },
+        ]
+
+        dados[2]('Ford');
+        dados[1][2].cor; // azul
+
+//-----------------------------------------------------------------------------------------------------
+    //Construção de Arrays
+        //Toda array herda os métodos e propriedades do protótipo do construtor Array.
+
+        const instrumentos2 = ['Guitarra', 'Baixo', 'Violão'];
+        const carros = new Array('Corola', 'Mustang', 'Honda');
+
+        carros[1] // Mustang
+        carros[2] = 'Ferrari';
+        carros[10] = 'Parati'; //cria espacos vazios dentro da array e adiciona o a string na posição que vc quer, no caso, index 10
+        carros.length; // 11
+//-----------------------------------------------------------------------------------------------------
+    
+    //Array.from()
+        //Array.from() é um método utilizado para transformar array-like objects, em uma array.
+
+        const li = document.querySelectorAll('li')
+    
+        const arrayLi = Array.from(li)
+
+        console.log(li)
+        console.log(arrayLi)
+//-----------------------------------------------------------------------------------------------------
+
+    //Array.isArray()
+        //Verifica se o valor passado é uma array e retorna um valor booleano.
+
+        Array.isArray(li) // false
+        Array.isArray(arrayLi) // true
+//-----------------------------------------------------------------------------------------------------
+
+    //Array.of(), Array() e new Array()
+        //A palavra chave new não é necessária para utilizar o construtor Array.
+
+        Array.of(10); // [10] - cria array com item que passou no argumento
+        Array.of(1,2,3,4); // [1,2,3,4]
+        new Array(5); // [,,,,]
+        Array(5); // [,,,,] - se passar só um valor, ele entende que quer criar um array com 5 espaços
+        Array(1,2,3,4); // [1,2,3,4]
+//-----------------------------------------------------------------------------------------------------
+
+    //Propriedades e Métodos do Prototype
+        //[].length retorna o tamanho da array.
+
+        const frutas = ['Banana', 'Pêra', ['Uva Roxa', 'Uva Verde']];
+        console.log(frutas)
+        frutas.length; // 3
+
+        frutas[0].length; // 6 - quantidade de letras = 'Banana'.length
+        frutas[1].length; // 4 - quantidade de letras
+        frutas[2].length; // 2 - index, pois o index 2 é um array com 2 elementos, então retorna 2 elementos
+        frutas[2][0].length // 8 - quantidade de letras = 'Uva Roxa'.length
+//-----------------------------------------------------------------------------------------------------
+
+        //Métodos Modificadores [].sort()
+            //Os próximos métodos que vamos falar sobre, são métodos modificadores (mutator methods). Além de retornarem um valor, eles modificam a array original. [].sort() organiza a pelo unicode.
+
+            const instrumentos3 = ['Guitarra', 'Baixo', 'Violão'];
+            instrumentos3.sort();
+            instrumentos3; // ['Baixo', 'Guitarra', Violão]
+
+            const idades = [32,21,33,43,1,12,8];
+            idades.sort();
+            idades; // [1, 12, 21, 32, 33, 43, 8] - não coloca na ordem e sim na ordem pelo numero inicial da dezena e dpois unidade, isso é, todos que começam com 1 primeiro, depois os que começam com 2, não importa se um numero é maior ou não.
+//-----------------------------------------------------------------------------------------------------
+
+        //[].unshift() e [].push()
+            //[].unshift() adiciona elementos ao início da array e retorna o length da mesma array. 
+            //[].push() adiciona elementos ao final da array e retorna o length da mesma array.
+
+            const carros2 = ['Ford', 'Fiat', 'VW']
+            carros2.unshift('Honda', 'Kia') // 5
+            carros2 // ['Honda', 'Kia', 'Ford', 'Fiat', 'VW']
+
+            carros2.push('Ferrari') // 6
+            carros2 // ['Honda', 'Kia', 'Ford', 'Fiat', 'VW', 'Ferrari']
+//-----------------------------------------------------------------------------------------------------
+
+        //[].shift() e [].pop()
+            //[].shift() remove o primeiro elemento da array e retorna o mesmo. 
+            //[].pop() remove o último elemento da array e retorna o mesmo.
+
+            const carros3 = ['Ford', 'Fiat', 'VW', 'Honda'];
+            const semPrimeiroCarro = carros3.shift(); // 'Ford'
+            carros3; // ['Fiat', 'VW', 'Honda'];
+
+            const semUltimoCarro = carros3.pop(); // 'Honda'
+            carros3; // ['Fiat', 'VW'];
+//-----------------------------------------------------------------------------------------------------
+
+        //[].reverse()
+            //[].reverse() inverte os itens da array e retorna a nova array.
+            
+            const carros4 = ['Ford', 'Fiat', 'VW', 'Honda'];
+            const carrosAoContrario = carros4.reverse(); // ['Honda', 'VW', 'Fiat', 'Ford'];
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

@@ -240,5 +240,5 @@ body{
 }
 .js .js-scroll.ativo{
     opacity: 1; /* opacidade faz o elemento sumir e aparecer */
-    transform: translate3d(0,0,0); 
+    transform: translate3d(0,0,0);
 }
