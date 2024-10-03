@@ -87,7 +87,7 @@
 
             const instrumentos3 = ['Guitarra', 'Baixo', 'Violão'];
             instrumentos3.sort();
-            instrumentos3; // ['Baixo', 'Guitarra', Violão]
+            instrumentos3; // ['Baixo', 'Guitarra', Violão] - ordem alfabética
 
             const idades = [32,21,33,43,1,12,8];
             idades.sort();
@@ -182,15 +182,124 @@
 
             const maisTransportes = [].concat(transporte1, transporte2, 'Van'); //pode adicionar valores tbm
             // ['Barco', 'Aviao', 'Carro', 'Moto', 'Van'];
+            
 
             //obs: não altera a array, ex: (repare que eu add nave espacial e quando vejo a const ela não adicionou)
-            transporte1 = transporte1.concat('nave espacial') //['Barco', 'Aviao', 'nave espacial']
+            transporte1.concat('nave espacial') //['Barco', 'Aviao', 'nave espacial']
             transporte1 //['Barco', 'Aviao']
             
             //Obs: se transporte1 fosse uma let, poderia reassinalar com um valor novo e aí sim, ela iria ser alterada:
             //transporte1 = transporte1.concat('nave espacial') //['Barco', 'Aviao', 'nave espacial']
 //-----------------------------------------------------------------------------------------------------
-        
+
+        //[].includes(), [].indexOf() e [].lastIndexOf()
+            //[].includes(valor) verifica se a array possui o valor e retorna true ou false. 
+            //[].indexOf(valor) verifica se a array possui o valor e retorna o index do primeiro valor na array. 
+            //[].lastIndexOf(valor) retorna o index do último.
+
+            const linguagens = ['html', 'css', 'js', 'php', 'python', 'js'];
+
+            linguagens.includes('css'); // true
+            linguagens.includes('ruby'); // false
+            linguagens.indexOf('python'); // 4
+            linguagens.indexOf('js'); // 2 - passa o primeiro que achar
+            linguagens.lastIndexOf('js'); // 5 - procura qual é o último 'js' e retorna o index
+//-----------------------------------------------------------------------------------------------------
+
+        //[].join()
+            //[].join(separador) junta todos os valores da array e retorna uma string com eles. Se você passar um valor como parâmetro, este será utilizado durante a junção de cada item da array.
+
+            const linguagens2 = ['html', 'css', 'js', 'php', 'python'];
+            linguagens2.join(); // 'html,css,js,php,python'
+            linguagens2.join(' '); // 'html css js php python'
+            linguagens2.join('-_-'); // 'html-_-css-_-js-_-php-_-python'
+
+            //macete:
+            let htmlString = '<h2>Título Principal</h2>'
+            htmlString = htmlString.split('h2');
+            // ['<', '>Título Principal</', '>']
+            htmlString = htmlString.join('h1');
+            // <h1>Título Principal</h1>
+//-----------------------------------------------------------------------------------------------------
+
+        //[].slice()
+            //[].slice(inicio, final) retorna os itens da array começando pelo início e indo até o valor de final.
+
+            const linguagens3 = ['html', 'css', 'js', 'php', 'python'];
+            linguagens3.slice(3); // ['php', 'python']
+            linguagens3.slice(1, 4); // ['css', 'js', 'php'] - não retorna o index4 e sim o 3
+
+            //macete para clonar array:
+            const cloneLinguagens3 = linguagens3.slice();
+            // cloneLinguagens3 = ao que linguagens3.slice() retorna, porque se fizer apenas: 
+                //const cloneLinguagens3 = linguagens3
+            // o cloneLinguagens3 não deixa de ser a mesma coisa que linguagens3 e qualquer alteração no clone vai alterar no original o que não acontece quando se usa slice. (quando usa o slice e não passa argumento ele retorna a array completa)
+//-----------------------------------------------------------------------------------------------------
+
+        //EXERCÍCIOS:
+        console.log('Exercícios:')
+
+        const comidas = ['Pizza', 'Frango', 'Carne', 'Macarrão'];
+
+        // Remova o primeiro valor de comidas e coloque em uma variável
+        const primeiroValor = comidas.slice(0,1)
+
+        // Remova o último valor de comidas e coloque em uma variável
+        const ultimoValor = comidas.slice(-1)
+
+        // Adicione 'Arroz' ao final da array 
+        comidas.push('Arroz')
+        console.log(comidas)
+
+        // Adicione 'Peixe' e 'Batata' ao início da array
+        comidas.splice(0,0, 'Peixe','Batata')
+        console.log(comidas)
+
+        //ou... se comidas fosse let, poderia só concatenar:
+        //comidas = [].concat('Peixe','Batata',comidas)
+
+
+//-----------------------------------------------------------------------------------------------------
+
+        const estudantes = ['Marcio', 'Brenda', 'Joana', 'Kleber', 'Julia'];
+        // Arrume os estudantes em ordem alfabética
+        estudantes.sort()
+        console.log(estudantes)
+
+        // Inverta a ordem dos estudantes
+        estudantes.reverse()
+        console.log(estudantes)
+
+        // Verifique se Joana faz parte dos estudantes
+        estudantes.includes('Joana') //true
+
+        // Verifique se Juliana faz parte dos estudantes
+        estudantes.includes('Juliana') //false
+//-----------------------------------------------------------------------------------------------------
+
+        let html = `<section>
+                    <div>Sobre</div>
+                    <div>Produtos</div>
+                    <div>Contato</div>
+                    </section>`
+        // Substitua section por ul e div com li, utilizando split e join
+        console.log(html)
+        html = html.split('section')
+        html = html.join('ul')
+
+        html = html.split('div')
+        html = html.join('li')
+        console.log(html)
+
+//-----------------------------------------------------------------------------------------------------
+
+        const carros6 = ['Ford', 'Fiat', 'VW', 'Honda'];
+        // Remova o último carro, mas antes de remover salve a array original em outra variável
+        const cloneCarros6 = carros6.slice()
+        carros6.splice(-1)
+        // carros6 = carros6.slice(0, 3)
+        console.log(carros6)
+        console.log(cloneCarros6)
     </script>
 </body>
 </html>
