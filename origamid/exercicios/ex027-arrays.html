@@ -123,15 +123,74 @@
             
             const carros4 = ['Ford', 'Fiat', 'VW', 'Honda'];
             const carrosAoContrario = carros4.reverse(); // ['Honda', 'VW', 'Fiat', 'Ford'];
+//-----------------------------------------------------------------------------------------------------
 
+        //[].splice()
+            // [].splice(index, remover, item1, item2, ...) adiciona valores na array a partir do index. Remove a quantidade de itens que for passada no segundo parâmetro (retorna esses itens).
 
+            const carros5 = ['Ford', 'Fiat', 'VW', 'Honda'];
+            console.log(carros5)
 
+            carros5.splice(1, 0, 'Kia', 'Mustang'); // [] - retorna array vazia porque removeu 0 itens
+            carros5; // ['Ford', 'Kia', 'Mustang', 'Fiat', 'VW', 'Honda']
 
+            //obs: 1 é o index/posição que quero que fique o as novas strings, no caso, antes de fiat, assim, kia e mustang vão começar do index 1.
 
+            carros5.splice(3, 2, 'Ferrari'); // ['Fiat', 'VW'] - retorna os 2 itens removidos
+            carros5; // ['Ford', 'Kia', 'Mustang', 'Ferrari', 'Honda']
 
+            //obs: remove 2 elementos a partir do índice 3
 
+            const arr = [1,2,3,4,5,6,7,8,9,10]
+            console.log(arr)
+            arr.splice(3,2) //a partir do index 3, remove 2 elementos, isso é, remove o index 3 e 4.
+            //console.log(arr.splice(3,2)) - retorna 4 e 5 (comenta o splice acima para ver se não vai cortar novamente)
+            console.log(arr)
+//-----------------------------------------------------------------------------------------------------
 
+        //[].copyWithin()
+            //[].copyWithin(alvo, inicio, final) a partir do alvo, ele irá copiar a array começando do inicio até o final e vai preencher a mesma com essa cópia. Caso omita os valores de início e final, ele irá utilizar como inicio o 0 e final o valor total da array.
+            //basicamente, é copiar item da array e colar na própria array. (complexo e não se usa muito)
 
+            console.log(['item 1', 'item 2', 'item 3', 'item 4', 'item 5'].copyWithin(2,0,2))
+            //['item 1', 'item 2', 'item 1', 'item 2', 'item 5']
+
+            //2,0,2 = a partir do item 3, copia e cola do item 1, até o item 2
+            //repare que o item 3 e 4 são apagados
+//-----------------------------------------------------------------------------------------------------
+
+        //[].fill()
+            //[].fill(valor, inicio, final) preenche a array com o valor, do início até o fim.
+
+            console.log(['item 1', 'item 2', 'item 3', 'item 4', 'item 5'].fill('Banana'))
+            //['Banana', 'Banana', 'Banana', 'Banana', 'Banana']
+
+            console.log(['item 1', 'item 2', 'item 3', 'item 4', 'item 5'].fill('Banana',1)) //inicio no index 1
+            //['item 1', 'Banana', 'Banana', 'Banana', 'Banana']
+
+            console.log(['item 1', 'item 2', 'item 3', 'item 4', 'item 5'].fill('Banana',1, 3)) //finaliza antes do index 3
+            //['item 1', 'Banana', 'Banana', 'item 4', 'item 5']
+//-----------------------------------------------------------------------------------------------------
+
+        //Métodos de Acesso [].concat()
+            //Os métodos abaixo não modificam a array original, apenas retornam uma array modificada. [].concat() irá concatenar a array com o valor passado.
+
+            const transporte1 = ['Barco', 'Aviao'];
+            const transporte2 = ['Carro', 'Moto'];
+            const transportes = transporte1.concat(transporte2);
+            // ['Barco', 'Aviao', 'Carro', 'Moto'];
+
+            const maisTransportes = [].concat(transporte1, transporte2, 'Van'); //pode adicionar valores tbm
+            // ['Barco', 'Aviao', 'Carro', 'Moto', 'Van'];
+
+            //obs: não altera a array, ex: (repare que eu add nave espacial e quando vejo a const ela não adicionou)
+            transporte1 = transporte1.concat('nave espacial') //['Barco', 'Aviao', 'nave espacial']
+            transporte1 //['Barco', 'Aviao']
+            
+            //Obs: se transporte1 fosse uma let, poderia reassinalar com um valor novo e aí sim, ela iria ser alterada:
+            //transporte1 = transporte1.concat('nave espacial') //['Barco', 'Aviao', 'nave espacial']
+//-----------------------------------------------------------------------------------------------------
+        
     </script>
 </body>
 </html>
