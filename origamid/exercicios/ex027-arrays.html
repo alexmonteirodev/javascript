@@ -241,20 +241,24 @@
 
         const comidas = ['Pizza', 'Frango', 'Carne', 'Macarrão'];
 
-        // Remova o primeiro valor de comidas e coloque em uma variável
-        const primeiroValor = comidas.slice(0,1)
+        // Remova o primeiro valor de comidas e coloque em uma variável--------------------------------------
+        const primeiroValor = comidas.shift()
+        console.log(primeiroValor)
+        //const primeiroValor = comidas.slice(0,1)
 
-        // Remova o último valor de comidas e coloque em uma variável
-        const ultimoValor = comidas.slice(-1)
+        // Remova o último valor de comidas e coloque em uma variável----------------------------------------
+        const ultimoValor = comidas.pop()
+        console.log(ultimoValor)
+        // const ultimoValor = comidas.slice(-1)
 
-        // Adicione 'Arroz' ao final da array 
+        // Adicione 'Arroz' ao final da array ---------------------------------------------------------------
         comidas.push('Arroz')
         console.log(comidas)
 
-        // Adicione 'Peixe' e 'Batata' ao início da array
-        comidas.splice(0,0, 'Peixe','Batata')
+        // Adicione 'Peixe' e 'Batata' ao início da array----------------------------------------------------
+        comidas.unshift('peixe', 'batata')
         console.log(comidas)
-
+        //comidas.splice(0,0, 'Peixe','Batata')
         //ou... se comidas fosse let, poderia só concatenar:
         //comidas = [].concat('Peixe','Batata',comidas)
 
@@ -296,7 +300,7 @@
         const carros6 = ['Ford', 'Fiat', 'VW', 'Honda'];
         // Remova o último carro, mas antes de remover salve a array original em outra variável
         const cloneCarros6 = carros6.slice()
-        carros6.splice(-1)
+        carros6.splice(-1) //ou pop()
         // carros6 = carros6.slice(0, 3)
         console.log(carros6)
         console.log(cloneCarros6)

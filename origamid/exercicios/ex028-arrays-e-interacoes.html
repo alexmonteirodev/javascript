@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays e Interações</title>
+</head>
+<body>
+
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+    <script>
+    // Array e interações:
+    
+    // [].forEach()
+        //[].forEach(callback(itemAtual, index, array)) a função de callback é executada para cada item da array. Ela possui três argumentos, itemAtual (valor do item da array), index (index do valor na array) e array (array original).
+
+        const carros = ['Ford', 'Fiat', 'Honda'];
+        carros.forEach(function(item, index, array) {
+        console.log(item.toUpperCase(), index, array);
+        });
+
+        // com Arrow Function
+        carros.forEach((item, index, array) => {
+        console.log(item.toUpperCase());
+        });
+//-----------------------------------------------------------------------------------------------------
+    
+    // Arrow Function
+
+    const li = document.querySelectorAll('li');
+
+    li.forEach(item => item.classList.add('ativa')); //uma linha não precisa de {}
+    // é a mesma coisa que:
+    li.forEach((item) => {item.classList.add('ativa')}); //bom botar () no parametro pra saber que é parametro
+    // que é a mesma coisa que:
+    li.forEach(function(item) {
+    item.classList.add('ativa');
+    });
+//-----------------------------------------------------------------------------------------------------
+
+    //Modificar a Array Original
+        //O terceiro argumento do callback é uma referência direta e se modificado irá também modificar a array original.
+
+        const carros2 = ['Ford', 'Fiat', 'Honda'];
+        carros2.forEach((item, index, array) => {
+        array[index] = 'Carro ' + item;
+        });
+
+        carros; // ['Carro Ford', 'Carro Fiat', 'Carro Honda']
+        //É melhor utilizarmos o map para isso...
+
+        // Atenção: o que importa para o foreach é a interação que você faz com ele e não o que ele retorna, no caso ele retorna indefined. Já o map(), faz exatamente a mesma coisa que o foreach porém, ao invés de retornar undefined, ele retorna uma array.
+
+        //[].map() - quando quer retornar uma array com os valores de outra array, modificados.
+            //[].map(callback(itemAtual, index, array)) funciona da mesma forma que o forEach(), porém ao invés de retornar undefined, retorna uma nova array com valores atualizados de acordo com o return de cada iteração.
+
+            const carros3 = ['Ford', 'Fiat', 'Honda'];
+            const newCarros = carros3.map((item) => {
+            return 'Carro ' + item; // se não botar o reutrn, ele retorna uma array com undefined dentro
+            });
+
+            carros3; // ['Ford', 'Fiat', 'Honda']
+            newCarros; // ['Carro Ford', 'Carro Fiat', 'Carro Honda']; 
+
+            //ex2 foreach x map:
+
+            const veiculos = ['carro', 'avião', 'barco']
+
+            //foreach retorna undefined e não altera a array original (vc vê no console tudo em maiusculo mas a array não foi alterada)-----
+                const veiculosEach = veiculos.forEach((params) => {
+                    params =  params.toLocaleUpperCase()
+                    console.log(params) //CARRO AVIÃO BARCO
+                })
+                veiculosEach //undefined
+                console.log(veiculos) //['carro', 'avião', 'barco']
+
+            //map retorna nova array--------
+
+                const novaArray = veiculos.map((params) => {
+                    return params.toLocaleUpperCase()
+                })
+                console.log(novaArray) //['CARRO', 'AVIÃO', 'BARCO']
+
+    // Valor Retornado parei aqui 11:44
+            
+
+
+    </script>
+</body>
+</html>
