@@ -85,9 +85,257 @@
                 })
                 console.log(novaArray) //['CARRO', 'AVIÃO', 'BARCO']
 
-    // Valor Retornado parei aqui 11:44
-            
+    // Valor Retornado
+        //Se não retornarmos nenhum valor durante a iteração utilizando map, o valor retornado como de qualquer função que não possui o return, será undefined.
 
+        const carros4 = ['Ford', 'Fiat', 'Honda'];
+        const newCarros4 = carros.map((item) => {
+        const novoValor = 'Carro ' + item;
+        });
+
+        newCarros; // [undefined, undefined, undefined];
+
+    //Arrow Function e [].map()
+        //Uma Arrow Function de linha única e sem chaves irá retornar o valor após a fat arrow =>.
+
+        const numeros = [2, 4, 6, 8, 10, 12, 14];
+        const numerosX3 = numeros.map(n => n * 3);
+
+        numerosX3; // [6, 12, 18, 24, 30, 36, 42];
+//-----------------------------------------------------------------------------------------------------
+
+    // [].map() com Objetos
+        //Map pode ser muito útil para interagirmos com uma array de objetos, onde desejamos isolar um valor único de cada objeto.
+        const aulas = [
+        {
+            nome: 'HTML 1',
+            min: 15
+        },
+        {
+            nome: 'HTML 2',
+            min: 10
+        },
+        {
+            nome: 'CSS 1',
+            min: 20
+        },
+        {
+            nome: 'JS 1',
+            min: 25
+        },
+        ]
+        //esses dois exemplos são as formas mais comuns:
+
+        //exemplo 1: quando escreve a função direto no map:
+
+        const tempoAulas = aulas.map(aula => aula.min);
+        //[15, 10, 20, 25];
+        /*
+        -mesma coisa que:
+
+        const tempoAulas = aulas.map((objeto) =>{
+            return objeto.min
+        })
+        */
+
+        //exemplo 2: quando escreve uma função fora e usa como callback depois no map:
+
+        const puxarNomes = aula => aula.nome;
+        const nomesAulas = aulas.map(puxarNomes);
+        // ['HTML 1', 'HTML 2', 'CSS 1', 'JS 1']
+
+        /*
+        -obs: puxarNomes é a  mesma coisa que:
+
+        const puxarNames = function (objeto) {
+            return objeto.nome
+        }
+        */
+//-----------------------------------------------------------------------------------------------------
+
+    //[].reduce()
+        //[].reduce(callback(acumulador, valorAtual, index, array), valorInicial) executa a função de callback para cada item da Array. Um valor especial existe nessa função de callback, ele é chamado de acumulador, mas é na verdade apenas o retorno da iteração anterior. Diferente do map, o reduce retorna um valor unico que é o da última interação.
+
+        //exemplo 1:
+        const exemploNumeros = [10,20,40,30]
+        const totalExemplo = exemploNumeros.reduce((acumulador, valorAtual, index, array) => {
+            console.log(acumulador, valorAtual, index) //se não tiver o return, retorna undefined porque é o que uma função retorna.
+            return acumulador + valorAtual
+        },0) //0 é o valor do acumulador, caso queira colocar outro valor é aí que coloca..
+        console.log(totalExemplo)
+        /*
+        0 10 0
+        10 20 1
+        30 40 2
+        70 30 3
+        
+        - o reduce retorna um valor unico que é o da última interação, logo:
+        a interação é: acumulador + valorAtual, na primeira linha, isso é dizer: 0+10, retorna..
+        ...na segunda linha, isso é dizer: 10+20, retorna..
+        ...na terceira linha, isso é dizer: 30+40, retorna..
+        ...na quarta linha, isso é dizer: 70+30, retorna..
+        */
+
+        //exemplo 2:
+
+        const aulas2 = [10, 25, 30];
+        const total1 = aulas2.reduce((acumulador, atual) => {
+        //console.log(acumulador, atual) 
+        return acumulador + atual;
+        }); //se não coloca o 0, o reduce pula a primeira interação e transforma o acumulador no valor da primeira interacão. Ou seja, sem o zero, a primeira interação seria 10+25, segunda: 35+30 e acabaria as interações. Para ver as duas interações descomente o console.log (deveriam ser 3 interações mas o reduce pulou a primeira)
+        total1; // 65
+
+        const total2 = aulas.reduce((acc, cur) => acc + cur, 100);
+        total2; // 165
+
+        //exemplo 3: 
+            //para enteder melhor a questão do 0 e de pular a interação:
+
+            //como ocorre passo a passo com 0:
+            /*
+            const aulas = [10, 25, 30];
+
+            // 1
+            aulas.reduce((0, 10) => {
+            return 0 + 10;
+            }, 0); // retorna 10
+
+            // 2
+            aulas.reduce((10, 25) => {
+            return 10 + 25;
+            }, 0); // retorna 35
+
+            // 3
+            aulas.reduce((35, 30) => {
+            return 35 + 30;
+            }, 0); // retorna 65
+            */
+           
+            //como ocorre passo a passo sem o 0:
+            /*
+            const aulas = [10, 25, 30];
+
+            // 1
+            aulas.reduce((10, 25) => {
+            return 10 + 25;
+            }) // retorna 35
+
+            // 2
+            aulas.reduce((35, 30) => {
+            return 35 + 30;
+            }) // retorna 65
+            */
+//-----------------------------------------------------------------------------------------------------
+    //Maior Valor com [].reduce()
+        //se o valor do item anterior for maior que o item atual, se sim, mantem o atual, se não, passa o anterior
+        
+        const numerosMaiorValor = [10, 25, 60, 5, 35, 10];
+
+        const maiorValor = numerosMaiorValor.reduce((anterior, atual) => {
+        return anterior < atual ? atual : anterior;
+        });
+
+        maiorValor; // 60
+
+        /*
+        anterior < atual ? atual : anterior - é a mesma coisa que:
+
+        if(anterior > atual) // repare que se tirar os () é a mesma coisa: anterior < atual ?
+            return anterior
+        else
+            return atual
+
+
+    const numerosMaiorValor = [10, 25, 60, 5, 35, 10];
+
+        const maiorValor = numerosMaiorValor.reduce((anterior, atual) => {
+            if(anterior > atual)
+                return anterior
+            else
+                return atual
+        },0);
+
+        // se lê assim:
+
+        const numerosMaiorValor = [10, 25, 60, 5, 35, 10];
+
+        const maiorValor = numerosMaiorValor.reduce((0, 10) => {
+            if(0 > 10)
+                return anterior
+            else
+                return 10
+        },0);
+        */
+//-----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+    const classes = [
+        {
+            nome: 'HTML 1',
+            min: 15
+        },
+        {
+            nome: 'HTML 2',
+            min: 10
+        },
+        {
+            nome: 'CSS 1',
+            min: 20
+        },
+        {
+            nome: 'JS 1',
+            min: 25
+        },
+        ]
+
+        const minutos = classes.map(function name(params) {
+            return params.min
+        })
+
+        const total = minutos.reduce((acumulator, value) => {
+            console.log(acumulator, value)
+            return acumulator + value
+        })
+        console.log(total)
+
+        //const total = classes.map(params => params.min).reduce((acumulator, value) => acumulator + value)
+        */
 
     </script>
 </body>
