@@ -432,8 +432,30 @@
 //-----------------------------------------------------------------------------------------------------
 
                                         //EXERCÍCIOS:
+                                        console.log('Exercícios:')
 
         // Selecione cada curso e retorne uma array com objetos contendo o título, descricao, aulas e horas de cada curso
+        const cursosQ = document.querySelectorAll('.curso')
+        const descricaoQ = document.querySelectorAll('.aulas')
+        const aulasQ = document.querySelectorAll('.horas')
+
+        const arrayCursosQ = Array.from(cursosQ)
+        const arrayDescricaoQ = Array.from(descricaoQ)
+        const arrayAulasQ = Array.from(aulasQ)
+
+        const objetoCursos = arrayCursosQ.map((params, index) => {
+            return {
+                titulo: params.querySelector('h1').innerText,
+                descricao: params.querySelector('p').innerText,
+                aulas: params.querySelector('.aulas').innerText,
+                horas: params.querySelector('.horas').innerText,
+            }
+        })
+        console.log(objetoCursos)
+        console.log(objetoCursos[0].titulo)
+        console.log(objetoCursos[0].descricao)
+        console.log(objetoCursos[0].aulas)
+        console.log(objetoCursos[0].horas)
 
 
 //-----------------------------------------------------------------------------------------------------
@@ -441,9 +463,10 @@
         // Retorne uma lista com os números maiores que 100
         const numeros1 = [3, 44, 333, 23, 122, 322, 33];
 
-        const maioresQue100 = numeros1.filter((params) => {
-            return params > 100
-        })
+        const maioresQue100 = numeros1.filter((params) => params > 100)
+        // const maioresQue100 = numeros1.filter((params) => {
+        //     return params > 100
+        // })
         console.log(maioresQue100)
 
 //-----------------------------------------------------------------------------------------------------
@@ -451,9 +474,10 @@
         // Verifique se Baixo faz parte da lista de instrumentos e retorne true
         const instrumentos = ['Guitarra', 'Baixo', 'Bateria', 'Teclado']
 
-        const temBaixo = instrumentos.some((params) => {
-            return params === 'Baixo'
-        })
+        const temBaixo = instrumentos.some((params) => params === 'Baixo')
+        // const temBaixo = instrumentos.some((params) => {
+        //     return params === 'Baixo'
+        // })
         console.log(temBaixo)
 //-----------------------------------------------------------------------------------------------------
         
