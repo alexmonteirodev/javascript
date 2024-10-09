@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function constructor and methods</title>
+</head>
+<body>
+
+    <script>
+    //Function
+        //Toda função é criada com o construtor Function e por isso herda as suas propriedades e métodos.
+
+        function areaQuadrado(lado) {
+            return lado * lado
+        }
+
+        //mesma coisa que criar, usando o construtor: (nunca criar uma função assim)
+        const perimetroQuadrado = new Function('lado', 'return lado * 4');
+//-----------------------------------------------------------------------------------------------------
+
+    //Propriedades:
+        //Function.length - retorna o total de argumentos da função. 
+        //Function.name - retorna uma string com o nome da função.
+
+        function somar(n1, n2) {
+        return n1 + n2;
+        }
+
+        somar.length; // 2
+        somar.name; // 'somar' - retorna string
+
+
+        //Lembrete: Pra falar com a função não deve usar os (), porque quando se usa os (), ela ativa.
+        somar //  ƒ somar(n1, n2) { return n1 + n2;}
+        somar(1,1) // 2
+//-----------------------------------------------------------------------------------------------------
+
+    //Métodos:
+        // Os principais métodos de função: call; apply; bind;
+
+        //function.call()
+            //function.call(this, arg1, arg2, ...) executa a função, sendo possível passarmos uma nova referência ao this da mesma. (This é referente ao objeto que foi criado no momento de criação da função)
+
+            window.marca = 'vw' //prova de que o window é o this (É super errado fazer isso, só pra mostrar mesmo...)
+            window.ano = '2020'
+
+            function descricaoCarro(velocidade) {
+            // console.log(this) - o this da function é o window
+            console.log(this.marca + ' ' + this.ano);
+            }
+
+            descricaoCarro() // undefined undefined
+            descricaoCarro.call() // undefined undefined
+            // descricaoCarro.call(carro) // Ford 2018
+
+            // o call serve para substituir o objeto em que a função faz referencia (window), por outro, que é quando usa o call:
+
+            descricaoCarro.call({marca: 'Honda', ano: '2024'}, 100)
+            //descricaoCarro.call({objeto novo}, parametros)
+
+            //parei em 10:08
+            
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
