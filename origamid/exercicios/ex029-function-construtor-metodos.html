@@ -6,7 +6,11 @@
     <title>Function constructor and methods</title>
 </head>
 <body>
-
+    <ul>
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+    </ul>
     <script>
     //Function
         //Toda função é criada com o construtor Function e por isso herda as suas propriedades e métodos.
@@ -59,8 +63,97 @@
             descricaoCarro.call({marca: 'Honda', ano: '2024'}, 100)
             //descricaoCarro.call({objeto novo}, parametros)
 
-            //parei em 10:08
-            
+    // This:
+        //O valor de this faz referência ao objeto criado durante a construção do objeto (Constructor Function). Podemos trocar a referência do método ao this, utilizando o call().
+
+        const carros = ['Ford', 'Fiat', 'VW'];
+
+        carros.forEach((item) => {
+        console.log(item);
+        }); // Log de cada Carro
+
+        carros.forEach.call(carros, (item) => {
+        console.log(item);
+        }); // Log de cada Carro
+
+        const frutas = ['Banana', 'Pêra', 'Uva'];
+
+        carros.forEach.call(frutas, (item) => { //substitui o this de carros por frutas
+        console.log(item);
+        }); // Log de cada Fruta
+
+    //Exemplo Real:
+
+        // O objeto atribuído a lista será o substituído pelo primeiro argumento de call()
+        function Dom(seletor) { //constructor function
+            this.element = document.querySelector(seletor)
+        }
+        const ul = new Dom('ul') //atribui ul a cópia da constructor
+        console.log(ul) //Dom {element: ul}
+        console.log(ul.element) //ul
+
+        //para add um método novo no protótipo da função Dom:
+        Dom.prototype.ativo = function ativo(params) {
+            this.element.classList.add(params)
+        }
+        ul.ativo('ativar') //<ul class="ativar"> </ul>
+
+        //substituindo this do ul:
+        // O objeto anterior era assim: console.log(ul) //Dom {element: ul}, logo temos que passar um objeto igual para poder alterar:
+        const li = {
+            element: document.querySelector('li')
+        }
+        console.log(li) //{element: li}
+        ul.ativo.call(li, 'ativar') //<li class="ativar">item 1</li>
+        ul.ativo('teste') //note que o ul.ativo continua funcionando para o ul, o li só funcionou porque foi utilizado o call e ele não muda o "new Dom('ul')".
+
+        //obs: escrever ul.ativo.call(li, 'ativar') é esquisito e contra intuitivo (da pra entender que se está arpoveitando um método do ul mas isso não é uma boa prática), logo, se usa: 
+        //Dom.prototype.ativo.call(li,'ativar') //assim sabe que o metodo ativo é uma função que tem o parametro para add classes e não fica um ul perdido.
+//-----------------------------------------------------------------------------------------------------
+
+    //Array's e Call
+        //É comum utilizarmos o call() nas funções do protótipo do construtor Array. Assim podemos estender todos os métodos de Array à objetos que se parecem com uma Array (array-like).
+        const frutas2 = ['Uva', 'Maçã', 'Banana'];
+
+        Array.prototype.mostrarThis = function() {
+            console.log(this)
+        }
+        frutas.mostrarThis(); // ['Uva', 'Maçã', 'Banana']
+
+        Array.prototype.pop.call(frutas); // Remove Banana - substitui o This de Array por frutas
+        frutas.pop(); // Mesma coisa que a função acima - remove maçã
+//-----------------------------------------------------------------------------------------------------
+
+    //Array-like
+        //HTMLCollection, NodeList e demais objetos do Dom, são parecidos com uma array. Por isso conseguimos utilizar os mesmos na substituição do this em call.
+
+        //exemplo de um array-like:
+        const arrayLike = {
+            0: 'item 1',
+            1: 'item 2',
+            2: 'item 3',
+            length: 3
+        }
+        //logo, qualquer objeto que seja retornardo dessa forma (array-like), pode se interagir com os metodos do prototipo de array. (por padrão no nodelist não tem o método filter)
+
+        const li2 = document.querySelectorAll('li'); //retorna nodelist (array-like)
+        console.log(li2)
+
+        const filtro = Array.prototype.filter.call(li2, function (params) {
+            return params.classList.contains('ativar')
+        })
+
+        console.log(filtro) 
+
+        // const filtro = Array.prototype.filter.call(li2, function (params) {
+        //     console.log(params.classList.contains('ativar'))
+        //     return true
+        // })
+
+        //console.log(filtro) - se tiver um return true, retorna a array com os li's, se não tiver return, retorna uma array vazia.
+
+
+
 
 
 
