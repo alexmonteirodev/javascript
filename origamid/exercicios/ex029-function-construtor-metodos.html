@@ -11,6 +11,14 @@
         <li>item 2</li>
         <li>item 3</li>
     </ul>
+
+    <section>
+        <p>Lobo-cinzento (nome científico:Canis lupus) é uma espécie de mamífero canídeo do gênero Canis. É um sobrevivente da Era do Gelo, originário do Pleistoceno Superior, cerca de 300 mil anos atrás. É o maior membro remanescente selvagem da família canidae.</p>
+        <p>Os lobos-cinzentos são tipicamente predadores ápice nos ecossistemas que ocupam. Embora não sejam tão adaptáveis à presença humana como geralmente ocorre com as demais.</p>
+        <p>O peso e tamanho dos lobos variam muito em todo o mundo, tendendo a aumentar proporcionalmente com a latitude.</p>
+        <p>Os lobos são capazes de percorrer longas distâncias com uma velocidade média de 10 quilômetros por hora e são conhecidos por.</p>
+      </section>
+      
     <script>
     //Function
         //Toda função é criada com o construtor Function e por isso herda as suas propriedades e métodos.
@@ -151,11 +159,141 @@
         // })
 
         //console.log(filtro) - se tiver um return true, retorna a array com os li's, se não tiver return, retorna uma array vazia.
+//-----------------------------------------------------------------------------------------------------
+
+    //function.apply()
+        //O apply(this, [arg1, arg2, ...]) funciona como o call, a única diferença é que os argumentos da função são passados através de uma array.
+
+        const numeros = [3,4,6,1,34,44,32];
+
+        // Podemos passar null para o valor de this, caso a função não utilize o objeto principal para funcionar
+
+        //exemplo: (max retorna o maior numero)
+        Math.max(numeros) //NaN
+        Math.max(3,4,6,1,34,44,32) //44
+        Math.max.call(null, 3,4,6,1,34,44,32) // 44 (null pq não vai modificar o this mas tem que escrever os numeros)
+        Math.max.call(null, numeros) // NaN (usando o array, já da erro)
+        Math.max.apply(null, numeros) // 44 (usando o apply, funciona com o array, porque ele aceita array como argumento)
+//-----------------------------------------------------------------------------------------------------
+    
+    //Apply vs Call
+        //A única diferença é a array como segundo argumento. (se for apply, tem que passar como um array)
+
+        const li3 = document.querySelectorAll('li');
+
+        function itemPossuiAtivo(item) {
+        return item.classList.contains('ativo');
+        }
+
+        const filtro1 = Array.prototype.filter.call(li, itemPossuiAtivo);
+        const filtro2 = Array.prototype.filter.apply(li, [itemPossuiAtivo]); //apply usa array no argumento
+//-----------------------------------------------------------------------------------------------------
+
+    //function.bind() - secamenete falando: copia e muda o this
+        //Diferente de call e apply, bind(this, arg1, arg2, ...) não irá executar a função mas sim retornar a mesma com o novo contexto de this.
+
+        const li4 = document.querySelectorAll('li');
+
+        const filtrarLi = Array.prototype.filter.bind(li, function(item) {
+        return item.classList.contains('ativo');
+        });
+
+        filtrarLi() //tem que ativar, porque ele só retorna a funcao mudada
+
+        //bind é bom quando você quer reaproveitar uma função em outra parte do codigo, já o call e o apply é mais quando vai usar aquela vez alí e pronto
+
+        //exemplo 2 (macete):
+        const $ = document.querySelectorAll.bind(document) //this = document
+        $('li')//NodeList(3) [li.ativar, li, li]
+
+        //nesse exemplo eu posso utilizar o $ toda vez que quiser selecionar um item e vou reutilizar pelo código.
+//-----------------------------------------------------------------------------------------------------
+
+    //Argumentos e Bind
+        //Não precisamos passar todos os argumentos no momento do bind, podemos passar os mesmos na nova função no momento da execução da mesma.
+
+        const carro = {
+            marca: 'Ford',
+            ano: 2018,
+            acelerar(aceleracao, tempo) {
+                return `${this.marca} acelerou ${aceleracao} km/h em ${tempo} segundos`
+            }
+        }
+        console.log(carro.acelerar(100,20)) //Ford acelerou 100 km/h em 20 segundos
+
+        //como usar o bind em carro:
+
+        const honda = {
+            marca: 'Honda', //marca tem que estar escrito igual ao marca do outro objeto
+            //não precisa do ano porque não interage com ele
+        }
+
+        const acelerarHonda = carro.acelerar.bind(honda) //bind(honda, 300, 20) - poderia passar aegumento aqui já
+        console.log(acelerarHonda(300,20))
+
+        //exemplo 2:
+        // Argumentos em comum: Podemos passar argumentos padrões para uma função e retornar uma nova função.
+
+        function imc(altura, peso) {
+            return peso/ (altura*altura)
+        }
+        //supondo que essa seja uma função para calcular o imc dos pacientes. Porém, todos os pacientes medem 1.80 (não tem porque ficar preenchendo 1.80 toda hora, então o unico argumento que tem que passar é o peso), logo:
+
+        const imc180 = imc.bind(null, 1.80) //null porque não quer falar com o this
+        imc(1.80, 70) //21.6
+        imc180(70) //21.6
+//-----------------------------------------------------------------------------------------------------
+
+                                        //EXERCÍCIOS
+                                        console.log('Exercícios')
+    
+
+        // Retorne a soma total de caracteres dos parágrafos acima utilizando reduce
+        const paragrafos = document.querySelectorAll('p')
+        const paragrafosArray = Array.from(paragrafos)
+        const totalCaracteresParagrafos = paragrafosArray.reduce((acc, params) => acc + params.innerText.length,0)
+        console.log(totalCaracteresParagrafos) // 655
+        // const totalCaracteresParagrafos = paragrafosArray.reduce(function name(acc, params) {
+        //     return acc + params.innerText.length
+        // },0)
+        // console.log(totalCaracteresParagrafos) // 655
+//-----------------------------------------------------------------------------------------------------
+
+        // Crie uma função que retorne novos elementos html, com os seguintes parâmetros tag, classe e conteudo.
 
 
+        function criarElemento(tag, classe, conteudo) {
+            const elemento = document.createElement(tag)
+            classe ? elemento.classList.add(classe) : null
+            conteudo ? elemento.innerText = conteudo : null
+            return elemento
+        }
+        console.log(criarElemento('ul', 'teste', 'lorem lorem lorem'))
+        
+        //obs: classe ? elemento.classList.add(classe) : null - isso é como se fosse um if para verificar se classe existe porque caso não seja passado o parametro da classe, ele vai aparecer como undefined e dessa forma, caso não seja passado o parametro, ele vai retornar null e não vai aparecer undefined
+//-----------------------------------------------------------------------------------------------------
 
+        // Crie uma nova função utilizando a anterior como base essa nova função deverá sempre criar h1 com a classe titulo. Porém o parâmetro conteudo continuará dinâmico
 
+        const h1ComTitulo = criarElemento.bind(null, 'h1', 'titulo')
+        console.log(h1ComTitulo('ihuuul, entendi esse karaio'))
 
+        //usei o bind pra replicar e mudei os argumentos que queria que fossem fixos e deixei só o conteudo de fora que é a única coisa que vai ser alterada
+//-----------------------------------------------------------------------------------------------------
+
+        //OBSERVAÇÃO:
+        
+        //isso:
+        classe ? elemento.classList.add(classe) : null
+        
+        // é a mesma coisa que isso:
+        if (classe) {
+            elemento.classList.add(classe)
+        } else {
+            null
+        }
+
+        // Os dois códigos são equivalentes, mas o uso do operador ternário é preferido quando a lógica é simples e pode ser expressa em uma linha. O bloco if...else é mais explícito, mas pode ser útil em casos onde há mais lógica a ser executada em cada condição.
 
 
 
