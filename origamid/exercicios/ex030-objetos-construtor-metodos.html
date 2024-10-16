@@ -130,19 +130,23 @@
     //get e set
         //É possível definirmos diferentes comportamentos para get e set de uma propriedade. Lembrando que ao acionarmos uma propriedade obj.propriedade, a função get é ativada e ao setarmos ob.propriedade = 'Valor' a função de set é ativada.
 
-        const moto3 = {}
+        const moto3 = {
+            capacete: true,
+        }
 
-        Object.defineProperties(moto3, {
-            rodas: {
-                get() {
+        // Object.defineProperties(moto3, {
+        //     rodas: {
+        //         get() {
                     
-                },
-                set(){
+        //         },
+        //         set(){
 
-                },
-            }
-        })
+        //         },
+        //     }
+        // })
 
+        moto3.capacete // função GET
+        moto3.capacete = false // função SET
 
 
 
