@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function constructor and methods</title>
+</head>
+<body>
+    <ul>
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+    </ul>
+      
+    <script>
+
+    //Object
+        //Todo objeto é criado com o construtor Object e por isso herda as propriedades e métodos do seu prototype.
+
+        const carro = {
+            marca: 'Ford',
+            ano: 2018,
+        }
+
+        //ou
+
+        const pessoa = new Object({
+            nome: 'André',
+            idade: 28,
+        })
+//-----------------------------------------------------------------------------------------------------
+
+    //Métodos de Object
+        //Object.create(obj, defineProperties) retorna um novo objeto que terá como protótipo o objeto do primeiro argumento. (obs: faz uma cópia, não altera o objeto original)
+
+        const carro1 = {
+            marca: 'Ford',
+            rodas: 4,
+            acelerar() {
+                return this.marca + ' acelerou'
+            },
+            buzinar() {
+                return this.marca + ' buzinou'
+            }
+        }
+
+        const honda = Object.create(carro1) //agora honda possui o prototype de carro1
+        honda.marca = 'Honda' //alterei a marca mas como as funções usam o this, a f tbm serve aqui, logo:
+        console.log(honda.acelerar()) //Honda acelerou
+
+        //obs: a marca do prototype continua sendo Ford, ou seja, se criar algum objeto novo e não passar a marca, ele vai usar o Ford, portanto se quiser replicar para varios carros, pode ser uma opção tirar a marca: ford do prototype porque caso em uma dessas cópias você esqueça de preencher a marca ele vai dar undefined, ou se deixar ele vai aparecer ford. Para isso, poderia fazer por exemplo:
+
+        const carro2 = {
+            value(params) {
+                this.marca = params
+                return this
+            },
+            acelerar() {
+                return this.marca + ' acelerou'
+            },
+        }
+        const fiat = Object.create(carro2).value('Fiat') //marca: 'Fiat'
+        const ferrari = Object.create(carro2).value('ferrari') //marca: 'ferrari'
+//-----------------------------------------------------------------------------------------------------
+    
+    //Object.assign()
+        //Object.assign(alvo, obj1, obj2) adiciona ao alvo as propriedades e métodos enumeráveis dos demais objetos. O assign irá modificar o objeto alvo.
+
+        const funcaoAutomovel = {
+        acelerar() {
+            return 'acelerou';
+        },
+        buzinar() {
+            return 'buzinou';
+        },
+        }
+
+        const moto = {
+        rodas: 2,
+        capacete: true,
+        }
+
+        const carro3 = {
+        rodas: 4,
+        mala: true,
+        }
+
+        Object.assign(moto, funcaoAutomovel); //atribui funcaoAutomovel dentro de moto
+        Object.assign(carro3, funcaoAutomovel);
+//-----------------------------------------------------------------------------------------------------
+
+    // create x assign:
+        //funcaoAutomovel continua a mesma coisa, mas o assign muda o alvo, então altera moto e assinala dentro do objeto, não no protótipo. (diferente do create que adiciona no protótipo direto)
+
+        console.log(fiat)// create - metodos dentro do prototype
+        console.log(moto) // assign - metodos dentro do objeto
+//-----------------------------------------------------------------------------------------------------
+
+    //Object.defineProperties()
+        //Object.defineProperties(alvo, propriedades) adiciona ao alvo novas propriedades. A diferença aqui é a possibilidade de serem definidas as características dessas propriedades. (uma maneira de deixar propriedade fixas que não mudam)
+
+         //obs: Object.assign(moto, funcaoAutomovel, carro1) se der um assign em carro1 tbm, tbm pode, mas ja vira bagunça porque o carro1 tinha a 4 rodas e já assinala por cima das rodas da moto que são duas e para resolver isso, tem como deixar a propriedade fixa com o defineProperty (define uma só) ou defineProperties (mais de uma; melhor usar mais de uma).
+
+        const moto1 = {
+            rodas: 2,
+        }
+
+        console.log(moto1) //rodas: 2
+        
+        moto1.rodas = 5
+
+        console.log(moto1) //rodas: 5
+
+        //logo,
+
+        const moto2 = {}
+
+        Object.defineProperties(moto2, {
+            rodas: {
+                value: 2,
+                configurable: false,
+            }
+        })
+
+        moto2.rodas = 5
+        console.log(moto2) //rodas: 2
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
