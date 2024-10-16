@@ -117,14 +117,31 @@
 
         Object.defineProperties(moto2, {
             rodas: {
-                value: 2,
-                configurable: false,
+                value: 2, //valor de rodas
+                configurable: false, //pode deletar ou escrever por cima
+                writable: false, //pode escrever por cima
             }
-        })
+        }) //configurable e writable já vem por padrão com false, então não precisaria escrever
 
         moto2.rodas = 5
         console.log(moto2) //rodas: 2
+//-----------------------------------------------------------------------------------------------------
 
+    //get e set
+        //É possível definirmos diferentes comportamentos para get e set de uma propriedade. Lembrando que ao acionarmos uma propriedade obj.propriedade, a função get é ativada e ao setarmos ob.propriedade = 'Valor' a função de set é ativada.
+
+        const moto3 = {}
+
+        Object.defineProperties(moto3, {
+            rodas: {
+                get() {
+                    
+                },
+                set(){
+
+                },
+            }
+        })
 
 
 
