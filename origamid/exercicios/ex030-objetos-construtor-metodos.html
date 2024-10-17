@@ -14,7 +14,7 @@
       
     <script>
 
-    //Object
+                                        //Object
 
         //Todo objeto é criado com o construtor Object e por isso herda as propriedades e métodos do seu prototype.
 
@@ -31,7 +31,7 @@
         })
 //-----------------------------------------------------------------------------------------------------
 
-    //Métodos de Object
+                                    //Métodos de Object
 
         //Object.create(obj, defineProperties) retorna um novo objeto que terá como protótipo o objeto do primeiro argumento. (obs: faz uma cópia, não altera o objeto original)
 
@@ -264,20 +264,97 @@
         marca: 'Ford',
         ano: 2018,
         }
-        Object.freeze(carro);
-        Object.seal(carro);
-        Object.preventExtensions(carro);
+        Object.freeze(carro6);
+        Object.seal(carro6);
+        Object.preventExtensions(carro6);
 
-        Object.isFrozen(carro); // true
-        Object.isSealed(carro); // true
-        Object.isExtensible(carro); // false
+        Object.isFrozen(carro6); // true
+        Object.isSealed(carro6); // true
+        Object.isExtensible(carro6); // false (da true quando NAO foi previnido )
+
+        //ex:
+        carro6.rodas = 4 //não consegue add porque o objeto está congelado ali em cima
+        carro6 //{marca: 'Ford', ano: 2018}
+//-----------------------------------------------------------------------------------------------------
+    
+                            //Propriedades e Métodos do Protótipo
+
+    //Já que tudo em JavaScript é objeto, as propriedades abaixo estão disponíveis em todos os objetos criados a partir de funções construtoras. {}.constructor retorna a função construtora do objeto.
+
+    const frutas3 = ['Banana', 'Uva'];
+    frutas3.constructor; // Array
+    frutas3.constructor.prototype; // proto de Array e depois disso, acesso ao proto de Objeto
 
 
+    const frase = 'Isso é uma String';
+    frase.constructor; // String
+//-----------------------------------------------------------------------------------------------------
 
+    //{}.hasOwnProperty('prop') e {}.propertyIsEnumerable('prop')
 
+        //{}.hasOwnProperty() verifica se possui a propriedade e retorna true. A propriedade deve ser direta do objeto e não do protótipo. 
+        //{}.propertyIsEnumerable() verifica se a propriedade é enumerável.
 
+        const frutas4 = ['Banana', 'Uva'];
 
+        //Array tem o método map, que é de do protótipo de Array, o hasOwnProperty verifica se a propriedade buscada foi criada junto com frutas:
 
+        frutas4.hasOwnProperty('map'); // false
+        Array.hasOwnProperty('map'); // false
+        Array.prototype.hasOwnProperty('map'); // true
+
+        Array.prototype.propertyIsEnumerable('map'); // false
+        window.propertyIsEnumerable('innerHeight'); // true
+//-----------------------------------------------------------------------------------------------------
+
+    //{}.isPrototypeOf(valor)
+
+        //Verifica se é o protótipo do valor passado.
+
+        const frutas5 = ['Banana', 'Uva'];
+
+        Array.prototype.isPrototypeOf(frutas5); // true (porque frutas5 é um array)
+//-----------------------------------------------------------------------------------------------------
+
+    //{}.toString()
+
+        //Retorna o tipo do objeto. O problema é toString() ser uma função dos protótipos de Array, String e mais. Por isso é comum utilizarmos a função direto do Object.prototype.toString.call(valor).
+
+        //se usar o typeof ele vai retornar que tudo é objeto
+        typeof carro // "object"
+        typeof [] // "object"
+        Array.isArray([]) //true
+        typeof frutas6 // "object"
+
+        //o que acontece é que dentro de frutas6 tem o prototype Array que possui o metodo toString() que transforma em string. Porém, dentro do portotype de de Array, tem o prototype de object e ao usar o toString em frutas, ele já seleciona o primeiro toString (transforma array em string) que acha (prototype de Array) e para falar com o segundo toString (retorna se é uma array ou não) e para acessar o segundo, tem que usar: Object.prototype.toString.call(), ou seja, faz o caminho do objeto para acessar o prototype dele, seleciona o método que quer (toString) e depois com o call, muda o this para o array:
+
+        console.log(frutas6) //ver que tem dois prototypes de array e object
+        console.log(frutas6.toString()) //transforma para string
+
+        
+        const frutas6 = ['Banana', 'Uva']
+        frutas.toString(); // 'Banana,Uva'
+        typeof frutas; // object
+        Object.prototype.toString.call(frutas6); // [object Array]
+        //[object Array] é dizer é um objeto do tipo array, e nesse exemplo estamos acessando o toString do objeto e usando em Array com o call (porque mudamos o this)
+
+        const frase2 = 'Uma String';
+        frase.toString(); // 'Uma String'
+        typeof frase; // string
+        Object.prototype.toString.call(frase2); // [object String]
+
+        const carro6 = {marca: 'Ford'};
+        carro.toString(); // [object Object]
+        typeof carro; // object
+        Object.prototype.toString.call(carro6); // [object Object]
+
+        const li = document.querySelectorAll('li');
+        typeof li; // object
+        Object.prototype.toString.call(li); // [object NodeList]
+
+        //obs: repare que o call é usado em uma função
+
+        //obs: se tentar acessar o segundo toString usando frutas6.__proto__.__proto__.toString() vai estar errado porque a referencia do this vai ser o objeto e deixar de ser frutas6 (que é um array). Então isso é totalmente errado.
 
 
 
