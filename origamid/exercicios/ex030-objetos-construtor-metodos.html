@@ -15,6 +15,7 @@
     <script>
 
     //Object
+
         //Todo objeto é criado com o construtor Object e por isso herda as propriedades e métodos do seu prototype.
 
         const carro = {
@@ -31,6 +32,7 @@
 //-----------------------------------------------------------------------------------------------------
 
     //Métodos de Object
+
         //Object.create(obj, defineProperties) retorna um novo objeto que terá como protótipo o objeto do primeiro argumento. (obs: faz uma cópia, não altera o objeto original)
 
         const carro1 = {
@@ -64,6 +66,7 @@
 //-----------------------------------------------------------------------------------------------------
     
     //Object.assign()
+
         //Object.assign(alvo, obj1, obj2) adiciona ao alvo as propriedades e métodos enumeráveis dos demais objetos. O assign irá modificar o objeto alvo.
 
         const funcaoAutomovel = {
@@ -90,6 +93,7 @@
 //-----------------------------------------------------------------------------------------------------
 
     // create x assign:
+
         //funcaoAutomovel continua a mesma coisa, mas o assign muda o alvo, então altera moto e assinala dentro do objeto, não no protótipo. (diferente do create que adiciona no protótipo direto)
 
         console.log(fiat)// create - metodos dentro do prototype
@@ -97,6 +101,7 @@
 //-----------------------------------------------------------------------------------------------------
 
     //Object.defineProperties()
+
         //Object.defineProperties(alvo, propriedades) adiciona ao alvo novas propriedades. A diferença aqui é a possibilidade de serem definidas as características dessas propriedades. (uma maneira de deixar propriedade fixas que não mudam)
 
          //obs: Object.assign(moto, funcaoAutomovel, carro1) se der um assign em carro1 tbm, tbm pode, mas ja vira bagunça porque o carro1 tinha a 4 rodas e já assinala por cima das rodas da moto que são duas e para resolver isso, tem como deixar a propriedade fixa com o defineProperty (define uma só) ou defineProperties (mais de uma; melhor usar mais de uma).
@@ -128,6 +133,7 @@
 //-----------------------------------------------------------------------------------------------------
 
     //get e set
+
         //É possível definirmos diferentes comportamentos para get e set de uma propriedade. Lembrando que ao acionarmos uma propriedade obj.propriedade, a função get é ativada e ao setarmos ob.propriedade = 'Valor' a função de set é ativada.
         /*
         const moto3 = {
@@ -178,7 +184,121 @@
 //-----------------------------------------------------------------------------------------------------
 
     //Object.getOwnPropertyDescriptors(obj)
-        //
+
+        //Lista todos os métodos e propriedades de um objeto, com as suas devidas configurações.
+
+        Object.getOwnPropertyDescriptors(Array);
+        // Lista com métodos e propriedades e Array
+
+        Object.getOwnPropertyDescriptors(Array.prototype);
+        // Lista com métodos e propriedades do protótipo de Array
+
+        Object.getOwnPropertyDescriptor(window, 'innerHeight');
+        // Puxa de uma única propriedade
+//-----------------------------------------------------------------------------------------------------
+
+    // Object.keys(obj), Object.values(obj) Object.entries(obj)
+
+        //Object.keys(obj) retorna uma array com as chaves de todas as propriedades diretas e enumeráveis do objeto. 
+        //Object.values(obj) retorna uma array com os valores do objeto. 
+        //Object.entries(obj) retorna uma array com array's contendo a chave e o valor.
+
+        Object.keys(Array);
+        // [] vazia, pois não possui propriedades enumeráveis
+
+        const carro4 = {
+        marca: 'Ford',
+        ano: 2018,
+        }
+        Object.keys(carro4);
+        // ['marca', 'ano']
+        Object.values(carro4);
+        // ['Ford', 2018]
+        Object.entries(carro4);
+        // [['marca', 'Ford'], ['ano', 2018]]
+//-----------------------------------------------------------------------------------------------------
+    
+    //Object.getOwnPropertyNames(obj)
+
+        //Retorna uma array com todas as propriedades diretas do objeto (não retorna as do protótipo).
+
+        Object.getOwnPropertyNames(Array);
+        // ['length', 'name', 'prototype', 'isArray', 'from', 'of']
+
+        Object.getOwnPropertyNames(Array.prototype);
+        // [..., 'filter', 'map', 'every', 'some', 'reduce', ...]
+
+        const carro5 = {
+        marca: 'Ford',
+        ano: 2018,
+        }
+        Object.getOwnPropertyNames(carro);
+        // ['marca', 'ano']
+//-----------------------------------------------------------------------------------------------------
+
+    //Object.getPrototypeOf() e Object.is()
+
+        //Object.getPrototypeOf(), retorna o protótipo do objeto. 
+        //Object.is(obj1, obj2) verifica se os objetos são iguais e retorna true ou false.
+
+        const frutas = ['Banana', 'Pêra']
+        Object.getPrototypeOf(frutas);
+        Object.getPrototypeOf(''); // String
+
+        const frutas1 = ['Banana', 'Pêra'];
+        const frutas2 = ['Banana', 'Pêra'];
+
+        Object.is(frutas1, frutas2); // false (ou seja, se mudar um, o outro não vai ser impactado)
+
+        const novaFruta = frutas1
+        Object.is(novaFruta, frutas1) // true (ou seja, é o mesmo, se mudar um vai mudar o outro)
+//-----------------------------------------------------------------------------------------------------
+
+    //Object.freeze(), Object.seal(), Object.preventExtensions()
+
+        //Object.freeze() impede qualquer mudança nas propriedades. 
+        //Object.seal() previne a adição de novas propriedades e impede que as atuais sejam deletadas. 
+        //Object.preventExtensions() previne a adição de novas propriedades.
+
+        const carro6 = {
+        marca: 'Ford',
+        ano: 2018,
+        }
+        Object.freeze(carro);
+        Object.seal(carro);
+        Object.preventExtensions(carro);
+
+        Object.isFrozen(carro); // true
+        Object.isSealed(carro); // true
+        Object.isExtensible(carro); // false
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
