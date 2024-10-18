@@ -324,29 +324,31 @@
         typeof carro // "object"
         typeof [] // "object"
         Array.isArray([]) //true
-        typeof frutas6 // "object"
+        typeof frutas // "object"
 
         //o que acontece é que dentro de frutas6 tem o prototype Array que possui o metodo toString() que transforma em string. Porém, dentro do portotype de de Array, tem o prototype de object e ao usar o toString em frutas, ele já seleciona o primeiro toString (transforma array em string) que acha (prototype de Array) e para falar com o segundo toString (retorna se é uma array ou não) e para acessar o segundo, tem que usar: Object.prototype.toString.call(), ou seja, faz o caminho do objeto para acessar o prototype dele, seleciona o método que quer (toString) e depois com o call, muda o this para o array:
+        
+        const frutas6 = ['Banana', 'Uva']
 
         console.log(frutas6) //ver que tem dois prototypes de array e object
         console.log(frutas6.toString()) //transforma para string
 
         
-        const frutas6 = ['Banana', 'Uva']
-        frutas.toString(); // 'Banana,Uva'
-        typeof frutas; // object
+        frutas6 //= ['Banana', 'Uva']
+        frutas6.toString(); // 'Banana,Uva'
+        typeof frutas6; // object
         Object.prototype.toString.call(frutas6); // [object Array]
         //[object Array] é dizer é um objeto do tipo array, e nesse exemplo estamos acessando o toString do objeto e usando em Array com o call (porque mudamos o this)
 
         const frase2 = 'Uma String';
-        frase.toString(); // 'Uma String'
-        typeof frase; // string
+        frase2.toString(); // 'Uma String'
+        typeof frase2; // string
         Object.prototype.toString.call(frase2); // [object String]
 
-        const carro6 = {marca: 'Ford'};
-        carro.toString(); // [object Object]
-        typeof carro; // object
-        Object.prototype.toString.call(carro6); // [object Object]
+        const carro7 = {marca: 'Ford'};
+        carro7.toString(); // [object Object]
+        typeof carro7; // object
+        Object.prototype.toString.call(carro7); // [object Object]
 
         const li = document.querySelectorAll('li');
         typeof li; // object
@@ -355,30 +357,82 @@
         //obs: repare que o call é usado em uma função
 
         //obs: se tentar acessar o segundo toString usando frutas6.__proto__.__proto__.toString() vai estar errado porque a referencia do this vai ser o objeto e deixar de ser frutas6 (que é um array). Então isso é totalmente errado.
+//-----------------------------------------------------------------------------------------------------
+
+                                     // EXERCÍCIOS
+                                     console.log('Exercícios:')
+        
+        // Crie uma função que verifique corretamente o tipo de dado
+
+        function verify(params) {
+            return Object.prototype.toString.call(params)
+        }
+
+        const objetoTeste = {
+            tipo1: 'carro',
+            tipo2: 'moto',
+        }
+        const arrayTeste = [1,2,3,4,5]
+
+        console.log(verify(objetoTeste)) //[object Object]
+        console.log(verify(arrayTeste)) //[object Array]
+//-----------------------------------------------------------------------------------------------------
+
+        // Crie um objeto quadrado com a propriedade lados e torne ela imutável
+
+        //congela todo o objeto
+        const quadrado = {
+            lados: 4,
+            area: 50,
+        }
+        Object.freeze(quadrado) //tem que ser no objeto inteiro (quadrado.lados) não funciona
+        quadrado.lados = 5
+        quadrado.area = 100
+        console.log(quadrado) //{lados: 4}
+        console.log(Object.isFrozen(quadrado))
+
+//ou
+        //congela apendas uma prorpiedade
+        const quadrado2 = {}
+        Object.defineProperties(quadrado2,{
+            lados: {
+                value: 4,
+                configurable: false,
+            },
+            area:{
+                value: 50,
+                configurable: true,
+                writable: true,
+            },
+        })
+        quadrado2.lados = 5
+        quadrado2.area = 100
+        console.log(quadrado2)
+//-----------------------------------------------------------------------------------------------------
+
+        // Previna qualquer mudança no objeto abaixo
+        const configuracao = {
+        width: 800,
+        height: 600,
+        background: '#333'
+        }
+
+        Object.freeze(configuracao)
+
+        configuracao.width = 500
+        configuracao.height = 1000
+        configuracao.background = '#FFFF'
+        console.log(configuracao)
+
+       console.log( Object.isFrozen(configuracao))
 
 
+//-----------------------------------------------------------------------------------------------------
 
+        // Liste o nome de todas as propriedades do protótipo de String e Array
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        console.log(Object.getOwnPropertyDescriptors(String.prototype))
+        console.log(Object.getOwnPropertyDescriptors(Array.prototype))
     </script>
 </body>
 </html>
