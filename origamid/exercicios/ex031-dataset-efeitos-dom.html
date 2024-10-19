@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en"> 
+    <!-- obs importante: caso o usuario desabilite o js o conteudo vai se perder com a animação então para deixar ao menos o conteudo na pagina sem a animação -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animais Fantasticos</title>
+    <script>
+        document.documentElement.className += ' js' //concatenar(para não escrever por cima de en) + espaço para não virar a class 'enjs' e classname ao invez de classlist para se adaptar a tecnologias mais antigas. documentElement = HTML. E add a class .js (elemento pai)
+    </script>
+    <style>
+@charset 'UTF-8';
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
+*{
+    margin: 0px;
+    padding: 0px;
+}
+:root{
+    --background-color: #faf6ed ;
+    --color: #222;
+    --font: -webkit-font-smoothing: antialiased;
+    --font2: Playfair Display SC;
+    --yellow: #fb5;
+    --orange: #e54;
+
+}
+
+img{
+    display: block;
+    max-width: 100%; /*para a img ficar 'responsiva' e não estourar o container. Obs: se fosse só width, a imagem ia crescer do tamanho da pg e com o max, ela só cresce até o tamanho natural*/
+}
+ul{
+    list-style: none;
+}
+body{
+    background-color: var(--background-color);
+    color: var(--color);
+    font-family: var(--font);
+    display: grid; /*repare que o display grid foi adicionado no body e .e ativado no .menu*/
+    grid-template-columns: 1fr 120px minmax(300px, 800px) 1fr;
+}
+[data-cor]{
+    background-color: rgba(0, 0, 255, 0.591);
+}
+.menu{
+    grid-column: 3/5;
+    margin-top: 2rem; /* 2*16px (rem = unidade relativa do site como se fosse um vw/vh)-A rem ("root em") é o tamanho de fonte do elemento-raiz do documento. OBS: 'EM' usa o tamanho da fonte do elemento pai e 'REM' usa o tamanho da fonte do <html>*/
+    margin-bottom: 2rem;
+    background-color: var(--yellow);
+}
+.menu ul{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.menu li a{
+    display: block;
+    padding: 10px;
+    margin-right: 10px;
+    color: var(--color);
+    text-decoration: none;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    letter-spacing: .1em; /*espaçamento entre letras*/
+}
+
+.grid-section{
+    grid-column: 2/4;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 100px 300px 1fr;
+    grid-gap: 20px;
+    margin-bottom: 4rem;
+}
+.titulo{
+    font-family: var(--font2), georgia;
+    font-size: 6rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    grid-column: 1/4;
+}
+.animais-descricao h2{
+    font-family: monospace;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    margin-bottom: 1rem;
+    color: var(--orange);
+}
+.animais-descricao h2::before{
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 10px;
+    margin-right: 10px;
+    background-color: var(--yellow);
+}
+.animais-descricao p{
+    font-family: Helvetica, Arial, sans-serif;
+    margin-bottom: 1rem;
+}
+.animais-lista{
+    height: 360px;
+    overflow-y: scroll; /*define o que o que passar no eixo y será visivel com scroll */
+    grid-column: 2;
+    cursor: pointer;
+}
+.animais-lista::-webkit-scrollbar{
+    width: 18px;
+}
+.animais-lista::-webkit-scrollbar-thumb{ /*distancia da imagem e disfarçando o scroll - (thumb é a parte de rola a pag)*/
+    background-color: var(--yellow);
+    border-left:4px solid var(--background-color); 
+    border-right: 4px solid var(--background-color);
+}
+.animais-lista::-webkit-scrollbar-track{/*track = background do scroll*/
+    background-color: var(--background-color);
+}
+.animais-descricao{
+    grid-column: 3;
+    margin-bottom: 3rem;
+}
+.faq-lista{
+    grid-column: 2/4;
+}
+.faq-lista dt{
+    font-family: monospace;
+    font-weight: bold;
+    margin-top: 2rem;
+    margin-bottom: .5rem;
+    color: var(--orange);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.faq-lista dt::before{
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 10px;
+    margin-right: 10px;
+    background-color: var(--yellow);
+}
+.faq-lista dd{
+    font-family: Helvetica, Arial, sans-serif;
+    margin-bottom: .5rem;
+    margin-left: 30px;
+}
+.mapa{
+    grid-column: 2;
+}
+.dados{
+    grid-column: 3;
+}
+.dados li{
+    margin-bottom: 1rem;
+    font-family:Helvetica,  Arial, sans-serif;
+}
+.dados li::before{
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 10px;
+    margin-right: 10px;
+    background-color: var(--yellow);
+}
+.copy{
+    grid-column: 3/5;
+    margin-bottom: 2rem;
+    background-color: var(--yellow);
+}
+.copy p{
+    padding: 20px;
+    font-family: monospace;
+    font-weight: bold;
+}
+@media (max-width: 700px) {
+    body {
+      grid-template-columns: 1fr;
+    }
+    .menu, .grid-section, .copy {
+      grid-column: 1;
+    }
+    .grid-section {
+      grid-template-columns: 100px 1fr;
+      grid-gap: 10px;
+    }
+    .animais-lista {
+      grid-column: 1;
+    }
+    .faq-lista, .dados, .mapa {
+      grid-column: 1 / 3;
+    }
+    .grid-section h1 {
+      font-size: 3rem;
+    }
+    .menu {
+      margin-top: 0px;
+    }
+    .copy {
+      margin-bottom: 0px;
+    }
+  }
+  .js .js-tabcontent section{ /* o primeiro .js se refere ao elemtno pai html adicionado no script acima */
+    display: none;
+  }
+  .js-tabcontent section.ativo{
+    display: block;
+    animation: show .5s forwards;/* show = nome da animação; 5s = tempo de duração; forwards = manter no seu ultimo estado */
+  }
+  @keyframes show {
+    from{ /* from = saindo de  */
+        opacity: 0;
+        transform: translate3d(-30px,0,0);/* translate3d = eixos x,y,z ou seja, -30 vai pudar para esquerda no eixo x*/
+    }
+    to{/* to = para */
+        opacity: 1;
+        transform: translate3d(0,0,0);
+    }
+  }
+  .js .js-accordion dd{ /*lembrando que o .js na frente é do html para mostrar conteudo caso o js esteja desabilitado*/
+    display: none;
+  }
+  .js-accordion dd.ativo{
+    display: block;
+    animation: faqslide .5s forwards;
+}
+.js-accordion dt::after{
+    content: '◦';
+    margin-left: 5px;  
+}
+.js-accordion dt.ativo::after{
+    content: '•';
+}
+@keyframes faqslide {
+    from{
+        opacity: 0;
+        transform: translate3d(0,-20px,0);
+    }
+    to{
+        opacity: 1;
+        transform: translate3d(0,0,0);
+    }
+}
+.js .js-scroll{ 
+    /* não usou display:none pq se não o elemento seria adicinado na tela e ela daria um pulo, já com o trnasform o elemento já está na tela e por isso não pula, porque ele não é adicionado com o block*/
+    opacity: 0;
+    transform: translate3d(-30px,0,0);
+    transition: .3s;
+}
+.js .js-scroll.ativo{
+    opacity: 1; /* opacidade faz o elemento sumir e aparecer */
+    transform: translate3d(0,0,0); 
+}
+
+
+    </style>
+</head>
+<body>
+    <div data-cor="azul" data-width="500">Uma Div</div>
+    <div data-anima-scroll-up-teste="left">Div 1</div>
+    <nav class="menu azul js-menu">
+        <ul>
+            <li><a href="#animais">Animais</a></li> <!--#animais encaminha para o id animais-->
+            <li><a href="#faq">Faq</a></li>
+            <li><a href="#contato">Contato</a></li>
+            <li><a href="https://www.origamid.com" target="_blank">Dev></a></li>
+        </ul>
+    </nav>
+    <section class="grid-section animais js-scroll" id="animais">
+        <h1 class="titulo">Animais Fantasticos</h1>
+        <ul class="animais-lista js-tabmenu"> <!-- add class com js antes para mostrar que essa class é manipulada lá para separar caso seja alterada para o css o algo do tipo -->
+            <li>
+                <img src="ex011-imgs/imagem1.jpg" alt="">
+            </li>
+            <li>
+                <img src="ex011-imgs/imagem2.jpg" alt="esquilo">
+            </li>
+            <li>
+                <img src="ex011-imgs/imagem3.jpg" alt="">
+            </li>
+            <li>
+                <img src="ex011-imgs/imagem4.jpg" alt="">
+            </li>
+            <li>
+                <img src="ex011-imgs/imagem5.jpg" alt="">
+            </li>
+            <li>
+                <img src="ex011-imgs/imagem6.jpg" alt="">
+            </li>
+        </ul>
+        <div class="animais-descricao js-tabcontent">
+            <section>
+                <h2>Raposa</h2>
+                <p>As raposas são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.</p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
+            </section>
+            <section>
+                <h2>Esquilo</h2>
+                <p>Os esquilos são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.</p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
+                <p>De cerca de 40 espécies reconhecidas como raposas, somente 12 pertencem ao gênero Vulpes das "raposas verdadeiras", do qual a raposa vermelha é a mais comum.</p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
+            </section>
+            <section>
+                <h2>Urso</h2>
+                <p>Os esquilos são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.</p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
+                <p>De cerca de 40 espécies reconhecidas como raposas, somente 12 pertencem ao gênero Vulpes das "raposas verdadeiras", do qual a raposa vermelha é a mais comum.</p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
+            </section>
+            <section>
+                <h2>Lobo</h2>
+                <p>Os esquilos são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.
+                </p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.
+                </p>
+                <p>De cerca de 40 espécies reconhecidas como raposas, somente 12 pertencem ao gênero Vulpes das "raposas verdadeiras", do qual a raposa vermelha é a mais comum.
+                </p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.
+                </p>
+            </section>
+            <section>
+                <h2>Macaco</h2>
+                <p>Os esquilos são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.</p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
+                <p>De cerca de 40 espécies reconhecidas como raposas, somente 12 pertencem ao gênero Vulpes das "raposas verdadeiras", do qual a raposa vermelha é a mais comum.</p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
+            </section>
+            <section>
+                <h2>Leão</h2>
+                <p>Os esquilos são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.</p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
+                <p>De cerca de 40 espécies reconhecidas como raposas, somente 12 pertencem ao gênero Vulpes das "raposas verdadeiras", do qual a raposa vermelha é a mais comum.</p>
+                <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
+            </section>
+        </div>
+    </section>
+    <section class="grid-section faq js-scroll" id="faq">
+        <h1 class="titulo">FAQ</h1>
+        <dl class="faq-lista js-accordion"> <!--definition list (lista com definição boa para perguntas e respostas)-->
+            
+            <dt>Qual a idade dos animais?</dt> <!--definition term (pergunta)-->
+            <dd>As raposas são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.
+            </dd> <!--definition description (resposta)-->
+            
+            <dt>Eles são fantásticos?</dt>
+            <dd>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.
+            </dd>
+
+            <dt>Qual a diferença?</dt>
+            <dd>As raposas são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.
+            </dd>
+
+            <dt>Como proteger?</dt>
+            <dd>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.
+            </dd>
+
+        </dl>
+    </section>
+    <section class="grid-section contato js-scroll" id="contato">
+        <h1 class="titulo">Contato</h1>
+        <div class="mapa">
+            <img src="ex011-imgs/mapa.png" alt="">
+        </div>
+        <ul class="dados">
+            <li>contato@exemplo.com</li>
+            <li>+99 (99) 9999-9999 </li>
+            <li>Rua do conde nª21</li>
+            <li>São Paulo - SP</li>
+        </ul>
+    </section>
+    <footer class="copy">
+        <p>Todos os direitos reservados.</p>
+    </footer>
+    <script>
+//animação ao scroll (ao scrolar  a pg, os elementos fazem animação para o lodo)
+        function initAnimacaoScroll() {
+            const sections = document.querySelectorAll('.js-scroll')
+            const metadeTela = window.innerHeight * 0.75 //tamanho da tela (eixo y) * 60%
+    
+            if (sections.length) { //comprova se tem esse elemento porque caso não tenha não faz sentido executar tudo isso
+                window.addEventListener('scroll', animaScroll)
+    
+                function animaScroll() {
+                    sections.forEach((params) => {
+                        const sectionTop = params.getBoundingClientRect().top-metadeTela //- 600/60% //metodo getBounding retorna um objeto que tem as propriedades com as distancias e portanto usa-se o top
+                        //console.log(sectionTop) quando o elemento passa da propriedade top ela fica negativa (-3), portanto se ela for menor que 0 é porque passou, usar o console.log comentado para ver. Porém dessa forma, se cria um espaço em branco entre uma section e outra pq tem que escrolar até ficar negativo o top da próx para ela aparecer e para corrigir isso, se subtrai alguns pixels da const nesse caso, 600. Porém 600 é um valor fixo e se a tela do client for mto grande esse valor não vai servir pq não vai carregar e se for pequena dmais vai carregar antes da hora e por isso deve se usar 60%(mais ou menos metade, 50/60%) do valor da tela (isso é feito pela const metadetela).
+                        if (sectionTop < 0) {
+                            // console.log('animar')
+                            params.classList.add('ativo')
+                        }
+                    })
+                }
+                animaScroll() //a f aqui serve para animar o site já quando entrar nele, para que quando o cliente entre não tenha uma tela branca
+            }
+        }
+        initAnimacaoScroll()
+//-----------------------------------------------------------------------------------------------------
+
+
+                                        //Efeitos no Dom
+
+                                        //Dataset
+        
+        // HTMLElement
+            //Todo elemento HTML do DOM herda propriedades e métodos do construtor HTMLElement.
+
+            const h1 = document.querySelector('h1')
+            
+            console.log(Object.prototype.toString.call(h1)) //[object HTMLHeadingElement]
+
+            // HTMLHeadingElement > HTMLElement > Element > Node > EventTarget > Object
+
+            //o H1 herda todas as propriedades e métodos dos protótipos acima e uma bastante utilizada é o dataset.
+//-----------------------------------------------------------------------------------------------------
+
+        // Dataset
+            //dataset é uma propriedade de HTMLElement, essa propriedade é um objeto do tipo DOMStringMap. Dentro desse objeto existe uma coleção de chave / valor, com todos os atributos do elemento html que começarem com data-.
+
+            //<div data-cor="azul" data-width="500">Uma Div</div> - teste 
+
+            const div = document.querySelector('div')
+            console.log(div.dataset) //repare que os atributos de tem data antes entram como chave e valor e o data é cortado na hora de ver a chave
+            console.log(div.dataset.cor) //é uma forma de facilitar a comunicação entre o dom e o js
+
+            //da pra selecionar a div pelo atributo diretamente:
+
+            const divCor = document.querySelector('[data-cor]') //[] é usado como seletor de css
+
+            divCor.dataset.height = 1000 //adiciona atributo
+
+            delete divCor.dataset.width //deleta atributo
+
+            console.log(divCor) //<div data-cor="azul" data-height="1000">Uma Div</div>
+//-----------------------------------------------------------------------------------------------------
+
+        //Data Atributes
+            //Os atributos e valores que começarem com data- poderão ser utilizados como forma de configuração de plugins e interações DOM / JS.
+
+            // <div data-anima="left" data-tempo="1000">Div 1</div>
+            // <div data-anima="right" data-tempo="2000">Div 2</div>
+
+            const divs = document.querySelectorAll('[data-anima]');
+            divs.forEach((div) => {
+            div.classList.add(div.dataset.anima);
+            });
+
+            // adiciona em cada div uma classe com o mesmo nome que o valor de data
+//-----------------------------------------------------------------------------------------------------
+
+        //Data vs Class
+            //A vantagem de se utilizar data atributes é que torna mais fácil evitarmos conflitos com estilos do CSS. Além de deixar a estrutura da tag mais organizada. E além disso, pode selecionar com chave do objeto e se fosse classe teria que separar a palavra do item por exemplo: para selecionar 1000 teria que que isolar ele e só aí é uma função a mais que seria desnecessária. (basicamente para selecionar os 1000 em classe, teria que selecionar a classe e depois ccriar uma função para limpar o 'tempo-' e assim ter o 1000 isolado. No data já tem um valor então é mais facil porque acessa como se fosse um objeto)
+
+            // <div data-anima="left" data-tempo="1000">Div 1</div>
+            // <div class="anima-left tempo-1000">Div 2</div>
+//-----------------------------------------------------------------------------------------------------
+        
+        //Nomenclatura
+            //Por padrão o JavaScript não aceita - (traço) como caracter válido para nomear propriedades. Então qualquer traço será removido e a letra seguinte transformada em maiúscula.
+
+
+            //exemplo: <div data-anima-scroll="left">Div 1</div>
+            const div1 = document.querySelector('[data-anima-scroll-up-teste]')
+            console.log(div1.dataset) //DOMStringMap {animaScroll: 'left'}
+            
+            //dois casos:
+
+            // 1 - adiciona data direto no atributo:
+
+            //<div data-anima-scroll-up-teste="left">Div 1</div>
+            //retorna assim a chave do objeto: animaScrollUpTeste: "left"
+            //tira os -(traços) e coloca a primeira letra em uppercase
+
+            // 2 - adicionar data no atributo via js:
+
+            div1.dataset.totalHeight = 2000
+            //<div data-anima-scroll-up-teste="left" data-total-height="2000">Div 1</div>
+            //na chave fica com a primeira letra em uppercase e no atributo ele add o -(traço)
+
+            //resumindo:
+            //pra acessar na chave no objeto dataset usa como uma chave normal (tudo junto e letra maiuscula na primeira letra) e se for pra mexer com atributo é com traço e tudo minúsculo. lembrando que se o JS já faz isso automático só tem que lembrar que ele faz isso pra poder acessar corretamente porque se copiar como ta escrito no atributo e tentar acessar a chave do objeto não vai dar.
+//-----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
