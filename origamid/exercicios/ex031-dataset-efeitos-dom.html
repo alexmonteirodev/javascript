@@ -205,16 +205,16 @@ body{
       margin-bottom: 0px;
     }
   }
-  .js .js-tabcontent section{ /* o primeiro .js se refere ao elemtno pai html adicionado no script acima */
+  .js [data-tab="content"] section{ /* o primeiro .js se refere ao elemtno pai html adicionado no script acima */
     display: none;
   }
-  .js-tabcontent section.ativo{
+  [data-tab="content"] section.ativo{
     display: block;
   }
-  .js-tabcontent section.ativo.show-right{
+  [data-tab="content"] section.ativo.show-right{
     animation: show-right .5s forwards;/* show = nome da animação; 5s = tempo de duração; forwards = manter no seu ultimo estado */
   }
-  .js-tabcontent section.ativo.show-down{
+  [data-tab="content"] section.ativo.show-down{
     animation: show-down .5s forwards;/* show = nome da animação; 5s = tempo de duração; forwards = manter no seu ultimo estado */
   }
   @keyframes show-right {
@@ -237,18 +237,18 @@ body{
         transform: translate3d(0,0,0);
     }
   }
-  .js .js-accordion dd{ /*lembrando que o .js na frente é do html para mostrar conteudo caso o js esteja desabilitado*/
-    display: none;
-  }
-  .js-accordion dd.ativo{
-    display: block;
-    animation: faqslide .5s forwards;
+.js [data-anime="accordion"] dd{ /*lembrando que o .js na frente é do html para mostrar conteudo caso o js esteja desabilitado*/
+display: none;
 }
-.js-accordion dt::after{
+[data-anime="accordion"] dd.ativo{
+display: block;
+animation: faqslide .5s forwards;
+}
+[data-anime="accordion"] dt::after{
     content: '◦';
     margin-left: 5px;  
 }
-.js-accordion dt.ativo::after{
+[data-anime="accordion"] dt.ativo::after{
     content: '•';
 }
 @keyframes faqslide {
@@ -261,24 +261,22 @@ body{
         transform: translate3d(0,0,0);
     }
 }
-.js .js-scroll{ 
+.js [data-anime="scroll"]{ 
     /* não usou display:none pq se não o elemento seria adicinado na tela e ela daria um pulo, já com o trnasform o elemento já está na tela e por isso não pula, porque ele não é adicionado com o block*/
     opacity: 0;
     transform: translate3d(-30px,0,0);
     transition: .3s;
 }
-.js .js-scroll.ativo{
+.js [data-anime="scroll"].ativo{
     opacity: 1; /* opacidade faz o elemento sumir e aparecer */
     transform: translate3d(0,0,0); 
 }
-
-
     </style>
 </head>
 <body>
     <!-- <div data-cor="azul" data-width="500">Uma Div</div>
     <div data-anima-scroll-up-teste="left">Div 1</div> -->
-    <nav class="menu azul js-menu">
+    <nav class="menu" data-menu="suave">
         <ul>
             <li><a href="#animais">Animais</a></li> <!--#animais encaminha para o id animais-->
             <li><a href="#faq">Faq</a></li>
@@ -286,9 +284,9 @@ body{
             <li><a href="https://www.origamid.com" target="_blank">Dev></a></li>
         </ul>
     </nav>
-    <section class="grid-section animais js-scroll" id="animais">
+    <section class="grid-section animais" data-anime="scroll" id="animais">
         <h1 class="titulo">Animais Fantasticos</h1>
-        <ul class="animais-lista js-tabmenu"> <!-- add class com js antes para mostrar que essa class é manipulada lá para separar caso seja alterada para o css o algo do tipo -->
+        <ul class="animais-lista" data-tab="menu"> <!-- add class com js antes para mostrar que essa class é manipulada lá para separar caso seja alterada para o css o algo do tipo -->
             <li>
                 <img src="ex011-imgs/imagem1.jpg" alt="">
             </li>
@@ -308,20 +306,20 @@ body{
                 <img src="ex011-imgs/imagem6.jpg" alt="">
             </li>
         </ul>
-        <div class="animais-descricao js-tabcontent">
+        <div class="animais-descricao" data-tab="content">
             <section data-anime="show-right">
                 <h2>Raposa</h2>
                 <p>As raposas são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.</p>
                 <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
             </section>
-            <section data-anime="show-right">
+            <section data-anime="show-down">
                 <h2>Esquilo</h2>
                 <p>Os esquilos são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.</p>
                 <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
                 <p>De cerca de 40 espécies reconhecidas como raposas, somente 12 pertencem ao gênero Vulpes das "raposas verdadeiras", do qual a raposa vermelha é a mais comum.</p>
                 <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
             </section>
-            <section data-anime="show-down">
+            <section data-anime="show-right">
                 <h2>Urso</h2>
                 <p>Os esquilos são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.</p>
                 <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
@@ -346,7 +344,7 @@ body{
                 <p>De cerca de 40 espécies reconhecidas como raposas, somente 12 pertencem ao gênero Vulpes das "raposas verdadeiras", do qual a raposa vermelha é a mais comum.</p>
                 <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
             </section>
-            <section data-anime="show-right">
+            <section data-anime="show-down">
                 <h2>Leão</h2>
                 <p>Os esquilos são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.</p>
                 <p>Também apresentam como particularidade suas pupilas ovais, semelhantes às pupilas verticais dos felídeos.</p>
@@ -355,9 +353,9 @@ body{
             </section>
         </div>
     </section>
-    <section class="grid-section faq js-scroll" id="faq">
+    <section class="grid-section faq" data-anime="scroll" id="faq">
         <h1 class="titulo">FAQ</h1>
-        <dl class="faq-lista js-accordion"> <!--definition list (lista com definição boa para perguntas e respostas)-->
+        <dl class="faq-lista" data-anime="accordion"> <!--definition list (lista com definição boa para perguntas e respostas)-->
             
             <dt>Qual a idade dos animais?</dt> <!--definition term (pergunta)-->
             <dd>As raposas são animais mamíferos e onívoros pertencentes à família Canidae. São vulpídeos de porte médio, caracterizados por um focinho comprido e uma cauda longa e peluda.
@@ -377,7 +375,7 @@ body{
 
         </dl>
     </section>
-    <section class="grid-section contato js-scroll" id="contato">
+    <section class="grid-section contato" data-anime="scroll" id="contato">
         <h1 class="titulo">Contato</h1>
         <div class="mapa">
             <img src="ex011-imgs/mapa.png" alt="">
@@ -395,8 +393,8 @@ body{
     <script>
 //navegação por tabs: (interação entre fotos e conteúdo)
 function initTabNav() { //essa função serve para isolar o escopo 
-    const tabMenu = document.querySelectorAll('.js-tabmenu li')
-    const tabContent = document.querySelectorAll('.js-tabcontent section')
+    const tabMenu = document.querySelectorAll('[data-tab="menu"] li')
+    const tabContent = document.querySelectorAll('[data-tab="content"] section')
 
 
     if (tabMenu.length && tabContent.length) { //if para confirmar se o item selecionado (.js-tabcontent section) existe = !!tabMenu.length = true && !!tabContent.length = true porque sao numeros maiores que 0 (0 = false)
@@ -424,8 +422,8 @@ function initTabNav() { //essa função serve para isolar o escopo
 
 //accordion list(faq, interação entre pergunta e resposta):
     function accordionList() {
-        const faqQuestion = document.querySelectorAll('.js-accordion dt')
-        const faqAnswer = document.querySelectorAll('.js-accordion dd')
+        const faqQuestion = document.querySelectorAll('[data-anime="accordion"] dt')
+        const faqAnswer = document.querySelectorAll('[data-anime="accordion"] dd')
         const activeClass = 'ativo' //como se fosse um root para mudar no futuro caso seja necessario
 
         if (faqQuestion.length) { //só se existir item de lista que vai ativar tudo ou seja, se faqQuestion.length > 0 (0 é false). Verificar se isso existe porque caso não exista, vai dar erro dpois por conta das functions.
@@ -447,7 +445,7 @@ function initTabNav() { //essa função serve para isolar o escopo
     accordionList()
 //scroll suave link interno (ao clicar no link interno da pagina (exemplo: a href="#contato"), o scroll desce suavemente até o ponto desejado):
     function scrollSuave() {
-        const linksInternos = document.querySelectorAll('.js-menu a[href^="#"]')
+        const linksInternos = document.querySelectorAll('[data-menu="suave"] a[href^="#"]')
         
         linksInternos.forEach((params) => {
             params.addEventListener('click', scrollToSection)
@@ -478,7 +476,7 @@ function initTabNav() { //essa função serve para isolar o escopo
     */
 //animação ao scroll (ao scrolar  a pg, os elementos fazem animação para o lodo)
     function initAnimacaoScroll() {
-        const sections = document.querySelectorAll('.js-scroll')
+        const sections = document.querySelectorAll('[data-anime="scroll"]')
         const metadeTela = window.innerHeight * 0.75 //tamanho da tela (eixo y) * 60%
 
         if (sections.length) { //comprova se tem esse elemento porque caso não tenha não faz sentido executar tudo isso
@@ -606,16 +604,18 @@ function initTabNav() { //essa função serve para isolar o escopo
 // No CSS faça com que show-down anime de cima para baixo e show-right continue com a mesma animação da esquerda para a direita
 //-----------------------------------------------------------------------------------------------------
 
-// Substitua todas as classes js- por data atributes.
+// Substitua todas as classes js- por data atributes. (são 3- tabcontent;tabmenu;scroll)
+            //obs: mudar em todas as pgs para continuar tudo funcionando como antes(ou seja, no html (onde está o atributo), no js (onde ocorre a lógica da interação do atributo) e no css(onde ocorre a estilização do elemento))
+            //ex:
+            // <div class="animais-descricao js-tabcontent" data-tab="content"> - linha 311
+            //substituições:
 
+            //js-tabcontent por data-tab="content"
+            //js-tabmenu por data-tab="menu" (esse não tem no css porque a interação é só por eventlistner)
+            //js-menu por data-menu="suave"
+            //js-accordion por data-anime="accordion"
 
-
-
-
-
-
-
-
+            //obs: o [] serve como seletor, somente
     </script>
 </body>
 </html>
