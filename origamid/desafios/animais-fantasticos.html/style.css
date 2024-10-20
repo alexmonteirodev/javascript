@@ -28,6 +28,9 @@ body{
     display: grid; /*repare que o display grid foi adicionado no body e .e ativado no .menu*/
     grid-template-columns: 1fr 120px minmax(300px, 800px) 1fr;
 }
+[data-cor]{
+    background-color: rgba(0, 0, 255, 0.591);
+}
 .menu{
     grid-column: 3/5;
     margin-top: 2rem; /* 2*16px (rem = unidade relativa do site como se fosse um vw/vh)-A rem ("root em") é o tamanho de fonte do elemento-raiz do documento. OBS: 'EM' usa o tamanho da fonte do elemento pai e 'REM' usa o tamanho da fonte do <html>*/
@@ -191,14 +194,19 @@ body{
       margin-bottom: 0px;
     }
   }
-  .js .js-tabcontent section{ /* o primeiro .js se refere ao elemtno pai html adicionado no script acima */
+  .js [data-tab="content"] section{ /* o primeiro .js se refere ao elemtno pai html adicionado no script acima */
     display: none;
   }
-  .js-tabcontent section.ativo{
+  [data-tab="content"] section.ativo{
     display: block;
-    animation: show .5s forwards;/* show = nome da animação; 5s = tempo de duração; forwards = manter no seu ultimo estado */
   }
-  @keyframes show {
+  [data-tab="content"] section.ativo.show-right{
+    animation: show-right .5s forwards;/* show = nome da animação; 5s = tempo de duração; forwards = manter no seu ultimo estado */
+  }
+  [data-tab="content"] section.ativo.show-down{
+    animation: show-down .5s forwards;/* show = nome da animação; 5s = tempo de duração; forwards = manter no seu ultimo estado */
+  }
+  @keyframes show-right {
     from{ /* from = saindo de  */
         opacity: 0;
         transform: translate3d(-30px,0,0);/* translate3d = eixos x,y,z ou seja, -30 vai pudar para esquerda no eixo x*/
@@ -208,18 +216,28 @@ body{
         transform: translate3d(0,0,0);
     }
   }
-  .js .js-accordion dd{ /*lembrando que o .js na frente é do html para mostrar conteudo caso o js esteja desabilitado*/
-    display: none;
+  @keyframes show-down {
+    from{ /* from = saindo de  */
+        opacity: 0;
+        transform: translate3d(0,-30px,0);/* translate3d = eixos x,y,z ou seja, -30 vai pudar para esquerda no eixo x*/
+    }
+    to{/* to = para */
+        opacity: 1;
+        transform: translate3d(0,0,0);
+    }
   }
-  .js-accordion dd.ativo{
-    display: block;
-    animation: faqslide .5s forwards;
+.js [data-anime="accordion"] dd{ /*lembrando que o .js na frente é do html para mostrar conteudo caso o js esteja desabilitado*/
+display: none;
 }
-.js-accordion dt::after{
+[data-anime="accordion"] dd.ativo{
+display: block;
+animation: faqslide .5s forwards;
+}
+[data-anime="accordion"] dt::after{
     content: '◦';
     margin-left: 5px;  
 }
-.js-accordion dt.ativo::after{
+[data-anime="accordion"] dt.ativo::after{
     content: '•';
 }
 @keyframes faqslide {
@@ -232,13 +250,13 @@ body{
         transform: translate3d(0,0,0);
     }
 }
-.js .js-scroll{ 
+.js [data-anime="scroll"]{ 
     /* não usou display:none pq se não o elemento seria adicinado na tela e ela daria um pulo, já com o trnasform o elemento já está na tela e por isso não pula, porque ele não é adicionado com o block*/
     opacity: 0;
     transform: translate3d(-30px,0,0);
     transition: .3s;
 }
-.js .js-scroll.ativo{
+.js [data-anime="scroll"].ativo{
     opacity: 1; /* opacidade faz o elemento sumir e aparecer */
-    transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0); 
 }

@@ -1,17 +1,18 @@
 //navegação por tabs: (interação entre fotos e conteúdo)
 function initTabNav() { //essa função serve para isolar o escopo 
-    const tabMenu = document.querySelectorAll('.js-tabmenu li')
-    const tabContent = document.querySelectorAll('.js-tabcontent section')
+    const tabMenu = document.querySelectorAll('[data-tab="menu"] li')
+    const tabContent = document.querySelectorAll('[data-tab="content"] section')
 
 
     if (tabMenu.length && tabContent.length) { //if para confirmar se o item selecionado (.js-tabcontent section) existe = !!tabMenu.length = true && !!tabContent.length = true porque sao numeros maiores que 0 (0 = false)
 
 
-        function activeTab(params) {
+        function activeTab(index) {
             tabContent.forEach((params) => {
                 params.classList.remove('ativo')
             })
-            tabContent[params].classList.add('ativo')
+            const direcao = tabContent[index].dataset.anime
+            tabContent[index].classList.add('ativo', direcao)
             }
 
         tabMenu.forEach((img, index) => {
@@ -28,8 +29,8 @@ function initTabNav() { //essa função serve para isolar o escopo
 
 //accordion list(faq, interação entre pergunta e resposta):
     function accordionList() {
-        const faqQuestion = document.querySelectorAll('.js-accordion dt')
-        const faqAnswer = document.querySelectorAll('.js-accordion dd')
+        const faqQuestion = document.querySelectorAll('[data-anime="accordion"] dt')
+        const faqAnswer = document.querySelectorAll('[data-anime="accordion"] dd')
         const activeClass = 'ativo' //como se fosse um root para mudar no futuro caso seja necessario
 
         if (faqQuestion.length) { //só se existir item de lista que vai ativar tudo ou seja, se faqQuestion.length > 0 (0 é false). Verificar se isso existe porque caso não exista, vai dar erro dpois por conta das functions.
@@ -51,7 +52,7 @@ function initTabNav() { //essa função serve para isolar o escopo
     accordionList()
 //scroll suave link interno (ao clicar no link interno da pagina (exemplo: a href="#contato"), o scroll desce suavemente até o ponto desejado):
     function scrollSuave() {
-        const linksInternos = document.querySelectorAll('.js-menu a[href^="#"]')
+        const linksInternos = document.querySelectorAll('[data-menu="suave"] a[href^="#"]')
         
         linksInternos.forEach((params) => {
             params.addEventListener('click', scrollToSection)
@@ -82,7 +83,7 @@ function initTabNav() { //essa função serve para isolar o escopo
     */
 //animação ao scroll (ao scrolar  a pg, os elementos fazem animação para o lodo)
     function initAnimacaoScroll() {
-        const sections = document.querySelectorAll('.js-scroll')
+        const sections = document.querySelectorAll('[data-anime="scroll"]')
         const metadeTela = window.innerHeight * 0.75 //tamanho da tela (eixo y) * 60%
 
         if (sections.length) { //comprova se tem esse elemento porque caso não tenha não faz sentido executar tudo isso
