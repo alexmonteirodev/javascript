@@ -34,3 +34,27 @@
 */
 //-------------------------------------------------------------------------------------------------------
     //nessa aula eu add a pasta animações dentro da pasta modules e nessa pasta tinham todas as animações de js, então fui copiando e colando em pastas separadas, add o export default em cada uma, linkei todas as pastas no script (pasta js principal) e no doc html linkei com a pasta script dentro de modules e add type modules (pra funcionar de forma nativa) e ao fim de tudo exclui a pasta animações (não precisa mais dela porque agora estão todas as animações em js divididas em pastas)
+//-------------------------------------------------------------------------------------------------------
+
+    //Named Exports
+        //Você pode exportar mais de um valor. Quando for importar utilize as chaves para especificar cada valor. O nome importado deve ser igual ao exportado.
+
+/*
+        // arquivo scroll.js
+        export function scrollSuave() {
+        ...
+        };
+        export function scrollAnimacao() {
+        ...
+        };
+
+        // arquivo script.js
+        import { scrollSuave, scrollAnimacao } from './scroll.js';
+        scrollSuave();
+        scrollAnimacao();
+
+        // Importe todos os valores em um objeto
+        import * as scroll from './scroll.js';
+        scroll.scrollSuave();
+        scroll.scrollAnimacao();
+*/
