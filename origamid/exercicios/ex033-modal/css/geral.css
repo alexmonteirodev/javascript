@@ -25,7 +25,9 @@ body{
     background-color: var(--background-color);
     color: var(--color);
     font-family: var(--font);
-    display: grid; /*repare que o display grid foi adicionado no body e .e ativado no .menu*/
+}
+.grid-container{
+    display: grid;
     grid-template-columns: 1fr 120px minmax(300px, 800px) 1fr;
 }
 [data-cor]{
@@ -168,7 +170,7 @@ body{
     font-weight: bold;
 }
 @media (max-width: 700px) {
-    body {
+    .grid-container {
       grid-template-columns: 1fr;
     }
     .menu, .grid-section, .copy {
@@ -240,6 +242,7 @@ animation: faqslide .5s forwards;
 [data-anime="accordion"] dt.ativo::after{
     content: '•';
 }
+
 @keyframes faqslide {
     from{
         opacity: 0;
