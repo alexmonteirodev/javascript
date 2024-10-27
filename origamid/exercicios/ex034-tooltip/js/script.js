@@ -14,3 +14,6 @@ initTabNav()
 
 import initModal from './modules/modal.js'
 initModal()
+
+import tooltip from './modules/tooltip.js'
+tooltip()

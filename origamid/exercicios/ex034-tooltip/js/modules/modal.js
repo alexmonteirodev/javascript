@@ -5,7 +5,8 @@ const botaoFechar = document.querySelector('[data-modal="fechar"]')
 const containerModal = document.querySelector('[data-modal="container"]')
 
 //no console se digitar direto ele não aparece porque só ta exportando a function mas se por no console.log aparece: (caso isso esteja fora da função initModal que é a que está sendo exportada)
-console.log(botaoAbrir,botaoFechar,containerModal)
+
+//console.log(botaoAbrir,botaoFechar,containerModal)
 //-------------------------------------------------------------------------------------------------------
 
 

@@ -1,11 +1,11 @@
 
-                                        // Modal
+                                        // Tooltip
 
-    // Modal é uma janela interativa. É aquela janela que abre no meio da tela quando vai fazer um login ou para se cadastrar em algo, anúncios e por aí vai.
+    // Tooltip é aquilo que quando você passa o mouse por cima ele abre uma caixinha com mais informações como por exemplo explicar o que vai acontecer se clicar.
+    
+    //no caso vamos criar uma tooltip na img do mapa para que quando passe o mouse por cima apareça uma informação sobre o endereço
 
-    //Geralmente o modal é criado no final do html.
-
-    //o modal tem que ser fora do grid, então englobei tudo em uma div (pq o estilo do grid estava direto no body) e passei a estilização do grid do css do body para a class grid-container
+    //é como se adicionasse um title como atributo da div de img, aparece igual só que vamos fazer usando o tooltip pra aprender e pra poder estilizar com css
 //-------------------------------------------------------------------------------------------------------
 
     
