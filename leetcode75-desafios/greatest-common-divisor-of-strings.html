@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>greatest-common-divisor-of-strings</title>
+</head>
+<body>
+    <h1>Máximo divisor comum de strings</h1>
+    <p>
+        Dado duas strings  str1  e  str2 , o problema nos pede para encontrar a maior string que pode ser repetida para compor ambas as strings originais. Ou seja, queremos encontrar uma string  x  tal que:
+    </p>
+
+    <p>1.	x seja uma “divisora” de str1 e str2.</p>
+    <p>2.	A string  x  pode ser repetida múltiplas vezes para formar tanto  str1  quanto  str2.</p>
+
+    <p>Exemplo 1:</p>
+
+    <p>Entrada: str1 = "ABCABC", str2 = "ABC"</p>
+    <p>Saída: "ABC"</p>
+
+
+    <script>
+
+
+
+/*
+function gcdOfStrings(str1, str2) {
+    // Função auxiliar para calcular o MDC de dois números
+    function gcd(a, b) {
+        return b === 0 ? a : gcd(b, a % b);
+    }
+
+    // Calcula o comprimento da maior substring que pode dividir ambas as strings
+    const lengthGCD = gcd(str1.length, str2.length);
+
+    // Extrai a substring potencial do tamanho do MDC
+    const candidate = str1.slice(0, lengthGCD);
+
+    // Verifica se essa substring, repetida, pode formar ambas as strings originais
+    if (str1 === candidate.repeat(str1.length / lengthGCD) &&
+        str2 === candidate.repeat(str2.length / lengthGCD)) {
+        return candidate;
+    }
+
+    // Se não houver uma substring divisora, retorna uma string vazia
+    return "";
+}
+*/
+
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+</html>
