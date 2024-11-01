@@ -19,5 +19,14 @@ dropdownMenus.forEach((menu) => {
 function handleClick(event) {
     event.preventDefault()
     // console.log(event)
-    this.classList.toggle('active') //this = menu (dica, para saber o que é o this, segue ele => this>event>HandleClick>menu). toggle é a mesma coisa que add mas se clicar dnv ele remove
+    this.classList.add('active') //this = menu (dica, para saber o que é o this, segue ele => this>event>HandleClick>menu). toggle é a mesma coisa que add mas se clicar dnv ele remove, porém como depois tem que remover quando for add o 'eachEvent', é melhor deixar o add.
+}
+
+function outsideClick(params) {
+    const html = document.documentElement
+    html.addEventListener('click', handleOutsideClick)
+
+    function handleOutsideClick(event) { //f está dentro de 'outsideClick' pq só é pra funcionar quando o outsideClick for iniciado
+        console.log(event)
+    }
 }
