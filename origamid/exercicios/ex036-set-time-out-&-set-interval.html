@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setTimeout e setInterval</title>
+</head>
+<body>
+    <button>Clique</button>
+
+    <script>
+
+                                    // setTimeout e setInterval
+        
+    // setTimeout() (após um tempo x, o callback será acionado)
+        //setTimeout(callback, tempo, arg1, arg2, ...) método assíncrono que ativa o callback após tempo. Não existe garantia de que o código será executado exatamente após o tempo, pois o callback entra na fila e espera pela Call Stack estar vazia.
+
+        function espera(texto) {
+            console.log(texto)
+        }
+        setTimeout(espera, 1000, 'Passou 1s') //tempo é em milisegundos então 1000 = 1s
+
+        //é muito comum ser usada com função anonima, asssim:
+/*
+        setTimeout( () => {
+            console.log('passaram 3s')
+        },3000)
+*/
+        // Obs: quando não passa nada no tempo, js entende como 0
+//-----------------------------------------------------------------------------------------------------
+
+    // Assíncrona X Síncrona:
+
+        // Síncrona: segue a ordem, 1,2,3,4,5... (a ordem do código, de cima pra baixo).
+
+        // Assíncrona: enquanto a ordem está acontecendo, 1,2,(6),3,4,5... tem mais coisa acontecendo/rodando junto com a ordem.
+
+        //logo, setTimeout é um método assíncrono, ou seja, quando o js esstá lendo o código, e vê o setTimeout, ele manda para a web API e deixa a função no callback Queue (standby) ao inve´s de seguir a ordem e mandar pra a call stack (onde vai executando o código) e só quando acaba de ler o código, o js tira a function do callback Queue e manda para a call stack e então ela é executadda. Em outras palavras, o setTimeout fica de "standby" e é ativado depois que o js lê todo o código e isso, dependendo do tamanho do código pode afetar a função e ela sair atrasada.
+        // https://www.origamid.com/slide/javascript-completo-es6/#/4 
+
+        //exemplo pratico:
+
+        setTimeout(() => {
+            console.log('teste')
+        },0)
+
+        for (let i = 0; i < 5; i++) {
+            console.log(i)    
+        }
+        // note que no console, o 'teste' aparece depois do loop sendo que na ordem do código ele vem antes e isso acontece pq o setTimeout é assíncrono.
+//-----------------------------------------------------------------------------------------------------
+
+    //Loops e setTimeout
+        //Um loop é executado rapidamente, em milissegundos. Se colocarmos um setTimeout dentro do loop, todos eles serão adicionados à Web Api praticamente no mesmo tempo. Um evento de setTimeout não espera o tempo do anterior acabar para iniciar:
+
+        for (let i = 0; i < 5; i++) {
+            setTimeout(() => {
+                console.log(i)
+            },1000)
+        }
+
+    //Corrigindo o Loop
+        //Agora ele está multiplicando o tempo por i. Assim o primeiro aparecerá em 0ms, o segundo em 300ms, o terceiro em 600ms e assim em diante.
+
+        for (let i = 0; i <= 10; i++) {
+           setTimeout((params) => {
+            console.log(i)
+           },1000 * i)
+        }
+//-----------------------------------------------------------------------------------------------------
+    
+    //This e Window
+        //setTimeout é um método do objeto Window. O valor de this dentro do mesmo callback é uma referência ao seu objeto no caso Window.
+
+        //exemplo normal do this:
+/*
+        const btn = document.querySelector('button')
+
+        btn.addEventListener('click',handleClick)
+
+        function handleClick(params) {
+            console.log(this) //this é o botão
+            this.classList.add('ativo')
+        }
+*/
+
+        //exemplo this com referência ao window:
+/*
+        const btn = document.querySelector('button')
+
+        btn.addEventListener('click', handleClick)
+
+        function handleClick(params) {
+            setTimeout(function name(params) { //window.setTimeout
+                console.log(this) //agora this faz referencia ao window, pq é o pai do setTimeout e o this está no escopo do setTimeout
+            })
+        }
+*/
+        //exemplo this com referência ao btn:
+
+        const btn = document.querySelector('button')
+
+        btn.addEventListener('click', handleClick)
+
+        function handleClick(params) {
+            setTimeout(() => {
+                console.log(this) //agora this faz referência ao btn pq a arrowfunction fura o escopo (usa o contexto do this do elemento pai).
+                //(sequencia/ordem dos pais: setTimeout > handleClick > btn)
+            })
+        }
+//-----------------------------------------------------------------------------------------------------
+    
+    //setInterval
+        // 14min
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
