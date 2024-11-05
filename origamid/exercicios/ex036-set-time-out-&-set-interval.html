@@ -4,10 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>setTimeout e setInterval</title>
+    <style>
+        [data-controler]{
+            width: 100px;
+            height: 100px;
+            background-color: rgba(128, 128, 128, 0.51);
+            cursor: pointer;
+            border: 1px solid rgb(0, 186, 186);
+        }
+        [data-controler]:hover{
+            background-color: rgba(128, 128, 128, 0.628);
+
+        }
+        .tempo{
+            display: flex;
+            gap: 10px;
+        }
+    </style>
 </head>
 <body>
     <button>Clique</button>
-
+        <h1>Cronômetro</h1>
+        <div class="tempo">
+            <h2></h2>
+            <h2>0</h2>
+        </div>
+        <button data-controler="play">▶︎</button>
+        <button data-controler="pause">||</button>
     <script>
 
                                     // setTimeout e setInterval
@@ -153,12 +176,48 @@
                                         // Exercícios
                                         console.log('Exercícios')
 
+//-----------------------------------------------------------------------------------------------------
 
     // Mude a cor da tela para azul e depois para vermelho a cada 2s.
 
+    // const body = document.querySelector('body')
+    // body.style.background = 'blue'
+
+    // setInterval((params) => {
+    //     if (params.style.background === 'blue') {
+    //         params.style.background = 'red'
+    //     } else if (params.style.background === 'red') {
+    //         params.style.background = 'blue'
+    //     }
+    // },2000,body)
+//-----------------------------------------------------------------------------------------------------
+
+
     // Crie um cronometro utilizando o setInterval. Deve ser possível iniciar, pausar e resetar (duplo clique no pausar).
 
+        const minutos = document.querySelectorAll('h2')[0]
+        const segundos = document.querySelectorAll('h2')[1]
+        const play = document.querySelector('[data-controler="play"]')
+        const pause = document.querySelector('[data-controler="pause"]')
 
+        play.addEventListener('click',clickPlay)
+        pause.addEventListener('click',clickPause)
+        minutos.innerHTML = m
+        function clickPlay(params) {
+            let s = 0
+            let m = 0
+            const cronometro = setInterval((params) => {
+                segundos.innerText = s++ + 's'
+                if (s>5) {
+                    // clearInterval(cronometro)
+                    segundos.innerText = 0 + 's'
+                    m++
+                    minutos.innerText = m
+                }
+            },1000)
+
+        }
+    // na real que ele não quer a logica de um cronometro, só quer a funcionalidade de:  Deve ser possível iniciar, pausar e resetar
 
 
 
