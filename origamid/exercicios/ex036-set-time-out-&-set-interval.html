@@ -111,16 +111,52 @@
 //-----------------------------------------------------------------------------------------------------
     
     //setInterval
-        // 14min
+        // setInterval(callback, tempo, arg1, arg2, ...), irá ativar o callback toda vez que a quantidade de tempo passar.
+
+        function loop(texto) {
+            console.log(texto)
+        }
+
+        // setInterval(loop,1000,'passou 1s. (teste do setinterval)')
+
+        //loop a cada segundo
+        // let i = 0
+        // setInterval(() => {
+        //     console.log(i++)
+        // },1000)
+
+        //obs: para parar o setInterval se usa o clearinterval
+
+//-----------------------------------------------------------------------------------------------------
+
+    //Diferença entre setTimeout x setInterval:
+
+        //setTimeout: só ativa uma vez (ex: de console log depois de 5 segundos que a pg carregar)
+
+        //setInterval: a cada x tempo ele é ativado. (ex: a cada 10 segundos de console.log('oi'))
+//-----------------------------------------------------------------------------------------------------
+
+    //clearInterval
+        //clearInterval(var), podemos parar um intervalo com o clearInterval. Para isso precisamos atribuir o setInterval a uma variável.
+
+        const contarAte10 = setInterval(callback,1000)
+
+        let i = 0
+        function callback(params) {
+            console.log(i++ + ' clearinterval')
+            if(i>10){
+                clearInterval(contarAte10)
+            }
+        }
+//-----------------------------------------------------------------------------------------------------
+
+                                        // Exercícios
+                                        console.log('Exercícios')
 
 
+    // Mude a cor da tela para azul e depois para vermelho a cada 2s.
 
-
-
-
-
-
-
+    // Crie um cronometro utilizando o setInterval. Deve ser possível iniciar, pausar e resetar (duplo clique no pausar).
 
 
 
