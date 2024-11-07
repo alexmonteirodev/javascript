@@ -20,6 +20,12 @@
             display: flex;
             gap: 10px;
         }
+        body{
+            /* background-color: blue; */
+        }
+        body.active{
+            /* background-color: red; */
+        }
     </style>
 </head>
 <body>
@@ -180,6 +186,8 @@
 
     // Mude a cor da tela para azul e depois para vermelho a cada 2s.
 
+
+//como eu fiz: (funciona)
     // const body = document.querySelector('body')
     // body.style.background = 'blue'
 
@@ -190,6 +198,13 @@
     //         params.style.background = 'blue'
     //     }
     // },2000,body)
+
+//correção: (descomentar cores no style)
+    
+        // function mudarCor(params) {
+        //     document.body.classList.toggle('active')
+        // }
+        // setInterval(mudarCor,2000)
 //-----------------------------------------------------------------------------------------------------
 
 
@@ -202,17 +217,23 @@
 
     play.addEventListener('click', clickOnPlay)
 
+    let s = 0
+    let cronometro
+
     function clickOnPlay(params) {
-        let s = 0
+        
         cronometro = setInterval((params) => {
             segundos.innerText = s++ + 's'
         },1000)
+        play.setAttribute('disabled', '') //para não poder add outros cronometros ao mesmo tempo
     }
 
     pause.addEventListener('click', clickOnPause)
 
     function clickOnPause(params) {
-        clearInterval(cronometro) 
+        clearInterval(cronometro)
+        play.removeAttribute('disabled')
+
     }
 
     pause.addEventListener('dblclick', dblclick)
@@ -220,6 +241,7 @@
     function dblclick(params) {
         clearInterval(cronometro)
         segundos.innerText = 0
+        s = 0
     }
     // na real que ele não quer a logica de um cronometro, só quer a funcionalidade de:  Deve ser possível iniciar, pausar e resetar
 
