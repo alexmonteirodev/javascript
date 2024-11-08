@@ -20,3 +20,6 @@ tooltip()
 
 import dropdown from './modules/dropdown-menu.js'
 dropdown()
+
+import initMenuMobile from './modules/menu-mobile.js'
+initMenuMobile()
