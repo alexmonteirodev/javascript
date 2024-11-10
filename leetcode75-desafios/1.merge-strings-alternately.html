@@ -4,30 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Merge Strings</title>
+    <style>
+        body{
+            background-color: rgb(83, 82, 82);
+        }
+    </style>
 </head>
 <body>
     <h1>Merge Strings</h1>
-    <p>You are given two strings word1 and word2. Merge the strings by adding letters in alternating order, starting with word1. If a string is longer than the other, append the additional letters onto the end of the merged string.</p>
+    <p>You are given two strings word1 and word2. Merge the strings by adding letters in alternating order, starting with word1. If a string is longer than the other, append the additional letters into the end of the merged string.</p>
     <p>Return the merged string.</p>
 
     <script>
         function merge(word1, word2) {
 
             let merged = ''
-            let maxLength = Math.max(word1.length, word2.length)
-            
-            for (let i = 0; i < maxLength; i++) {
-                if (i < word1.length) {
+            let bigger = Math.max(word1.length, word2.length)
+
+            for (let i = 0; i < bigger; i++) {
+                if (i<word1.length) {
                     merged += word1[i]
                 }
-                if (i < word2.length) {
+                if (i<word2.length) {
                     merged += word2[i]
                 }
             }
             return merged
         }
-        console.log(merge('vermelho', 'azul'))
-
+        console.log(merge('vermelho','azul'))
     </script>
 </body>
 </html>
