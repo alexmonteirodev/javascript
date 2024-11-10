@@ -1,5 +1,5 @@
 
-                                        // Menu mobile
+                                        // Animação números
 
     // São os números que carregam na pagina e tem a animação de ir de 0 até x. (como se fosse um cronometro)
 
