@@ -2,7 +2,7 @@
                                         // Date Object
 
     // Date é um tipo de objeto especial para data. (como se fosse o Math de matemática)
-    // foi feito no site um horario de funcionamento da empresa "animais"
+    // foi feito no site um horario de funcionamento da empresa "animais" na parte de contato e foi adicionado um css da class aberto da bola verde na pasta geral do css.
 
 //-------------------------------------------------------------------------------------------------------
     //new Date()
@@ -49,4 +49,55 @@
     //portanto o getTime serve para comparar horários.
 //-------------------------------------------------------------------------------------------------------
 
-    
+    //explicação da lógica:
+
+
+    const funcionamento = document.querySelector('[data-semana]')
+    const diasSemana = funcionamento.dataset.semana
+    console.log(typeof diasSemana) //string e precisa passar para array
+
+    console.log(diasSemana.split(',').map(Number)) //macete para retornar numeros
+
+    const funcionamentoHorario = document.querySelector('[data-horario]')
+    const horarioSemaana = funcionamentoHorario.dataset.horario.split(',').map(Number)
+
+    const dataAgora = new Date()
+    const diaAgora = dataAgora.getDay()
+    const horarioAgora = dataAgora.getHours()
+
+    //vamos supor que tem uma array com dias da semana e um dia solto:
+
+    //[1,2,3,4,5]
+    //5
+
+    //como verificar se o 5 está dentro da array?
+
+    const teste = [1,2,3,4,5].indexOf(5)
+    console.log(teste) //4 (true)
+
+    const teste2 = [1,2,3,4,5].indexOf(6)
+    console.log(teste2) //-1 (false) - sempre que passa um valor que não tem na array, ele retorna -1
+
+    //portanto, para verificar se o dia da semana bate:
+
+    const semanaAberto = diasSemana.indexOf(diaAgora) !== -1
+    console.log(semanaAberto)
+
+    //para verificar o horário:
+
+    if (horarioAgora >= horarioSemaana[0] && horarioAgora < horarioSemaana[1]) {
+        console.log('aberto')
+    }else {
+        console.log('fechado')
+    }
+
+    //pra retornar true ou false, pode fazer pelo if mas como é uma lógica simples, melhor fazer ternário
+
+    const horarioAberto = (horarioAgora >= horarioSemaana[0] && horarioAgora < horarioSemaana[1]) ? true:false
+    console.log(horarioAberto)
+
+    //juntando dia e hora:
+
+    if ( semanaAberto && horarioAberto) {
+        funcionamento.classList.add('aberto')
+    }
