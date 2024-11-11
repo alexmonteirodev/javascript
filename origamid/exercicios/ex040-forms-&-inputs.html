@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+    <style>
+        label{
+            display: block;
+            font-family: arial;
+            font-weight: bold;
+            margin-top: .5rem;
+            margin-bottom: .5rem;
+        }
+        form{
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        input[type="text"], textarea{
+            width: 100%;
+            box-sizing: border-box;
+            padding: .5rem;
+            border: 2px solid black;
+            font-size: 1rem;
+            margin-bottom: .5rem;
+        }
+        textarea{
+            height: 150px;
+        }
+        .invalido{
+            border: 2px solid red;
+        }
+    </style>
+</head>
+<body>
+
+    <form name="contato" id="contato">
+        <h2>Formulário:</h2>
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="nome" required>
+        <span class="erro"></span>
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" required>
+        <span class="erro"></span>
+        <label for="mensagem">Mensagem</label>
+        <textarea name="mensagem" id="mensagem"></textarea>
+
+        <h2>Select:</h2>
+        <select name="cores" id="cores">
+            <option value="white">Branco</option>
+            <option value="red">Vermelho</option>
+            <option value="blue">Azul</option>
+          </select>
+
+
+        <h2>Tipos de inputs:</h2>
+        <input type="color">
+        <input type="date">
+        <input type="number">
+        <input type="range">
+        <input type="password">
+
+        <h2>Checkbox:</h2>
+        <label for="identidade">Possui identidade?</label> <!-- o for relaciona o label e o input (pega pelo id), por causa dele que se clicar no label, ele checka o input -->
+        <input type="checkbox" value="identidade" id="identidade">
+        <label for="casado">Casado?</label>
+        <input type="checkbox" value="casado" id="casado">
+        <input type="checkbox" name="" id="">
+
+        <h2>Radio:</h2>
+        <input type="radio" id="guitarra" value="guitarra" name="instrumento" />
+        <label for="guitarra">Guitarra</label>
+      
+        <input type="radio" id="violao" value="violao" name="instrumento" />
+        <label for="violao">Violão</label>
+      
+        <input type="radio" id="baixo" value="baixo" name="instrumento" />
+        <label for="baixo">Baixo</label>
+      </form>
+
+      
+      <form name="contato2" id="contato2">
+        <h2>Selecionando todos os valores:</h2>
+        <label for="name">name</label>
+        <input type="text" name="name" id="name">
+        <label for="correo">correo</label>
+        <input type="correo" name="correo" id="correo">
+        <label for="Msg">Msg</label>
+        <textarea name="Msg" id="Msg"></textarea>
+      </form>
+      
+
+
+      
+  
+    <script>
+                                    //Formularios
+        
+        //Forms
+            //É comum utilizarmos inputs de formulários para criarmos uma interface entre funções de JavaScript e o usuário final do site. Para isso precisamos aprender como pegar os valores dos formulários.
+
+            //forms é um objeto em que você consegue acessar propriedades:
+            
+            document.forms; // lista com os formulários
+            document.forms.contato; // form com nome contato
+            document.forms.contato.elements; // elementos
+            document.forms[0].elements[0].value; // valor do primeiro
+            //document.forms[0] é a mesma coisa que document.querySelector('#contato')
+
+            console.log(document.forms.contato.elements) //HTML Collection
+
+//-----------------------------------------------------------------------------------------------------
+
+        //Values
+            //A propriedade value retorna o valor do elemento no formulário. Se adicionarmos um callback ao keyup (tecla levantar), podemos ficar de olho no evento e puxar o valor sempre que ele mudar. change dispara quando houver mudanças.
+
+            // Keyup: Usando o Keyup, o js pega o valor do input toda vez que a tecla levantar:
+            
+           const form = document.forms[0]  // ou const form = document.querySelector('#contato') 
+          
+           form.addEventListener('keyup', handleKeyUp)
+
+           function handleKeyUp(e) {
+                console.log(e.target.value + ' keyup')
+           }
+           // e, retorna a letra da tecla clicada
+           // e.target, retorna o input/elemento que está sendo digitado
+           // e.target.value, retorna o valor do input que a pessoa está digitando a cada tecla
+
+
+           // Change: Usando o change, ele capta o valor do input quando a pessoa já terminou de digitar e pula pro prox input.
+           
+           form.addEventListener('change', inputChange)
+
+           function inputChange(e) {
+                console.log(e.target.value + ' change')
+           }
+//-----------------------------------------------------------------------------------------------------
+
+        //Validação
+           //O método checkValidity verifica se um input com o atributo required, é válido ou não. A propriedade validationMessage possui a mensagem padrão de erro do browser. É possível modicar essa msg com o setCustomValidity('') (o problema da setCustomValidity é que vira uma msg padrão pra todos e a validationMessage consegue dar uma msg de erro padrão do browser para cada input, ex: no email ele diz que ta sem o @ e no nome ele diz que tem que preencher o campo e caso queira uma msg custom pra cada campo, você tem que criar uma por uma)
+
+           // atributo required serve para mostrar para o sistema que esse input tem que ser preenchido (requerido para prosseguir)
+
+/*
+            Exemplo:
+
+            <input type="email" name="email" id="email" required>
+            <span class="erro"></span>
+*/
+
+            form.addEventListener('change', validacao)
+
+            function validacao(e) {
+                console.log(e.target.checkValidity()) //retorna false caso não tenha formato de email: kjaajsd@akjjdn.asds
+
+                if (!e.target.checkValidity()) {
+                    // e.target.setCustomValidity('Preenche essa carniça direito rapá') - edita a msm msg para todos os inputs
+                    // form.nome.setCustomValidity('preenche o nome zé') - edita somente a msg do input do nome
+                    e.target.classList.add('invalido')
+                    e.target.nextElementSibling.innerText = e.target.validationMessage //mesma coisa que const span = document.querySelector('.erro'), (prox elemento)
+                }
+            }
+//-----------------------------------------------------------------------------------------------------
+
+        //Select
+            // repare que o valor da opção do select não é o que está escrito no element e sim o que está dentro do atributo 'value'
+
+            form.addEventListener('change', mudarCor)
+
+            function mudarCor(e) {
+                document.body.style.backgroundColor = e.target.value
+            }
+//-----------------------------------------------------------------------------------------------------
+        //Diferentes Inputs
+            // da pra usar o target do evento para relacionar os inputs
+
+            form.addEventListener('change', inputsEvents)
+
+            function inputsEvents(e) {
+                console.log(e.target.value + ' input relacionado')
+                document.body.style.backgroundColor = e.target.value
+            }
+//-----------------------------------------------------------------------------------------------------
+
+        //Checkbox
+            //Retorna o valor de value, se estiver checada ou não. checked retorna true ou false.
+            //checkbox pode selecionar mais de um
+            //obs: o for relaciona o label e o input (pega pelo id), por causa dele que se clicar no label, ele checka o input
+
+            form.addEventListener('change', checkBox)
+
+            function checkBox(e) {
+                console.log(e.target.checked + ' input checkbox')
+                //logo,
+                if (e.target.checked) {
+                    console.log(e.target.value)
+                }
+            }
+//-----------------------------------------------------------------------------------------------------
+        
+        //Radio
+            //A diferença entre Radio e Checkbox é que radio aceita apenas uma seleção por grupo. Radio é agrupado pelo atributo name. (ou seja, sai no console o radio selecionado mas se selecionar outro, ele desseleciona o anterior e mostra o novo valor)
+
+
+            form.addEventListener('change', radioEvent)
+
+            function radioEvent(e) {
+                console.log(e.target.checked + ' input radio')
+                //logo,
+                if (e.target.checked) {
+                    console.log(e.target.value)
+                }
+            }
+//-----------------------------------------------------------------------------------------------------
+
+        //Pegando todos os valores
+            //Ao invés de selecionarmos elemento por elemento, podemos utilizar um objeto para colocarmos todos os dados que o usuário colocar no formulário.
+
+            const form2 = document.forms[1]
+            form2.addEventListener('change', pegandoDados)
+            const dados = {} //dados está fora da function para não mudar toda vez que a pessoa alterar os dados
+
+            function pegandoDados(event) {
+                console.log(event.target.name) //name é referencia ao atributo - pega o name do input
+                dados[event.target.name] = event.target.value
+            }
+
+
+            //lembre-se que quando coloca objeto.propriedade = x, isso add uma nova propriedade ao objeto:
+/*      
+                const pessoa = {
+                    nome: 'Alex'
+                }
+                pessoa.idade = 26
+                console.log(pessoa) // {nome: 'Alex', idade: 26}
+*/    
+    </script>
+    
+</body>
+</html>
