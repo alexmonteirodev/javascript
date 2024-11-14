@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>greatest-common-divisor-of-strings</title>
+    <style>
+        body{
+            background-color: rgb(83, 82, 82);
+        }
+    </style>
 </head>
 <body>
     <h1>Máximo divisor comum de strings</h1>
@@ -22,7 +27,28 @@
 
     <script>
 
+function mdcOfStrings(str1, str2) {
 
+    // Função auxiliar para calcular o MDC de dois números
+    function mdc(a, b) {
+        return b === 0 ? a : mdc(b, a % b);
+    }
+
+    // Calcula o comprimento da maior substring que pode dividir ambas as strings
+    const lengthMdc = mdc(str1.length, str2.length);
+
+    // Extrai a substring potencial do tamanho do MDC
+    const x = str1.slice(0, lengthMdc);
+
+    // Verifica se essa substring, repetida, pode formar ambas as strings originais
+    if (str1 === x.repeat(str1.length / lengthMdc) && str2 === x.repeat(str2.length / lengthMdc)) {
+        return x;
+    }
+
+    // Se não houver uma substring divisora, retorna uma string vazia
+    return "";
+}
+console.log(mdcOfStrings('abcabc', 'abc')) // 6,3
 
 /*
 function gcdOfStrings(str1, str2) {
@@ -47,6 +73,7 @@ function gcdOfStrings(str1, str2) {
     return "";
 }
 */
+
 
 
 
