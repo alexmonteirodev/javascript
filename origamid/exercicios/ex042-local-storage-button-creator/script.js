@@ -53,11 +53,11 @@ function showCss(params) {
 
 //obs: para salvar os valores e a pg atualizar e o usuário perder a edição feita, da pra salvar os valores no browser dele, usando localStorage:
 
-function saveValues(name, value) { //função que salva as preferencias no local storage
+function saveValues(name, value) { //f que salva as preferencias no local storage
     localStorage[name] = value
 }
 
-function setValues(params) { //função para setar as preferencias quando recarregar a pg (aplicar os valores guardados)
+function setValues(params) { //f para setar as preferencias quando recarregar a pg (aplicar os valores guardados)
     const properties = Object.keys(localStorage)
     console.log(properties)
     properties.forEach((propertie) => {
