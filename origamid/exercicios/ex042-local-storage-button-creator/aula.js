@@ -21,3 +21,40 @@
         //obs: caso apague isso do script.js, quando abrir novamente e ser consoloe.log, o nome ainda vai estar lá. (porque ficou armazenado) Para limpar: inspecionar, application, localstorage e clica no sinal de proibido estacionar.
 
         // É assim que o André salva por exemplo em que aula que eu parei no site da origamid. E isso é uma mão na roda pq ao invés de ter que ter um banco de dados para salvar essas pequenas preferencias, ele usa o armazenamento da máquina do usuário. Outro exemplo é salvar qual o tempo do vídeo em que o usuário parou, ele consegue salvar na máquina do usuário sem sujar o seu banco de dados, pq essa informação não é relevante para ele e sim para o usuário.
+//-------------------------------------------------------------------------------------------------------
+
+    //no Exercícios, fo feito:
+
+        //obs: para salvar os valores e a pg atualizar e o usuário perder a edição feita, da pra salvar os valores no browser dele, usando localStorage:
+
+        function saveValues(name, value) { //função que salva as preferencias no local storage
+            localStorage[name] = value
+        }
+
+        function setValues(params) { //função para setar as preferencias quando recarregar a pg (aplicar os valores guardados)
+            const properties = Object.keys(localStorage)
+            console.log(properties)
+            properties.forEach((propertie) => {
+                constroles.elements[propertie].value = localStorage[propertie] //aqui só muda nos controles, note que quando escolhe uma cor e atualiza a pg a cor permanece mas o botão reseta, isso acontece porque o método que linka os controles com o botão é o 'change' e tudo acontece só quando acontece o change, então para mander salvo o botão tbm, é preciso:
+                
+                handleStyle[propertie](localStorage[propertie])
+                //não daria pra usar com o . ou seja, sem o [] porque se não o js indentivifa o propertie como uma função: handleStyle.propertie(localStorage[propertie])
+            })
+            showCss()
+        }
+        setValues()
+/*
+            // para relembrar:
+
+                //da para acessar propriedades de um objeto com o []:
+
+                ex:
+
+                const handleStyle = {
+                    backgroundColor: 'azul'
+                }
+                
+                handleStyle.backgroundColor // retorna = 'azul'
+
+                handleStyle['backgroundColor'] //retorna = 'azul'
+*/

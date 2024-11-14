@@ -180,3 +180,20 @@ document.querySelector()
 // id - retorna o id da tag html
 // busque na web um objeto (método) capaz de interagir com o clipboard, clipboard é a parte do seu computador que lida com o CTRL + C e CTRL + V
 read()
+
+
+/*
+            //obs importante:
+
+                //da para acessar propriedades de um objeto com o []:
+
+                ex:
+
+                const handleStyle = {
+                    backgroundColor: 'azul'
+                }
+                
+                handleStyle.backgroundColor // retorna = 'azul'
+
+                handleStyle['backgroundColor'] //retorna = 'azul'
+*/
