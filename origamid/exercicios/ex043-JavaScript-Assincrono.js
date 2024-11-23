@@ -5,7 +5,7 @@
 
         //Síncrono: Espera a tarefa acabar para continuar com a próxima. (ex: escrever console.log, o js vai esperar monstrar o console.log e passa pra prox linha)
 
-        //Assíncrono: Move para a próximo tarefa antes da anterior terminar. O trabalho será executado no 'fundo' e quando terminado, será colocado na fila (Task Queue).
+        //Assíncrono: Move para a próxima tarefa antes da anterior terminar. O trabalho será executado no 'fundo' e quando terminado, será colocado na fila (Task Queue).
 
         //Exemplos: setTimeout, Ajax, Promises, Fetch, Async.
 //-----------------------------------------------------------------------------------------------------

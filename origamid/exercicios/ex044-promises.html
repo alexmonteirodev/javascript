@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promises</title>
+</head>
+<body>
+    
+    <script>
+
+        //new Promise()
+            //Promise é uma função construtora de promessas. Existem dois resultados possíveis de uma promessa, ela pode ser resolvida, com a execução do primeiro argumento, ou rejeitada se o segundo argumento for ativado.
+
+            const promessa0 = new Promise(function(resolve, reject) {
+                let condicao = true //sempre com uma condição que se usa a promessa
+                if (condicao) {
+                    resolve()
+                } else {
+                    reject()
+                }
+            })
+
+            console.log(promessa0)// Promise {<resolved>: undefined}
+//-----------------------------------------------------------------------------------------------------
+
+        // Resolve()
+            //Podemos passar um argumento na função resolve(), este será enviado junto com a resolução da Promise.
+
+            const promessa1 = new Promise(function(resolve, reject) {
+            let condicao = true;
+            if(condicao) {
+                resolve('Estou pronto!');
+            } else {
+                reject();
+            }
+            });
+
+            console.log(promessa1); // Promise {<resolved>: "Estou pronto!"}
+//-----------------------------------------------------------------------------------------------------
+
+        // Reject()
+            //Quando a condição de resolução da promise não é atingida, ativamos a função reject para rejeitar a mesma. Podemos indicar no console um erro, informando que a promise foi rejeitada.
+
+            const promessa2 = new Promise(function(resolve, reject) {
+            let condicao = false;
+            if(condicao) {
+                resolve('Estou pronto!');
+            } else {
+                reject(Error('Um erro ocorreu.'));
+            }
+            });
+
+            console.log(promessa2); // Promise {<rejected>: Error:...}
+//-----------------------------------------------------------------------------------------------------
+
+        //then() - then é o que torna uma promise especial. (then vem do prototype de promise)
+            //O poder das Promises está no método then() do seu protótipo. O Callback deste método só será ativado quando a promise for resolvida. O argumento do callback será o valor passado na função resolve.
+            //obs: o then é como se fosse um eventlistener da promessa, ou seja, fica esperando ser resolvida para fazer algo.
+
+            const promessa3 = new Promise((resolve, reject) => {
+            let condicao = true;
+            if(condicao) {
+                resolve('Estou pronto!');
+            } else {
+                reject(Error('Um erro ocorreu.'));
+            }
+            });
+
+            promessa3.then(resultado => console.log(resultado))// 'Estou pronto!'
+/*
+            mesma coisa que:
+            promessa3.then(function(resolucao) {
+                console.log(resolucao) // 'Estou pronto!'
+            })
+*/
+//-----------------------------------------------------------------------------------------------------
+
+        //Assíncrono
+            //As promises não fazem sentido quando o código executado dentro da mesma é apenas código síncrono. O poder está na execução de código assíncrono que executará o resolve() ao final dele.
+
+            const promessa4 = new Promise(function(resolve, reject) {
+                let condicao = true
+                if (condicao) {
+                    setInterval(function(params) {
+                        resolve('Resolvida')
+                    },1000)
+                } else {
+                    reject(Error('Ocorreu um erro.'))
+                }
+            })
+
+            promessa4.then(params => console.log(params))
+//-----------------------------------------------------------------------------------------------------
+
+        //then().then()
+            //O método then() retorna outra Promise. Podemos colocar then() após then() e fazer um encadeamento de promessas. O valor do primeiro argumento de cada then, será o valor do retorno anterior.
+
+            const promessa5 = new Promise(function(resolve, reject) {
+                resolve('Etapa 1')
+            })
+            promessa5.then(function(params) {
+                console.log(params) // Etapa 1
+                return 'Etapa 2'
+            }).then(function(params) {
+                console.log(params) // Etapa 2
+                return 'Etapa 3'
+            }).then(function (r){ //posso chamar o params do que quiser que ele continuca reconhecendo. (observe: antes era params e agora r)
+                return r + 4
+            })
+            .then(function (params) { 
+                console.log(params) // Etapa 34
+            })
+            // Obs IMPORTANTE: repare que o ponto está na linha de baixo e mesmo assim, funciona. Isso acontece porque o ponto tenta reconhecer o ultimo objeto ignorando os espaços, mas se escrevesse algo entre o ponto e o objeto, ja não daria certo. Isso serve para deixar o código mais organizado.
+/*
+            //mesma coisa que:
+
+            const promessa5 = new Promise((resolve, reject) => {
+            resolve('Etapa 1');
+            });
+
+            promessa5.then(resolucao => {
+            console.log(resolucao); // 'Etapa 1';
+            return 'Etapa 2';
+            })
+
+            .then(resolucao => {
+            console.log(resolucao) // 'Etapa 2';
+            return 'Etapa 3';
+            })
+
+            .then(r => r + 4)
+            
+            .then(r => {
+            console.log(r); // Etapa 34
+            });
+*/
+//-----------------------------------------------------------------------------------------------------
+
+        //catch()
+            //O método catch(), do protótipo de Promises, adiciona um callback a promise que será ativado caso a mesma seja rejeitada.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
