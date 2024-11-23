@@ -54,6 +54,8 @@
             console.log(promessa2); // Promise {<rejected>: Error:...}
 //-----------------------------------------------------------------------------------------------------
 
+                                    //prototype
+
         //then() - then é o que torna uma promise especial. (then vem do prototype de promise)
             //O poder das Promises está no método then() do seu protótipo. O Callback deste método só será ativado quando a promise for resolvida. O argumento do callback será o valor passado na função resolve.
             //obs: o then é como se fosse um eventlistener da promessa, ou seja, fica esperando ser resolvida para fazer algo.
@@ -140,8 +142,132 @@
         //catch()
             //O método catch(), do protótipo de Promises, adiciona um callback a promise que será ativado caso a mesma seja rejeitada.
 
+            const promessa6 = new Promise(function(resolve, reject) {
+                let condicao = false
 
+                if (condicao) {
+                    resolve('Estou pronto, promessa 6!')
+                } else {
+                    reject(Error('Ocorreu um erro, promessa 6.'))
+                }
+            })
 
+            promessa6.then(function(params){
+                console.log(params)
+            })
+            .catch(function (reject) {
+                console.log(reject + 'Erro menó')
+            })
+/*
+            mesma coisa que:
+
+            promessa6.then(params => console.log(params))
+            .catch(reject => console.log(reject + 'Erro menó'))
+*/
+
+            // da pra passar direto o erro no then, como segundo argumento: (ver abaixo)
+//-----------------------------------------------------------------------------------------------------
+        
+        // then(resolve, reject)
+            //Podemos passar a função que será ativada caso a promise seja rejeitada, direto no método then, como segundo argumento.
+
+            const promessa7 = new Promise((resolve, reject) => {
+            let condicao = false;
+            if(condicao) {
+                resolve('Estou pronto!');
+            } else {
+                reject(Error('Um erro ocorreu. catch como segundo argumento do then'));
+            }
+            });
+
+            promessa7.then(resolucao => {
+            console.log(resolucao);
+            }, reject => { //reject é o params
+            console.log(reject);
+            });
+/*
+            mesma coisa que: 
+            promessa7.then(function(params){
+                console.log(params)
+            }, function(catchReject){ //passar catch como segundo argumento no then
+                console.log(catchReject)
+            })
+*/
+//-----------------------------------------------------------------------------------------------------
+
+        //finally()
+            //finally() executará a função anônima assim que a promessa acabar. A diferença do finally é que ele será executado independente do resultado, se for resolvida ou rejeitada.
+
+            const promessa8 = new Promise((resolve, reject) => {
+            let condicao = true; //true ou false, sai 'acabou no console'
+            if(condicao) {
+                resolve('Estou pronto!');
+            } else {
+                reject(Error('Um erro ocorreu.'));
+            }
+            });
+
+            promessa8.then(resolucao => {
+            console.log(resolucao);
+            }, reject => {
+            console.log(reject);
+            }).finally(() => { //não recebe params/valor (se passar valor, vai sair undefined)
+            console.log('Acabou'); // 'Acabou'
+            })
+//-----------------------------------------------------------------------------------------------------
+                                    // Métodos do objeto promise
+
+        //Promise.all()
+            // no .all() da pra passar uma array com diferentes promessas. E o all vai retornar uma promessa também que só será resolvida quando todas as promises dentro da array forem resolvidas ou quando uma for rejeitada.
+
+            //exemplo: serve pra quando você tem um servidor que tem uma promessa pro usuário fazer um login, depois que faz o login, espera para carregar os dados. Então com o all, você pode esperar o usuário fazer o login, esperar os dados serem carregados e fazer algo depois disso.
+
+            //como se fosse [login, carregamento-dados]
+
+            const loginUser = new Promise((resolve, reject) =>{ //usando prototype para criar uma nova
+                setTimeout(() => {
+                    resolve('Usuário logado')
+                },1000)
+            })
+
+            const loadDados = new Promise((resolve, reject) =>{
+                setTimeout(() => {
+                    resolve('Dados carregados')
+                },1500)
+            })
+
+            const carregouTudo = Promise.all([loginUser, loadDados]) //usando método da promise
+
+            console.log(carregouTudo) //dentro do valor dessa promise tem os dois itens (da array) e esses dois itens são o resultado das promises.
+
+            // E já que carregouTudo é uma promise cujo o valor é o valor dos dois itens, da pra usar o then nela:
+            
+            carregouTudo.then((resultado) => {
+                console.log(resultado) //retorna array - ['Usuário logado', 'Dados carregados']
+            })
+//-----------------------------------------------------------------------------------------------------
+
+        //Promise.race()
+            //Retornará uma nova promise assim que a primeira promise for resolvida ou rejeitada. Essa nova promise terá a resposta da primeira resolvida. Ou seja, a primeira que sair ele já retorna.
+
+            //exemplo: é útil quando está puxando dados de um servidor e não sabe quanto tempo vai levar pro servidor carregar, então com o race, é dizer, o primeiro dado que carregar já mostra pro usuário na tela. obs: com o fecth que é um tipo de promise, da pra puxar dados de um servidor.
+
+            const login = new Promise(resolve => {
+            setTimeout(() => {
+                resolve('Login Efetuado');
+            }, 1000);
+            });
+            const dados = new Promise(resolve => {
+            setTimeout(() => {
+                resolve('Dados Carregados');
+            }, 1500);
+            });
+
+            const carregouPrimeiro = Promise.race([login, dados]);
+
+            carregouPrimeiro.then(resposta => {
+            console.log(resposta); // Login Efetuado
+            });
 
 
 
