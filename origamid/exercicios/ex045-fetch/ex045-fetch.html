@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch</title>
+</head>
+<body>
+    
+    <script>
+                                            //Fetch
+            
+        //Fetch API
+            //Permite fazermos requisições HTTP através do método fetch(). Este método retorna a resolução de uma Promise. Podemos então utilizar o then para interagirmos com a resposta, que é um objeto do tipo Response.
+
+             const doc = fetch('./doc.txt')
+            console.log(doc)
+
+            doc.then(function(response) {
+                console.log(response); // Response HTTP (Objeto)
+            });
+
+            //obs: API = interface de aplicação, que da pra interagir através de comandos. A fetch é uma api do browser.
+
+            //obs: fetch é a nova forma de fazer ajax.
+
+            //atenção que deve haver um servidor rodando para poder fazer a requisição, pq o fetch faz requisições http, nesse caso, estamos usando o live server, porque o fetch está acessando: http://127.0.0.1:5502/origamid/exercicios/ex045-fetch/doc.txt. Se abrir o arquivo pelo file, por exemplo, daria erro.
+
+            
+//-----------------------------------------------------------------------------------------------------
+
+    </script>
+</body>
+</html>
