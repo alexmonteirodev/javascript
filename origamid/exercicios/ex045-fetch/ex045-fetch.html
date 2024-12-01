@@ -6,18 +6,20 @@
     <title>Fetch</title>
 </head>
 <body>
-    
+    <div class="conteudo"></div>
+    <div class="endereco"></div>
+    <h1></h1>
     <script>
                                             //Fetch
             
         //Fetch API
             //Permite fazermos requisições HTTP através do método fetch(). Este método retorna a resolução de uma Promise. Podemos então utilizar o then para interagirmos com a resposta, que é um objeto do tipo Response.
 
-             const doc = fetch('./doc.txt')
+            const doc = fetch('./doc.txt')
             console.log(doc)
 
             doc.then(function(response) {
-                console.log(response); // Response HTTP (Objeto)
+                console.log(response); // retorna objeto Response (HTTP)
             });
 
             //obs: API = interface de aplicação, que da pra interagir através de comandos. A fetch é uma api do browser.
@@ -25,9 +27,135 @@
             //obs: fetch é a nova forma de fazer ajax.
 
             //atenção que deve haver um servidor rodando para poder fazer a requisição, pq o fetch faz requisições http, nesse caso, estamos usando o live server, porque o fetch está acessando: http://127.0.0.1:5502/origamid/exercicios/ex045-fetch/doc.txt. Se abrir o arquivo pelo file, por exemplo, daria erro.
-
-            
+     
 //-----------------------------------------------------------------------------------------------------
+        //Response
+            //O objeto Response, possui um corpo com o conteúdo da resposta. Esse corpo pode ser transformado utilizando métodos do protótipo do objeto Response. Estes retornam outras promises.
+
+            // response tem uma estrutura:
+/*
+        body: ReadableStream
+        locked: false
+        [[Prototype]]: ReadableStream
+        bodyUsed: false                 //body ainda não foi usado
+        headers: Headers {}
+        ok: true                        //se o item response conseguiu carregar
+        redirected: false               //se houve redirecionamento de pagina
+        status: 200                     //arquivo encontrado (200), erro é 404 (arquivo não       encontrado)
+        statusText: "OK"
+        type: "basic"
+        url: "http://127.0.0.1:5502/origamid/exercicios/ex045-fetch/doc.txt"
+        [[Prototype]]: Response
+*/
+
+            doc.then((response) => {
+                return response.text()
+            }).then( (texto) => {
+                const conteudo = document.querySelector('.conteudo')
+                conteudo.innerText = texto //linka a div com o doc.txt
+                console.log(texto)
+            })
+//-----------------------------------------------------------------------------------------------------
+
+        //Servidor Local
+            //O fetch faz uma requisição HTTP/HTTPS. Se você iniciar um site local diretamente pelo index.html, sem um servidor local, o fetch não irá funcionar.
+
+/*
+            fetch('c:/files/arquivo.txt')
+            .then((response) => {
+            return response.text();
+            })
+            .then((corpo) => {
+            console.log(corpo);
+            }); // erro
+*/
+//-----------------------------------------------------------------------------------------------------
+
+        //.json()
+            //Um tipo de formato de dados muito utilizado com JavaScript é o JSON (JavaScript Object Notation), pelo fato dele possuir basicamente a mesma sintaxe que a de um objeto js. .json() transforma um corpo em json em um objeto JavaScript.
+
+            //https://viacep.com.br/ws/01001000/json/
+/*
+            {
+            "cep": "01001-000",
+            "logradouro": "Praça da Sé",
+            "complemento": "lado ímpar",
+            "unidade": "",
+            "bairro": "Sé",
+            "localidade": "São Paulo",
+            "uf": "SP",
+            "estado": "São Paulo",
+            "regiao": "Sudeste",
+            "ibge": "3550308",
+            "gia": "1004",
+            "ddd": "11",
+            "siafi": "7107"
+            }
+*/
+
+            //obs: arquivo json tem mesmo formato de um objeto js porém usa aspas duplas (necessário para funcionar)
+
+            // Ex, imprime o cep em forma de texto na tela (div):
+/*
+            const endereco = fetch('https://viacep.com.br/ws/01001000/json/')
+            endereco.then((response) => {
+                return response.text()
+            }).then((params) => {
+                const cep = document.querySelector('.endereco')
+                cep.innerText = params
+            })
+*/
+            // O response.text() transforma em texto, mas usando o json() da pra transformar em um objeto e após isso, basta utilizar como objeto normal:
+
+            const endereco = fetch('https://viacep.com.br/ws/01001000/json/')
+            endereco.then((response) => {
+                return response.json()
+            }).then((params) => {
+                console.log(params)
+                console.log(params.localidade)
+                const cep = document.querySelector('.endereco')
+                cep.innerText = params.localidade
+            })
+//-----------------------------------------------------------------------------------------------------
+        //.text()
+            //Podemos utilizar o .text() para diferentes formatos como txt, json, html, css, js e mais. E usar isso para injetar algo no código.
+
+            const styleElement = document.createElement('style'); //cria tag style, dentro do html
+
+            fetch('./style.css')
+            .then(response => response.text())
+            .then(style => {
+            styleElement.innerHTML = style; //injeta o texto dentro da tag
+            document.body.appendChild(styleElement); //incorpora a tag
+            });
+//-----------------------------------------------------------------------------------------------------
+
+        //HTML e .text()
+            //Podemos pegar um arquivo inteiro em HTML, transformar o corpo em texto e inserir em uma div com o innerHTML. A partir dai podemos manipular esses dados como um DOM qualquer.
+
+
+            const sobre = fetch('./sobre.html')
+
+            const div = document.createElement('div');
+
+            sobre.then(response => response.text())
+            .then(htmlBody => {
+                // console.log(htmlBody)
+            div.innerHTML = htmlBody;
+            const titulo = div.querySelector('h1');
+            // console.log(titulo)
+            document.querySelector('h1').innerText = titulo.innerText;
+            });
+//-----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
 
     </script>
 </body>
