@@ -8,6 +8,7 @@
 <body>
     <div class="conteudo"></div>
     <div class="endereco"></div>
+    <img src="" alt="">
     <h1></h1>
     <script>
                                             //Fetch
@@ -147,6 +148,131 @@
             document.querySelector('h1').innerText = titulo.innerText;
             });
 //-----------------------------------------------------------------------------------------------------
+//(aula fetch 2)
+
+        //.blob()
+            //Um blob é um tipo de objeto utilizado para representação de dados de um arquivo. O blob pode ser utilizado para transformarmos requisições de imagens por exemplo. O blob gera um URL único.
+
+            //exemplo, pegar uma imagem (que tem um código dessa imagem, mas é zoado e o js não lê, então o blob traduz para url e o js reconhece). Assim, se da pra fazer uma requisição via fetch de uma imagem.
+
+            const imagem = fetch('./img-teste.png')
+
+            imagem.then(r => r.blob()) //usar o text para ver o texto bizarro que a imgagem retorna
+            .then((body) => {
+                console.log(body) 
+                const blobUrl = URL.createObjectURL(body) //URL é um objeto nativo, tipo Math
+                console.log(blobUrl)
+                const imagemDom = document.querySelector('img')
+                imagemDom.src = blobUrl
+            })
+//-----------------------------------------------------------------------------------------------------
+
+        //.clone()
+            //Ao utilizarmos os métodos acima, text, json e blob, a resposta é modificada. Por isso existe o método clone, caso você necessite transformar uma resposta em diferentes valores.
+            //método do response que serve para cloná-lo.
+
+            //quando você transforma um response, ou seja, usa um método nele, por exemplo: .text(), voc^4 transforma o corpo response em texto, e caso queira transformar depois em outra coisa, por exemplo em json, não da porque ele já foi transformado, então o clone serve pra isso, pra poder clonar o response e e usar os métodos que quiser, ex:
+
+            const viacep = fetch('https://viacep.com.br/ws/01001000/json/')
+
+            viacep.then((r) => {
+                r.text()
+                // r.json() //erro
+                console.log(r) //bodyUsed:true, pq o metodo text(), ja mudou o response
+            })
+
+            .then((r) => {
+                console.log(r)//bodyUsed:false, pq o response não foi usado/alterado
+            })
+            
+            //logo, se quisesse transformar em texto e dpois em jason - r.text() r.json() - daria erro (failed: body is locked), então clona e faz um com text e outro com json:
+
+            const viacep2 = fetch('https://viacep.com.br/ws/01001000/json/')
+/*
+            viacep2.then((r) => {
+                const r2 = r.clone()
+                r.text()
+                r2.json()
+                console.log(r) 
+                console.log(r2)
+            })
+*/ 
+            //agora só puxar a resposta/reponse de cada um com o then em cada:
+
+
+            viacep2.then((r) => {
+                const r2 = r.clone()
+                r.text().then((text) => {
+                    console.log(text)
+                })
+                r2.json().then((json) => {
+                    console.log(json)
+                })
+            })
+//-----------------------------------------------------------------------------------------------------
+
+        //.headers
+            //É uma propriedade que possui os cabeçalhos da requisição. É um tipo de dado iterável então podemos utilizar o forEach para vermos cada um deles.
+
+            //Obs: da pra dar console.log direto no parametro do foreach:
+
+            const array = ['Item 1', 'Item 2']
+            array.forEach(console.log) //retorna cada item no console, com o item e o index
+
+            const testeHeaders = fetch('https://viacep.com.br/ws/01001000/json/')
+
+            testeHeaders.then((response) => {
+                console.log(response)
+                response.headers.forEach(console.log)
+            })
+
+            //o que se encontra no header? que tipo de arquivo que é; tempo que pode ficar em cache; se é público ou não; tipo de conteúdo; data que expira o cache
+//-----------------------------------------------------------------------------------------------------
+
+        //.status e .ok
+            //Retorna o status da requisição. Se foi 404, 200, 202 e mais. ok retorna um valor booleano sendo true para uma requisição de sucesso e false para uma sem sucesso.
+
+            const testeStatus = fetch('https://viacep.com.br/ws/01001000/json/')
+
+            testeStatus.then((r) => {
+                console.log(r.status, r.ok) //retorna 200; (quando da erro, retorna 404)
+                if (r.status === 404) {
+                    console.log('pagina não existe')
+                }
+            })
+//-----------------------------------------------------------------------------------------------------
+
+        //.url e .type
+            //.url retorna o url da requisição. 
+            //.type retorna o tipo da reposta.
+
+            fetch('https://viacep.com.br/ws/01001000/json/')
+            .then(response => {
+            console.log(response.type, response.url);
+            });
+
+            //types
+            // basic: feito na mesma origem (requisição no próprio servidor)
+            // cors: feito em url body pode estar disponível (requisição fora/outro servidor, mas permitida)
+            // error: erro de conexão
+            // opaque: no-cors, não permite acesso de outros sites
+
+            //ps: cors é pra fora, porém permitida, se tentar acessar o google, da ruim pq não tem permissão.
+//-----------------------------------------------------------------------------------------------------
+
+                                        //Exercícios
+                                        //no doc exercicios.html
+
+
+
+
+
+
+
+
+
+
+
 
 
 
