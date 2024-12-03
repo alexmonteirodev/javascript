@@ -4,13 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+    /* exercicio 1 */
+    .container-buscador{
+        display: flex;
+        margin-bottom: 15px;
+    }
+    button{
+        cursor: pointer;
+    }
+    </style>
 </head>
 <body>
+    <!-- exercicio 1 -->
+    <h1>Buscador de CEP</h1>
+     <div class="container-buscador">
+        <form action="">
+            <input type="number" class="input-number" placeholder="Digite o CEP">
+        </form>
+        <button class="buscar">buscar</button>
+     </div>
+     <div class="res"></div>
     <script>
                                     //Exercícios
 
 
 // Utilizando a API https://viacep.com.br/ws/${CEP}/json/ crie um formulário onde o usuário pode digitar o cep e o endereço completo é retornado ao clicar em buscar
+
+        const buscar = document.querySelector('.buscar')
+
+        buscar.addEventListener('click', buscarCep)
+
+        function buscarCep(e) {
+            const cep = document.querySelector('.input-number').value
+            const resultado = document.querySelector('.res')
+
+            const enderecoApi = 'https://viacep.com.br/ws/01001000/json/'
+            const api = fetch(enderecoApi.replace('01001000', cep))
+
+            if (cep.length === 8) {
+
+            api.then((r) => {
+                return r.json()
+            }).then((params) => {
+                console.log(params)
+                resultado.innerHTML = `Endereço referente ao CEP ${cep}:<br><br> Estado de ${params.estado}, ${params.logradouro} no bairro ${params.bairro}, ${params.complemento} ${params.uf}.`
+            })
+            } else {
+                resultado.innerText = 'Valor incorreto. Por favor, insira um CEP válido.'
+            }
+        }
+  
+
+
+
 
 // Utilizando a API https://blockchain.info/ticker retorne no DOM o valor de compra da bitcoin and reais. atualize este valor a cada 30s
 
