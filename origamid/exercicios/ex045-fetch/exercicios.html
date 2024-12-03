@@ -9,6 +9,7 @@
     .container-buscador{
         display: flex;
         margin-bottom: 15px;
+        gap: 5px;
     }
     button{
         cursor: pointer;
@@ -25,6 +26,22 @@
         <button class="buscar">buscar</button>
      </div>
      <div class="res"></div>
+
+
+    <!-- exercicio 2 -->
+    <h1>Valor do Bitcoin</h1>
+    <div class="container-buscador">
+        <p>₿</p>
+        <p id="bitcoin-value">sdfdf</p>
+    </div>
+
+    <!-- exercicio 3 -->
+    <h1>Piada Chucknorris</h1>
+    <div>
+        <p id="piada">Piada Chucknorris</p>
+        <button class="proxima">proxima</button>
+    </div>
+
     <script>
                                     //Exercícios
 
@@ -47,7 +64,7 @@
             api.then((r) => {
                 return r.json()
             }).then((params) => {
-                console.log(params)
+                // console.log(params)
                 resultado.innerHTML = `Endereço referente ao CEP ${cep}:<br><br> Estado de ${params.estado}, ${params.logradouro} no bairro ${params.bairro}, ${params.complemento} ${params.uf}.`
             })
             } else {
@@ -55,15 +72,49 @@
             }
         }
   
+// Utilizando a API https://blockchain.info/ticker retorne no DOM o valor de compra da bitcoin em reais. atualize este valor a cada 30s
 
+        function bitcoinValue(params) {
+            
+            const valorBitcoin = document.querySelector('#bitcoin-value')
 
+            const bitcoinValue = fetch('https://blockchain.info/ticker')
 
+            bitcoinValue.then((r) => {
+                return r.json()
+            }).then((params) => {
+                // console.log(params)
+                valorBitcoin.innerHTML = ` ${params.BRL.buy} (brl)`
+            })
+        }
+        bitcoinValue()
 
-// Utilizando a API https://blockchain.info/ticker retorne no DOM o valor de compra da bitcoin and reais. atualize este valor a cada 30s
+        setInterval((params) => {
+            bitcoinValue()
+        },30000)
 
 // Utilizando a API https://api.chucknorris.io/jokes/random retorne uma piada randomica do chucknorris, toda vez que clicar em próxima
 
+    function piadaRandom(params) {
+            const apiPiada = fetch('https://api.chucknorris.io/jokes/random')
+            apiPiada.then((r) => {
+                return r.json()
+            }).then((params) => {
+                // console.log(params)
+                piadaRes.innerHTML = params.value
+            })
+    }
 
+    const btn = document.querySelector('.proxima')
+
+    const piadaRes = document.querySelector('#piada')
+
+    btn.addEventListener('click', proximaPiada)
+
+    function proximaPiada(params) {
+        piadaRandom()
+    }
+    proximaPiada()
 
 
 
