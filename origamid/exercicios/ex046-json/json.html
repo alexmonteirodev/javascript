@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Json</title>
+</head>
+<body>
+    
+    <script>
+                                                // JSON
+        
+        //JSON
+            //JavaScript Object Notation (JSON) é um formato de organização de dados, compostos por um conjunto de chave e valor. As aspas duplas são obrigatórias (se usar simples, não funciona), tanto na chave quanto no valor quando este for uma string.
+
+            //o formato json é importante porque da mesma forma que existem formas de interagir com ele em js, muitas outras linguagens tbm conseguem, então, quando o front vai mandar um arquivo pro back por exemplo, mesmo que o back use outra linguagem, o front vai mandar e formato json, porque o back não entende js mas entende json e acaba de vira uma ponte entre as linguagens.
+/*
+                {
+                "id": 1,
+                "nome": "Andre",
+                "email": "andre@origamid.com"
+                }
+*/
+//-----------------------------------------------------------------------------------------------------
+        
+        //Valores
+            //Os valores podem ser números, strings, boolean, arrays, objetos e null.
+
+/*
+                {
+                "id": 1,                            // number
+                "faculdade": true,                  // boolean
+                "pertences": [                      // Array
+                    "lapis",
+                    "caneta",
+                    "caderno"                       //obs: não usa vírgula no último
+                ],
+                "endereco": {                       // objeto
+                    "cidade": "Rio de Janeiro",
+                    "pais": "Brasil"
+                },
+                "casado": null                      // null
+                }
+*/
+//-----------------------------------------------------------------------------------------------------
+
+        //Arrays e Objetos
+            //É comum possuirmos array's com objetos em cada valor da array. Cuidado para não colocar vírgula no último item do objeto ou array.
+
+/*
+                [
+                    {
+                        id: 1,
+                        aula: 'JavaScript',
+                        tempo: '25min'
+                    },
+                    {
+                        id: 2,
+                        aula: 'HTML',
+                        tempo: '15min'
+                    },
+                    {
+                        id: 3,
+                        aula: 'CSS',
+                        tempo: '10min'
+                    },
+                ];
+*/
+            fetch('http://127.0.0.1:5502/origamid/exercicios/ex046-json/dados.json')
+            .then((r) => {
+                return r.json() //repare que o método json tbm transforma em objeto, ou seja, tira as aspas das chaves muda as aspas
+            }).then((params) => {
+                console.log(params)
+            })
+//-----------------------------------------------------------------------------------------------------
+
+        //JSON.parse() e JSON.stringify()
+            // Extiste um objeto em JS que é o JSON (que nem o MATH e outros..) e apartir disso, temos:
+
+            //JSON.parse() irá transformar um texto JSON em um objeto JavaScript. 
+            //JSON.stringify() irá transformar um objeto JavaScript em uma string no formato JSON.
+
+            const textoJSON = '{"id": 1, "titulo": "JavaScript", "tempo": "25min"}';
+            const textoOBJ = JSON.parse(textoJSON);
+
+            const enderecoOBJ = {
+            cidade: 'Rio de Janeiro',
+            rua: 'Ali Perto',
+            pais: 'Brasil',
+            numero: 50,
+            };
+            const enderecoJSON = JSON.stringify(enderecoOBJ);
+
+            //exemplo de comunicação entre front e back: (enviar um arquivo)
+
+            const configuracao = {
+                player: 'google',
+                tempo: 2.5,
+                aula: '2.1 JavaScript'
+            }
+
+            const stringConfig = JSON.stringify(configuracao)
+            console.log(stringConfig)
+//-----------------------------------------------------------------------------------------------------
+
+        //Exemplo Real
+            //Podemos guardar por exemplo no localStorage, uma string como valor de uma propriedade. E retornar essa string como um objeto.
+
+            // No localstorage, da pra guardar um objeto com chave e valor. Ao invés de pegar um objeto e guardar 1 por 1, (ex: id: 1, aula: js e por aí vai..), da pra transformar o objeto em string e guardar uma única chave no localstorage que o valor é uma string do objeto json e na hora de usar é só chamar essa string e converter em json. Ex:
+
+            const configuracoes = {
+            player: 'Google API',
+            tempo: 25.5,
+            aula: '2-1 JavaScript',
+            vitalicio: true,
+            };
+
+            localStorage.config = JSON.stringify(configuracoes) //olhar no localstorage
+
+            const pegarConfiguracoes = JSON.parse(localStorage.config)
+            console.log(pegarConfiguracoes)
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
