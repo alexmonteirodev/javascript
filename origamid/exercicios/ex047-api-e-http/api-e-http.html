@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API e HTTP</title>
+</head>
+<body>
+    
+
+    <script>
+                                    // API e HTTP
+
+                                        // API
+        
+        // API
+            // API é tudo que você interage através de comandos que geram uma resposta ou um efeito (acontece algo). 
+            //Geralmente usamos API para pegar/manusear algum dado e mostrar no teu site, existem gratuitas e que não precisam de autorização (faz o fetch e ela ja puxa) e cada api tem que entrar no site e ver como funciona. auth é autorização (se precisa ou não).
+/*
+        Application:
+
+            Um servidor, aplicativo, objeto JavaScript ou qualquer outra coisa que você interaja através de comandos. Ao digitar uma URL, estamos utilizando a API do browser para se comunicar com a API do servidor.
+
+        Programming:
+
+            Programação, isso significa que um comando irá encadear uma cadeia de eventos pré-definidos. O resultado esperado é geralmente o mesmo.
+
+        Interface:
+
+            A interface são os comandos criados para permitir a interação com a aplicação. Ex: 'VIOLAO'.toLowerCase() é um método que faz parte da interface do objeto String. A interação com a interface retorna um efeito / resposta.
+*/
+//-----------------------------------------------------------------------------------------------------
+/*
+            Exemplos de API's:
+
+            GitHub:
+
+                //obs: usamos a api do browser através do http e em resposta ele mostra os dados
+
+                https://api.github.com/users/origamid           
+                
+
+                https://api.github.com/users/origamid/followers
+
+            Array / Element:
+
+                // obs: interagimos com a api do JS com o métodos e map() causa um efeito
+                
+                [].map(); 
+
+                [].filter();
+
+                Element.classList;
+
+                Element.attributes;
+
+            Tempo:
+
+                https://www.metaweather.com/api/location/455825/
+
+                https://github.com/toddmotto/public-apis
+*/
+//-----------------------------------------------------------------------------------------------------
+
+                                            // HTTP
+
+        //HTTP
+            //Hypertext Transfer Protocol é o protocolo utilizado para enviar/receber arquivos e dados na Web.
+
+            // HTTPS é s de seguro, hoje em dia o google até mostra que não é seguro quando ta só em http
+
+
+            fetch('https://pokeapi.co/api/v2/pokemon/1')
+            .then(r => r.json())
+            .then(pokemon => {
+            console.log(pokemon);
+            });
+//-----------------------------------------------------------------------------------------------------
+        
+        //url e method
+            //Uma requisição HTTP é feita através de uma URL. O método padrão é o GET, mas existem outros como POST, UPDATE, DELETE, HEADER.
+
+
+            const url = 'https://jsonplaceholder.typicode.com/posts/';
+
+            const options = {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+            body: '{"aula": "JavaScript"}',
+            }
+
+            fetch(url, options) //o segundo parametro é um objeto que tem um method padrão e nele, da pra mudar o GET (default) pra outros como POST, UPDATE, DELETE, HEADER
+            .then(response => response.json())
+            .then(json => {
+            console.log(json);
+            });
+
+/*
+            GET:
+
+                Puxa informação, utilizado para pegar posts, usuários e etc.
+
+            POST:
+
+                Utilizado para criar posts, usuários e etc.
+
+            PUT:
+
+                Geralmente utilizado para atualizar informações.
+                //obs: pra alterar tem que falar com o item então colocaria no final da url o numero do item que gostaria de alterar por exemplo.
+
+            DELETE:
+
+                Deleta uma informação.
+
+            HEAD:
+
+                Puxa apenas os headers.
+*/
+
+            //exemplos:
+
+            //POST
+                //POST irá criar uma nova postagem, utilizando o tipo de conteúdo especificado no headers e utilizando o conteúdo do body.
+
+                const urlPost = 'https://jsonplaceholder.typicode.com/posts/';
+
+                fetch(urlPost, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+                body: '{"titulo": "JavaScript"}'
+                })
+                .then(r => r.json())
+                .then(r => console.log(r))
+//-----------------------------------------------------------------------------------------------------
+
+            //PUT
+                //PUT irá atualizar o conteúdo do URL com o que for informado no conteúdo do body.
+
+                const urlPut = 'https://jsonplaceholder.typicode.com/posts/1/';
+
+                fetch(urlPut, {
+                method: 'PUT',
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+                body: '{"titulo": "JavaScript"}'
+                })
+                .then(r => r.json())
+                .then(r => console.log(r))
+//-----------------------------------------------------------------------------------------------------
+
+            //HEAD
+                //HEAD puxa apenas os headers. É uma requisição mais leve pois não puxa o body.
+
+                const urlHead = 'https://jsonplaceholder.typicode.com/posts/1/';
+
+                fetch(urlHead, {
+                method: 'HEAD',
+                })
+                .then(response => {
+                response.headers.forEach(console.log);
+                console.log(response.headers.get('Content-Type')); //para ver todos, da um foreach(console.log) no lugar do get
+                });
+/*
+            Headers
+                Cache-Control
+
+                Tempo que o arquivo deve ficar em cache em segundos. Ex: public, max-age=3600
+
+                Content-Type
+
+                Tipo de conteúdo. Ex: text/html; charset=utf-8. Indicar o tipo de arquivo principalmente em métodos POST e PUT.
+
+                Lista de Headers
+
+                https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers
+*/
+//-----------------------------------------------------------------------------------------------------
+
+            //CORS (criado p/ definir como um servidor compartilha as informações com outro)
+                //Cross-Origin Resource Sharing, gerencia como deve ser o compartilhamento de recursos entre diferente origens.
+
+                // É definido no servidor se é permitido ou não o acesso dos recursos através de scripts por outros sites. Utilizando o Access-Control-Allow-Origin.
+
+                // Se o servidor não permitir o acesso, este será bloqueado. É possível passar por cima do bloqueio utilizando um proxy.
+
+                // CORS é um acordo entre browser / servidor ou servidor / servidor. Ele serve para dar certa proteção ao browser, mas não é inviolável.
+
+                //obs: antigamente, vamos supor que você queira puxar uma img de outro site via fetch, funcinaria normal, logo, se fosse pra puxar a img via script, abriria brecha para um arquivo malicioso entrar no site(vai que tem um virus dentro da img) e por isso, os browsers antigos bloqueavam isso, para proteção. Porém, com o tempo viu que existe uma real necessidade de fazer requisições para servidores externos, foi criado o cors, que é uma forma de definir no seu próprio servidor, se você permite ou não que outras origens consigam pegar conteúdo de você. Por isso que se tentar fazer um fetch do google, da erro pela politica de Cors, que é um acordo entre browser e servidor, então por essa política, o teu browser não deixa você acessar o servidor da google, porque a google disse que não quer, mas isso é uma política e da pra passar por cima disso, usando o proxy e vai dar pra acessar mas quando você abre uma porta pode vir coisa que você tbm não quer, então não é seguro
+/*
+                const urlCors = 'https://cors-anywhere.herokuapp.com/https://www.google.com/';
+                const div = document.createElement('div');
+
+                fetch(urlCors)
+                .then(r => r.text())
+                .then(r => {
+                div.innerHTML = r;
+                console.log(div);
+                });
+*/
+   
+    </script>
+</body>
+</html>
