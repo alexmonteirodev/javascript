@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids With the Greatest Number of Candies</title>
+    <style>
+        body{
+            background-color: rgb(231, 222, 222);
+        }
+    </style>
+</head>
+<body>
+    <h1>Crianças com o maior número de doces</h1>
+
+    <p>Não há crianças com doces. Você recebe uma array inteira candies, onde cada candies[i] representa o número de doces que a ith criança possui, e um número inteiro extraCandies, denotando o número de doces extras que você possui.</p>
+
+    <p>Retorna um resultado de array booleano de comprimento n, onde result[i] é verdadeiro se, depois de dar ao ith filho todos os doces extras, ele terá o maior número de doces entre todas as crianças, ou falso caso contrário.</p>
+
+    <p>Observe que várias crianças podem ter o maior número de doces.</p>
+
+    <p>Exemplo:</p>
+
+    <p>
+        Input: word1 = "abc", word2 = "pqr" <br>
+        Output: "apbqcr" <br>
+        Explanation: The merged string will be merged as so: <br>
+        word1:  a   b   c <br>
+        word2:    p   q   r <br>
+        merged: a p b q c r <br>
+    </p>
+
+
+    <script>
+
+        // var kidsWithCandies = function(candies, extraCandies) {
+            
+        // };
+
+        const candies = [2,3,5,1,3]
+        const extraCandies = 3
+
+        function kidsWithCandies(candies, extraCandies) {
+
+            const maxCandies = Math.max(...candies) 
+            //console.log(maxCandies) //5
+
+            return candies.map((candy) => {
+                // console.log(candy + extraCandies)
+                const novaArr = candy + extraCandies
+                return novaArr >= maxCandies ? true:false
+            })
+        }
+        kidsWithCandies(candies, extraCandies)
+
+
+/*
+    function kidsWithCandies(candies, extraCandies) {
+       
+        const maxCandies = Math.max(...candies);  // Encontra o maior número de doces inicialmente
+
+        // Verifica para cada criança se, ao adicionar os doces extras, ela terá o maior número
+        return candies.map(candy => candy + extraCandies >= maxCandies); 
+    }
+
+    // Exemplo de uso
+    const candies = [2, 3, 5, 1, 3];
+    const extraCandies = 3;
+
+    const output = kidsWithCandies(candies, extraCandies);
+    console.log(output); // [true, true, true, false, true]
+*/
+    </script>
+
+</body>
+</html>
