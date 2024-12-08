@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async and Await</title>
+</head>
+<body>
+    
+
+
+
+    <script>
+                                        // async / await
+
+        // Async & Await
+            // A palavra chave async indica que a função possui partes assíncronas e que você pretende esperar a resolução da mesma antes de continuar. O await irá indicar a promise que devemos esperar. Faz parte do ES8.
+            // Async mostra diz pro js que aquela function tem partes assincronas e com o await, definimos qual promessa queremos esperar ocorrer.
+            
+
+            //await funciona como se fosse um then da promise
+            // obs: await só é usado na frente de partes que retornam promessas.
+
+            async function testeAwait(params) { //repare que async vem antes da function
+                const requisicaoSemAwait = fetch('./dados.json')
+                console.log(requisicaoSemAwait) //retorna promise
+
+                const requisicaoComAwait = await fetch('./dados.json')
+                console.log(requisicaoComAwait) //retorna o response
+            }
+            testeAwait()
+            //pq o fetch retorna a promessa e com await, retorna o resultado da promessa.
+
+            //para comparar:
+            const testeThen = fetch('./dados.json').then((r) => {
+                console.log(r) //retorna response
+            })
+            console.log(testeThen) //retorna promise
+
+
+            //exemplo:
+
+            async function puxarDados(params) {
+                const responseDados = await fetch('./dados.json')
+                const jsonDados = await responseDados.json()
+                console.log(jsonDados.aula) // JavaScript
+            }
+            puxarDados()
+
+//-----------------------------------------------------------------------------------------------------
+
+        //then / async
+            //A diferença é uma sintaxe mais limpa.
+
+            //abaixo um exemplo de duas functions que fazem a mesma coisa, uma usando async e outra o then
+
+            async function iniciarAsync() {
+                const dadosResponse = await fetch('./dados.json');
+                const dadosJSON = await dadosResponse.json();
+                document.body.innerText = dadosJSON.aula;
+            }
+            iniciarAsync();
+
+            function iniciarFetch() {
+                fetch('./dados.json')
+                .then(dadosResponse => dadosResponse.json())
+                .then(dadosJSON => {
+                    document.body.innerText = dadosJSON.aula;
+                })
+            }
+            iniciarFetch();
+//-----------------------------------------------------------------------------------------------------
+
+        //Try / Catch
+            //Para lidarmos com erros nas promises, podemos utilizar o try e o catch na função.
+
+            //funciona como se fosse um if/else em que o if (try) e o catch (else)
+
+            // try = tente fazer isso, se qualquer erro ocorrer, faça o catch
+
+            async function usandoTry() {
+                try{
+                    const responseDados = await fetch('./dadoss.json') //um s a mais
+                    const jsonDados = await responseDados.json()
+                    console.log(jsonDados.aula)
+                } catch{
+                    console.log('Error')
+                }
+
+            }
+            usandoTry()
+//-----------------------------------------------------------------------------------------------------
+
+        //Iniciar Fetch ao Mesmo Tempo (macete)
+            //Não precisamos esperar um fetch para começarmos outro. Porém precisamos esperar a resposta resolvida do fetch para transformarmos a response em json.
+
+/*
+            async function puxarDadosAoMesmoTempo(params) {
+                const promiseDados = fetch('./dados.json')
+                const responseClientes = fetch('./clientes.json')
+
+                const responseDados = await promiseDados
+                const jsonDados = await responseDados.json()
+                console.log(jsonDados)
+            }
+            puxarDadosAoMesmoTempo()
+*/
+            // no exemplo acima, se cria uma nova const responseDados para pegar o response, mas poderia encurtar esse caminho direto no jsonDados usando (), pq em uma expressão, o js resolve primiero o que está em (), logo temos:
+
+
+           async function puxarDadosAoMesmoTempo(params) {
+                const promiseDados = fetch('./dados.json')
+                const responseClientes = fetch('./clientes.json')
+
+                const jsonDados = await (await promiseDados).json() //macete
+                console.log(jsonDados)
+            }
+            puxarDadosAoMesmoTempo()
+//-----------------------------------------------------------------------------------------------------
+
+        //Promise
+            //O resultado da expressão à frente de await tem que ser uma promise. E o retorno do await será sempre o resultado desta promise.
+            //como se dissesse: espera o resultado dessa promise ocorrer. Portanto a parte importante de se entender é que o await espera o resultado de uma promise, porque só funciona com promise:
+
+            //sem promise:
+            async function asyncSemPromise(params) {
+                //console não irá esperar, vai ignorar o await pq o settimeout não é uma promise.
+                await setTimeout(() => console.log('Depois de 1s, sem promise'), 1000)
+                console.log('acabou, ocorre instantaneamente') //acabou aparece antes no console
+            }
+            asyncSemPromise()
+
+            //com promise:
+            async function iniciarAsync(params) {
+                await new Promise(resolve => {
+                    setTimeout(() => {
+                    console.log('Depois de um 1s, com promise')
+                    resolve()
+                },1000)
+                })
+                console.log('acabou, com promise, ocorre depois de 1 sec')
+            }
+    </script>
+</body>
+</html>
