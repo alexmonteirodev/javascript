@@ -28,7 +28,70 @@
 
 
     <script>
+// var canPlaceFlowers = function(flowerbed, n) {
+    
+// };
+        
+        function canPLaceFlowers(arrFlowers, n) {
+            arrFlowers.forEach((params) => {
+                console.log(params)
+            })
+          
+        }
+        canPLaceFlowers([1,0,0,0,1], 1)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*
+        function canPlaceFlowers(arrFlowers, n) {
+    // Iterar sobre o array usando forEach
+    arrFlowers.forEach((params, i) => {
+        console.log(`Posição ${i}: ${params}`); // Exibe o valor de cada posição
+    });
+  
+    // Aqui entra a lógica para verificar onde plantar as flores
+    for (let i = 0; i < arrFlowers.length; i++) {
+        if (arrFlowers[i] === 0) {  // Verifica se o terreno está vazio
+            let emptyLeft = (i === 0 || arrFlowers[i - 1] === 0);  // Verifica se a posição à esquerda é vazia ou é a borda
+            let emptyRight = (i === arrFlowers.length - 1 || arrFlowers[i + 1] === 0);  // Verifica se a posição à direita é vazia ou é a borda
+
+            if (emptyLeft && emptyRight) {
+                arrFlowers[i] = 1; // Planta uma flor
+                n--; // Diminui o número de flores a serem plantadas
+            }
+        }
+    }
+
+    return n <= 0; // Retorna true se todas as flores puderam ser plantadas
+}
+
+// Testando a função
+console.log(canPlaceFlowers([1, 0, 0, 0, 1], 1)); // true
+console.log(canPlaceFlowers([1, 0, 0, 0, 1], 2)); // false
+        */
     </script>
 
 </body>
