@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kids With the Greatest Number of Candies</title>
+    <title>Can Place Flowers</title>
     <style>
         body{
             background-color: rgb(231, 222, 222);
@@ -32,21 +32,36 @@
     
 // };
         
-        function canPLaceFlowers(arrFlowers, n) {
-            arrFlowers.forEach((params) => {
-                console.log(params)
-            })
-          
-        }
-        canPLaceFlowers([1,0,0,0,1], 1)
+       function placeFlowers(flowerbed, n) {
+           for (let i = 0; i < flowerbed.length; i++) {
+            let verificaEsquerda = (i===0 || flowerbed[i-1] === 0 ) //index -1 = esquerda
+            let verificaDireita = (i === flowerbed.length-1 || flowerbed[i+1] === 0)
 
+            if (verificaEsquerda && verificaDireita &&  flowerbed[i] === 0) {
+                flowerbed[i] = 1
+                n--
+            }
+           }
+           return n <= 0
+       }
 
+       placeFlowers([1,0,0,0,1], 1)
 
+       console.log(placeFlowers([1,0,0,0,1], 1)) //true
+       console.log(placeFlowers([1,0,0,0,1], 2)) // false
 
+       
+/*
+       vizualização
 
+       Índices:      [0] [1] [2] [3]
+       Valores:      [0] [1] [0] [1]
 
-
-
+        Se você estiver em:
+        
+        Posição  i = 2 :
+        A posição à esquerda é  i - 1 = 1  → arrFlowers[1] = 1.
+*/
 
 
 
