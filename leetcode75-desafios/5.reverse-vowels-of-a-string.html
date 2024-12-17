@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse Vowels of a String</title>
+    <style>
+        body{
+            background-color: rgb(231, 222, 222);
+        }
+    </style>
+</head>
+<body>
+    <h1>Reverse Vowels of a String</h1>
+
+    <p>Given a string s, reverse only all the vowels in the string and return it.</p>
+
+    <p>The vowels are 'a', 'e', 'i', 'o', and 'u', and they can appear in both lower and upper cases, more than once.</p>
+
+    <p>Exemplo:</p>
+
+    <p>
+        Input: s = "IceCreAm"<br>
+        Output: "AceCreIm"
+    </p>
+
+    <p>Explanation: <br>
+
+    The vowels in s are ['I', 'e', 'e', 'A']. On reversing the vowels, s becomes "AceCreIm".</p>
+
+
+    <script>
+// var reverseVowels = function(s) {
+    
+// };
+        
+     
+    function reverseVowels(s) {
+        const arrS = s.split('')
+        const vowels = 'aeiouAEIOU'
+       console.log(vowels.split(''))
+
+    }
+
+console.log(reverseVowels('IceCream'))
+
+
+
+//1- loop e separar todas vogais
+//2- inverter todas as vogais
+//3- devolver no loop
+// retornar
+
+
+
+
+
+// function reverseVowels(s) {
+//     const vowels = "aeiouAEIOU"; // Lista de vogais
+//     const chars = s.split(""); // Transforma a string em um array
+//     const foundVowels = []; // Array para armazenar as vogais encontradas
+
+//     // Passo 1: Separar todas as vogais contidas em chars
+//     for (let char of chars) {
+//         if (vowels.includes(char)) {
+//             foundVowels.push(char);
+//         }
+//     }
+
+//     // Passo 2: Inverter as vogais encontradas
+//     foundVowels.reverse();
+
+//     // Passo 3: Recolocar as vogais invertidas no array original
+//     let vowelIndex = 0; // Índice para acessar as vogais invertidas
+//     for (let i = 0; i < chars.length; i++) {
+//         if (vowels.includes(chars[i])) {
+//             chars[i] = foundVowels[vowelIndex];
+//             vowelIndex++;
+//         }
+//     }
+
+//     return chars.join(""); // Junta o array de volta em uma string
+// }
+
+// // Exemplos de uso
+// console.log(reverseVowels("IceCreAm")); // Saída: "AceCreIm"
+// console.log(reverseVowels("leetcode")); // Saída: "leotcede"
+// console.log(reverseVowels("hello"));    // Saída: "holle"
+// console.log(reverseVowels("programming")); // Saída: "progremming"
+
+
+
+
+    </script>
+
+</body>
+</html>
