@@ -30,28 +30,39 @@
 
 
     <script>
-// var reverseVowels = function(s) {
-    
-// };
         
-     
-    function reverseVowels(s) {
-        const arrS = s.split('')
-        const vowels = 'aeiouAEIOU'
-       console.log(vowels.split(''))
+        function reverseVowels(s) {
+            console.log(s)
+            const arrS = s.split('')
+            const vowels = 'aeiouAEIOU'
+            const findedVowels = []
 
-    }
+            for (const letters of arrS) {
+                if (vowels.includes(letters)) {
+                    findedVowels.push(letters)
+                }
+            }
+            const reverseVowelsFinded = findedVowels.reverse()
 
-console.log(reverseVowels('IceCream'))
+            let index = 0
+            for (let i = 0; i < arrS.length; i++) {
+                if (vowels.includes(arrS[i])) {
+                    arrS[i] = reverseVowelsFinded[index]
+                    index++
+                }
+            }
+            return arrS.join('')
+        }
+
+       console.log(reverseVowels('IceCream'))
 
 
 
-//1- loop e separar todas vogais
-//2- inverter todas as vogais
-//3- devolver no loop
+//pegar s e transformar em array
+// pegar as vogais em uma arr
+// inverter
+//recolocar
 // retornar
-
-
 
 
 
@@ -62,26 +73,25 @@ console.log(reverseVowels('IceCream'))
 
 //     // Passo 1: Separar todas as vogais contidas em chars
 //     for (let char of chars) {
+        
 //         if (vowels.includes(char)) {
 //             foundVowels.push(char);
 //         }
 //     }
-
 //     // Passo 2: Inverter as vogais encontradas
 //     foundVowels.reverse();
 
 //     // Passo 3: Recolocar as vogais invertidas no array original
-//     let vowelIndex = 0; // Índice para acessar as vogais invertidas
-//     for (let i = 0; i < chars.length; i++) {
-//         if (vowels.includes(chars[i])) {
-//             chars[i] = foundVowels[vowelIndex];
-//             vowelIndex++;
-//         }
-//     }
+    // let vowelIndex = 0; // Índice para acessar as vogais invertidas
+    // for (let i = 0; i < chars.length; i++) {
+    //     if (vowels.includes(chars[i])) {
+    //         chars[i] = foundVowels[vowelIndex];
+    //         vowelIndex++;
+    //     }
+    // }
 
 //     return chars.join(""); // Junta o array de volta em uma string
 // }
-
 // // Exemplos de uso
 // console.log(reverseVowels("IceCreAm")); // Saída: "AceCreIm"
 // console.log(reverseVowels("leetcode")); // Saída: "leotcede"
