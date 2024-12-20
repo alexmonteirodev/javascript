@@ -30,31 +30,79 @@
 
 
     <script>
+
+
+            function reverseVowels(s) {
+                const vowels = 'aeiouAEIOU'
+                const arrS = s.split('')
+                const vowelsFinded = []
+
+                for (let i = 0; i < arrS.length; i++) { //take de vowels
+                    if (vowels.includes(arrS[i])) {
+                        vowelsFinded.push(arrS[i])
+                    }
+                }
+                const vowelsFindedReverse = vowelsFinded.reverse() // reverse the vowels
+
+                let index = 0
+                for (let i = 0; i < arrS.length; i++) {
+                    if (vowels.includes(arrS[i])) {
+                        arrS[i] = vowelsFindedReverse[index]
+                        index++
+                    }
+                }
+                return arrS.join('')
+                
+            }
+
+            console.log(reverseVowels('IceCream'))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
-        function reverseVowels(s) {
-            console.log(s)
-            const arrS = s.split('')
-            const vowels = 'aeiouAEIOU'
-            const findedVowels = []
+    //     function reverseVowels(s) {
+    //         console.log(s)
+    //         const arrS = s.split('')
+    //         const vowels = 'aeiouAEIOU'
+    //         const findedVowels = []
 
-            for (const letters of arrS) {
-                if (vowels.includes(letters)) {
-                    findedVowels.push(letters)
-                }
-            }
-            const reverseVowelsFinded = findedVowels.reverse()
+    //         for (const letters of arrS) {
+    //             if (vowels.includes(letters)) {
+    //                 findedVowels.push(letters)
+    //             }
+    //         }
+    //         const reverseVowelsFinded = findedVowels.reverse()
 
-            let index = 0
-            for (let i = 0; i < arrS.length; i++) {
-                if (vowels.includes(arrS[i])) {
-                    arrS[i] = reverseVowelsFinded[index]
-                    index++
-                }
-            }
-            return arrS.join('')
-        }
+    //         let index = 0
+    //         for (let i = 0; i < arrS.length; i++) {
+    //             if (vowels.includes(arrS[i])) {
+    //                 arrS[i] = reverseVowelsFinded[index]
+    //                 index++
+    //             }
+    //         }
+    //         return arrS.join('')
+    //     }
 
-       console.log(reverseVowels('IceCream'))
+    //    console.log(reverseVowels('IceCream'))
 
 
 
