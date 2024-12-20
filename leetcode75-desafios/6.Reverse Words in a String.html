@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse Words in a String</title>
+    <style>
+        body{
+            background-color: rgb(231, 222, 222);
+        }
+    </style>
+</head>
+<body>
+    <h1>Reverse Words in a String</h1>
+
+    <p>Given an input string s, reverse the order of the words.</p>
+
+    <p>A word is defined as a sequence of non-space characters. The words in s will be separated by at least one space.</p>
+
+    <p>Return a string of the words in reverse order concatenated by a single space.</p>
+
+    <p>Note that s may contain leading or trailing spaces or multiple spaces between two words. The returned string should only have a single space separating the words. Do not include any extra spaces.</p>
+
+    <p>Exemplo:</p>
+
+    <p>
+        Input: s = "the sky is blue" <br>   
+        Output: "blue is sky the"
+    </p>
+
+    <p>Explanation: <br>
+
+        Your reversed string should not contain leading or trailing spaces.</p>
+
+
+    <script>
+
+
+        function reverseWords(s) {
+            const arrS = s.split(' ')
+            const newSentence = []
+            // console.log(arrS)
+            const arrSWithoutSpaces = arrS.filter((word) => { // filter só mantem o que for true
+                return word.trim() !== '' //condição para espaços darem false. word.trim reduz todos os espaços para um só e assim comparar com '' (espaco unico)
+            })
+            // console.log(arrSWithoutSpaces)
+
+            const reverseArrSWithoutSpaces = arrSWithoutSpaces.reverse()
+
+            return reverseArrSWithoutSpaces.join(' ')
+        
+
+
+        }
+        
+        reverseWords('  Hello  World ')
+        console.log(reverseWords('  Hello  World '))
+
+    </script>
+
+</body>
+</html>
