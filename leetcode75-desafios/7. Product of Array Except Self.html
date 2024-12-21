@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product of Array Except Self</title>
+    <style>
+        body{
+            background-color: rgb(231, 222, 222);
+        }
+    </style>
+</head>
+<body>
+    <h1>Product of Array Except Self</h1>
+
+    <p>Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].</p>
+
+    <p>The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.</p>
+
+    <p>You must write an algorithm that runs in O(n) time and without using the division operation.</p>
+
+    <p>Exemplo:</p>
+
+    <p>
+        Input: nums = [1,2,3,4] <br>
+        Output: [24,12,8,6]
+    </p>
+
+    <p>Explanation: <br>
+
+        Basicamente é tirar num[i] do array e encontrar o produto (o resto multiplicado por eles mesmos) </p>
+
+
+    <script>
+
+        function productArray(nums) {
+            const answer = new Array(nums.length).fill(1) //cria nova array com a quantidade de indexs de nums e o valor de cada um é 1
+            console.log(answer)
+
+            // Prefixos
+            let prefix = 1
+            for (let i = 0; i < nums.length; i++) {
+                answer[i] = 1
+                answer[i] *= nums[i]  
+            }
+            console.log(answer)
+
+            // Sufixos
+
+            for (let i = 0; i < array.length; i++) {
+                const element = array[i];
+                
+            }
+
+
+
+
+            return answer
+
+        }
+
+
+        productArray([1,2,3,4])
+        
+
+//     function productExceptSelf(nums) {
+//     const n = nums.length;
+//     const answer = new Array(n).fill(1); // Array resultado
+    
+//     // Array para guardar prefixos
+//     let prefix = 1;
+//     for (let i = 0; i < n; i++) {
+//         answer[i] = prefix;
+//         prefix *= nums[i]; // Atualiza o prefixo multiplicando pelo atual
+//     }
+    
+//     // Multiplica pelos sufixos diretamente
+//     let suffix = 1;
+//     for (let i = n - 1; i >= 0; i--) {
+//         answer[i] *= suffix;
+//         suffix *= nums[i]; // Atualiza o sufixo multiplicando pelo atual
+//     }
+    
+//     return answer;
+// }
+
+// // Testando com exemplos
+// console.log(productExceptSelf([1, 2, 3, 4]));  // Saída: [24, 12, 8, 6]
+// console.log(productExceptSelf([-1, 1, 0, -3, 3]));  // Saída: [0, 0, 9, 0, 0]
+
+
+
+
+
+
+    </script>
+
+</body>
+</html>
