@@ -34,34 +34,47 @@
     <script>
 
         function productArray(nums) {
+            console.log(nums)
             const answer = new Array(nums.length).fill(1) //cria nova array com a quantidade de indexs de nums e o valor de cada um é 1
             console.log(answer)
 
             // Prefixos
             let prefix = 1
             for (let i = 0; i < nums.length; i++) {
-                answer[i] = 1
-                answer[i] *= nums[i]  
+                answer[i] = prefix
+                prefix *= nums[i]  
             }
             console.log(answer)
 
             // Sufixos
 
-            for (let i = 0; i < array.length; i++) {
-                const element = array[i];
+            // for (let i = nums.length - 1; i < array.length; i++) {
+            //     const element = array[i];
                 
-            }
+            // }
 
+ 
 
-
-
-            return answer
+            // return answer
 
         }
 
 
         productArray([1,2,3,4])
         
+
+
+        // //logica do prefix seria assim: 
+        //     // Inicializamos o primeiro elemento de answer com 1
+        //     answer[0] = 1;
+
+        //     // Passo 1: Calcular o produto dos elementos à esquerda (usando `i-1`)
+        //     for (let i = 1; i < n; i++) {
+        //         answer[i] = answer[i - 1] * nums[i - 1];
+        //     }
+
+
+
 
 //     function productExceptSelf(nums) {
 //     const n = nums.length;
