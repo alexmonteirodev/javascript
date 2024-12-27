@@ -39,12 +39,12 @@
             console.log(answer)
 
             // Prefixos
-            let prefix = 1
-            for (let i = 0; i < nums.length; i++) {
-                answer[i] = prefix
-                prefix *= nums[i]  
-            }
-            console.log(answer)
+            // let prefix = 1
+            // for (let i = 0; i < nums.length; i++) {
+            //     answer[i] = prefix
+            //     prefix *= nums[i]  
+            // }
+            // console.log(answer)
 
             // Sufixos
 
@@ -53,15 +53,29 @@
                 
             // }
 
- 
+            //tentando fazer de forma mais visual
+            //prefix
+            for (let i = 1; i < nums.length; i++) {
+                console.log(nums[i])
+                answer[i] = answer[i-1] * nums[i-1]
+            }
+            console.log(answer)
+            //suffix - como se fosse um [i] a mais da direita para ter com o que multiplicar
+            for (let i = answer.length-2; i >= 0; i--) {
+                console.log(answer[i])
+                answer[i] = answer[i+1] * nums[i+1] 
+            }
+            console.log(answer)
 
+            
             // return answer
 
         }
 
 
-        productArray([1,2,3,4])
+        productArray([1,2,3,4]) // Output: [24,12,8,6]
         
+        //logica sem O(n) seria pegar o produto do array e dividir esse valor por array[i] e não dar varios loops tirando o array[i] a cada vez
 
 
         // //logica do prefix seria assim: 
@@ -72,9 +86,28 @@
         //     for (let i = 1; i < n; i++) {
         //         answer[i] = answer[i - 1] * nums[i - 1];
         //     }
+/*
+        Para o array nums = [1, 2, 3, 4], a execução seria:
+	1.	Primeiro loop (produtos à esquerda):
+	•	Inicializamos answer = [1, 0, 0, 0].
+	•	Em i=1, answer[1] = answer[0] * nums[0] = 1 * 1 = 1, então answer = [1, 1, 0, 0].
+	•	Em i=2, answer[2] = answer[1] * nums[1] = 1 * 2 = 2, então answer = [1, 1, 2, 0].
+	•	Em i=3, answer[3] = answer[2] * nums[2] = 2 * 3 = 6, então answer = [1, 1, 2, 6].
+
+	2.	Segundo loop (produtos à direita):
+	•	Inicializamos suffix = 1.
+	•	Em i=3, answer[3] = answer[3] * suffix = 6 * 1 = 6, depois atualizamos suffix = suffix * nums[3] = 1 * 4 = 4.
+	•	Em i=2, answer[2] = answer[2] * suffix = 2 * 4 = 8, depois atualizamos suffix = 4 * 3 = 12.
+	•	Em i=1, answer[1] = answer[1] * suffix = 1 * 12 = 12, depois atualizamos suffix = 12 * 2 = 24.
+	•	Em i=0, answer[0] = answer[0] * suffix = 1 * 24 = 24, depois atualizamos suffix = 24 * 1 = 24.
+
+O array final de answer seria [24, 12, 8, 6], que é o produto dos elementos, exceto o próprio elemento.
+*/
 
 
 
+
+        //solucao
 
 //     function productExceptSelf(nums) {
 //     const n = nums.length;
