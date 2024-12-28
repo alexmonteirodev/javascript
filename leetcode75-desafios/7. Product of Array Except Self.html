@@ -34,80 +34,57 @@
     <script>
 
         function productArray(nums) {
-            console.log(nums)
-            const answer = new Array(nums.length).fill(1) //cria nova array com a quantidade de indexs de nums e o valor de cada um é 1
-            console.log(answer)
+ 
+            // console.log(nums)
+            const answerLeft = new Array(nums.length).fill(1)
+            const answerRight = new Array(nums.length).fill(1)
+            const finalAnswer = new Array(nums.length).fill(1)
 
-            // Prefixos
-            // let prefix = 1
-            // for (let i = 0; i < nums.length; i++) {
-            //     answer[i] = prefix
-            //     prefix *= nums[i]  
-            // }
-            // console.log(answer)
-
-            // Sufixos
-
-            // for (let i = nums.length - 1; i < array.length; i++) {
-            //     const element = array[i];
-                
-            // }
-
-            //tentando fazer de forma mais visual
-            //prefix
+            //left loop
             for (let i = 1; i < nums.length; i++) {
-                console.log(nums[i])
-                answer[i] = answer[i-1] * nums[i-1]
+                answerLeft[i] = nums[i-1] * answerLeft[i-1]
             }
-            console.log(answer)
-            //suffix - como se fosse um [i] a mais da direita para ter com o que multiplicar
-            for (let i = answer.length-2; i >= 0; i--) {
-                console.log(answer[i])
-                answer[i] = answer[i+1] * nums[i+1] 
-            }
-            console.log(answer)
-
+            // console.log(answerLeft)
             
-            // return answer
+            // right loop 
+            for (let i = nums.length-2; i >= 0; i--) {
+                answerRight[i] = nums[i+1] * answerRight[i+1]
+            }
+            // console.log(answerRight)
 
+            //multply arrays left*right
+            for (let i = 0; i < finalAnswer.length; i++) {
+                finalAnswer[i] = answerLeft[i] * answerRight[i]
+            }
+            // console.log(finalAnswer)
+
+            return finalAnswer
         }
 
 
         productArray([1,2,3,4]) // Output: [24,12,8,6]
+
+
+        //explanation, using O(n):
+
+        // input    1 [1,2,3,4] 1        
         
-        //logica sem O(n) seria pegar o produto do array e dividir esse valor por array[i] e não dar varios loops tirando o array[i] a cada vez
+        //(inclui o 1 com o fill e comecei o loop a partir do index 1 da ida e na volta no index penultimo e ficou o 1 no lugar e por isso não usei suffix nem prefix)
 
-
-        // //logica do prefix seria assim: 
-        //     // Inicializamos o primeiro elemento de answer com 1
-        //     answer[0] = 1;
-
-        //     // Passo 1: Calcular o produto dos elementos à esquerda (usando `i-1`)
-        //     for (let i = 1; i < n; i++) {
-        //         answer[i] = answer[i - 1] * nums[i - 1];
-        //     }
-/*
-        Para o array nums = [1, 2, 3, 4], a execução seria:
-	1.	Primeiro loop (produtos à esquerda):
-	•	Inicializamos answer = [1, 0, 0, 0].
-	•	Em i=1, answer[1] = answer[0] * nums[0] = 1 * 1 = 1, então answer = [1, 1, 0, 0].
-	•	Em i=2, answer[2] = answer[1] * nums[1] = 1 * 2 = 2, então answer = [1, 1, 2, 0].
-	•	Em i=3, answer[3] = answer[2] * nums[2] = 2 * 3 = 6, então answer = [1, 1, 2, 6].
-
-	2.	Segundo loop (produtos à direita):
-	•	Inicializamos suffix = 1.
-	•	Em i=3, answer[3] = answer[3] * suffix = 6 * 1 = 6, depois atualizamos suffix = suffix * nums[3] = 1 * 4 = 4.
-	•	Em i=2, answer[2] = answer[2] * suffix = 2 * 4 = 8, depois atualizamos suffix = 4 * 3 = 12.
-	•	Em i=1, answer[1] = answer[1] * suffix = 1 * 12 = 12, depois atualizamos suffix = 12 * 2 = 24.
-	•	Em i=0, answer[0] = answer[0] * suffix = 1 * 24 = 24, depois atualizamos suffix = 24 * 1 = 24.
-
-O array final de answer seria [24, 12, 8, 6], que é o produto dos elementos, exceto o próprio elemento.
-*/
-
-
-
-
-        //solucao
+        // L          [1,1,2,6]
+        //              x x x x
+        // R          [24,12,4,1]
+        //                =
+        // A          [24,12,8,6] 
+//--
+        //curiosidade: logica SEM O(n) seria pegar o produto do array (24) e dividir esse valor por cada item da array (array[i]):
+        //produto total arr = 24
+        // [0] = 24 / 1 = 24
+        // [1] = 24 / 2 = 12
+        // [2] = 24 / 3 = 8
+        // [3] = 24 / 4 = 6
+//--
+        //solucao gpt
 
 //     function productExceptSelf(nums) {
 //     const n = nums.length;
@@ -133,12 +110,6 @@ O array final de answer seria [24, 12, 8, 6], que é o produto dos elementos, ex
 // // Testando com exemplos
 // console.log(productExceptSelf([1, 2, 3, 4]));  // Saída: [24, 12, 8, 6]
 // console.log(productExceptSelf([-1, 1, 0, -3, 3]));  // Saída: [0, 0, 9, 0, 0]
-
-
-
-
-
-
     </script>
 
 </body>
