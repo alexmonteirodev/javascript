@@ -30,10 +30,29 @@
     <script>
 
         function increasingTriplet(nums) {
+            const answer = []
             console.log(nums)
+            for (let i = 0; i < nums.length; i++) {
+                console.log(nums[i])
+                let numero = nums[i]
+                if (numero> nums[i-1]) {
+                    answer.push(nums[i])
+                    console.log(answer)
 
+                } else {
+                    console.log('menor')
+                    
+                }
+                
+            }
 
-
+            for (let i = 0; i < answer.length; i++) {
+                if (answer >= 3 && answer[i]<answer[i+1]) {
+                    return true
+                }else {
+                    return false
+                }
+            }
 
 
 
@@ -42,6 +61,26 @@
         increasingTriplet([1,2,3,4,5])
 
 
+
+
+
+    // let first = Infinity; // O menor número encontrado
+    // let second = Infinity; // O segundo menor número encontrado
+
+    // for (let num of nums) {
+    //     if (num <= first) {
+    //         // Atualiza o menor número
+    //         first = num;
+    //     } else if (num <= second) {
+    //         // Atualiza o segundo menor número
+    //         second = num;
+    //     } else {
+    //         // Encontramos o terceiro número maior que `first` e `second`
+    //         return true;
+    //     }
+    // }
+
+    // return false; 
     </script>
 
 </body>
