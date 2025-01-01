@@ -30,39 +30,47 @@
     <script>
 
         function increasingTriplet(nums) {
-            const answer = []
-            console.log(nums)
-            for (let i = 0; i < nums.length; i++) {
-                console.log(nums[i])
-                let numero = nums[i]
-                if (numero> nums[i-1]) {
-                    answer.push(nums[i])
-                    console.log(answer)
-
-                } else {
-                    console.log('menor')
-                    
-                }
-                
-            }
-
-            for (let i = 0; i < answer.length; i++) {
-                if (answer >= 3 && answer[i]<answer[i+1]) {
-                    return true
-                }else {
-                    return false
+          const first = Infinity
+            for (let i = 0; i < nums.length; i++) { //verifica numero a numero na ordem em que aparece no array, por isso sabe que o numero menor é anterior ao maior
+                if (nums[i] <= first) {
+                first = nums[i]
                 }
             }
 
-
-
-
+            //O loop não precisa verificar explicitamente os índices porque a iteração já segue a ordem dos elementos do array.
         }
-        increasingTriplet([1,2,3,4,5])
+        increasingTriplet([1,2,3,4,5]) // true
+
+/*
+Em JavaScript, Infinity é uma propriedade global que representa o valor do infinito matemático. Ela é usada para simbolizar um número maior que qualquer outro número representável.
+
+obs: infinity, ler como maior numero possível, o macete aqui é que infinity será sempre maior que qualquer numero da array
+
+Características do Infinity:
+	1.	Tipo de Dados: O tipo de dado de Infinity é number.
+	2.	Sinal: Pode ser positivo (Infinity) ou negativo (-Infinity).
+	3.	Definição Matemática:
+	•	Infinity é maior do que qualquer outro número.
+	•	-Infinity é menor do que qualquer outro número.
 
 
+    diferença entre for of e for in:
 
+    for of: retorna valor do elemento
+        let word = "Hello";
 
+        for (let char of word) {
+            console.log(char); // H, e, l, l, o
+        }
+
+    for in: retorna índices (arrays) ou chaves (objetos)
+
+        let nums = [10, 20, 30];
+
+        for (let i in nums) {
+            console.log(i, nums[i]); // Índices e valores: 0 10, 1 20, 2 30
+        }
+*/
 
     // let first = Infinity; // O menor número encontrado
     // let second = Infinity; // O segundo menor número encontrado

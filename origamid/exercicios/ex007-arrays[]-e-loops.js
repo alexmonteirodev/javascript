@@ -38,6 +38,25 @@ var videoGames = ['Switch', 'PS4', 'XBox']
 for (let index = 0; index < array.length; index++) {
     console.log(videoGames[index]); 
 }
+/*
+    também existem o for of e o for in.
+
+        Diferença entre for of e for in:
+
+        // for of: retorna valor do elemento
+
+            let word = "Hello";
+            for (let char of word) {
+                console.log(char); // H, e, l, l, o
+            }
+                
+        // for in: retorna índices (arrays) ou chaves (objetos)
+
+            let nums = [10, 20, 30];
+            for (let i in nums) {
+                console.log(i, nums[i]); // Índices e valores: 0 10, 1 20, 2 30
+            }
+*/
 //-------------------------------------------------------------------------------------------------------
 
 //EXERCÍCIOS:
