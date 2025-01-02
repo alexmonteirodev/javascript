@@ -33,12 +33,54 @@
         Output: Return 6, and the first 6 characters of the input array should be: ["a","2","b","2","c","3"]
     </p>
 
+    <p>
+        exemple 2:
+        Input:  Input: chars = ["a","b","b","b","b","b","b","b","b","b","b","b","b"] <br>
+        Return 4, and the first 4 characters of the input array should be: ["a","b","1","2"].
+    </p>
+
     <p>Explanation: <br>
 
     The groups are "aa", "bb", and "ccc". This compresses to "a2b2c3".</p>
 
 
     <script>
+
+        function compress(chars) {
+            console.log(chars)
+
+            let index = 0
+            let init = chars[index]
+
+            for (let i = 0; i < chars.length; i++) {
+                
+                if (chars[i] === init) {
+                    
+                } else{
+                    index++
+                }
+            }
+
+
+
+
+
+        }
+
+        //compress(["a","b","b","b","b","b","b","b","b","b","b","b","b"]) //return 4 - ["a","b","1","2"] - result: ab12
+
+
+        console.log(compress(["a","b","b","b","b","b","b","b","b","b","b","b","b"]))
+
+
+
+
+
+
+
+
+
+
 
     </script>
 
