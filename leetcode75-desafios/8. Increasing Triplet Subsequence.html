@@ -30,16 +30,26 @@
     <script>
 
         function increasingTriplet(nums) {
-          const first = Infinity
-            for (let i = 0; i < nums.length; i++) { //verifica numero a numero na ordem em que aparece no array, por isso sabe que o numero menor é anterior ao maior
-                if (nums[i] <= first) {
-                first = nums[i]
+
+            console.log(nums)
+
+            let first = Infinity
+            let second = Infinity
+
+            for (let i = 0; i < nums.length; i++) {
+                if (nums[i] <= first) { //first = 1
+                    first = nums[i]
+                } else if (nums[i] <= second) { //second = 2
+                    second = nums[i]
+                } else{ //chegou até aqui, é porque tem, então, retorna true
+                    return true // 3>2, logo, tem-se uma sequencia de 3 numeros
                 }
             }
-
-            //O loop não precisa verificar explicitamente os índices porque a iteração já segue a ordem dos elementos do array.
+           return false
         }
-        increasingTriplet([1,2,3,4,5]) // true
+        console.log(increasingTriplet([1,2,3,4,5])) //true
+        console.log(increasingTriplet([3,4,1,2,0])) //true
+
 
 /*
 Em JavaScript, Infinity é uma propriedade global que representa o valor do infinito matemático. Ela é usada para simbolizar um número maior que qualquer outro número representável.
@@ -71,12 +81,12 @@ Características do Infinity:
             console.log(i, nums[i]); // Índices e valores: 0 10, 1 20, 2 30
         }
 */
-
+//Solução:
     // let first = Infinity; // O menor número encontrado
     // let second = Infinity; // O segundo menor número encontrado
 
-    // for (let num of nums) {
-    //     if (num <= first) {
+    // for (let num of nums) { //verifica numero a numero na ordem em que aparece no array, por isso sabe que o numero menor é anterior ao maior
+    //     if (num <= first) { 
     //         // Atualiza o menor número
     //         first = num;
     //     } else if (num <= second) {
@@ -89,6 +99,76 @@ Características do Infinity:
     // }
 
     // return false; 
+    // obs: O loop não precisa verificar explicitamente os índices porque a iteração já segue a ordem dos elementos do array.
+
+    /*
+
+    Debug - exemplo prático:
+
+    Vamos usar o array: nums = [5, 1, 3, 2, 6].
+---
+Estado Inicial:
+	•	first = Infinity
+	•	second = Infinity
+	•	Nenhuma tripla crescente foi encontrada ainda.
+---
+Iteração 1 (num = 5):
+	1.	O número atual (num) é 5.
+	2.	Verifica-se a condição: num <= first.
+	•	5 <= Infinity é verdadeiro.
+	•	Atualiza first para 5.
+
+    Estado Atual:
+	•	first = 5
+	•	second = Infinity
+---
+Iteração 2 (num = 1):
+	1.	O número atual (num) é 1.
+	2.	Verifica-se a condição: num <= first.
+	•	1 <= 5 é verdadeiro.
+	•	Atualiza first para 1.
+
+    Estado Atual:
+	•	first = 1
+	•	second = Infinity
+---
+Iteração 3 (num = 3):
+	1.	O número atual (num) é 3.
+	2.	Verifica-se a condição: num <= first.
+	•	3 <= 1 é falso.
+	3.	Verifica-se a próxima condição: num <= second.
+	•	3 <= Infinity é verdadeiro.
+	•	Atualiza second para 3.
+
+    Estado Atual:
+	•	first = 1
+	•	second = 3
+---
+Iteração 4 (num = 2):
+	1.	O número atual (num) é 2.
+	2.	Verifica-se a condição: num <= first.
+	•	2 <= 1 é falso.
+	3.	Verifica-se a próxima condição: num <= second.
+	•	2 <= 3 é verdadeiro.
+	•	Atualiza second para 2.
+
+    Estado Atual:
+	•	first = 1
+	•	second = 2
+---
+Iteração 5 (num = 6):
+	1.	O número atual (num) é 6.
+	2.	Verifica-se a condição: num <= first.
+	•	6 <= 1 é falso.
+	3.	Verifica-se a próxima condição: num <= second.
+	•	6 <= 2 é falso.
+	4.	Como ambas as condições anteriores são falsas, entra no else:
+	•	Retorna true, pois encontramos uma tripla crescente:
+	•	first = 1, second = 2, e num = 6.
+
+
+    
+    */
     </script>
 
 </body>
