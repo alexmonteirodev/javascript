@@ -1,7 +1,8 @@
                                             // Factory Function - 2
 
     // Exemplo real usando factory function tentando imitar o funcionamento de um jquery
-        // 
+        // jQuery é uma biblioteca de JavaScript rápida, leve e rica em recursos. Foi criada para facilitar o desenvolvimento de páginas da web interativas e dinâmicas, simplificando tarefas comuns de manipulação de DOM, manipulação de eventos, animações e interações AJAX. Ela funciona em múltiplos navegadores, garantindo consistência entre eles.
+        //basicamente jquery é uma biblioteca que te poupa tempo para que ao invés de ter que criar uma função do zero, basta acessar a biblioteca por meio do $ e abaixo replicamos como funciona uma biblioteca via factory function.
 //-----------------------------------------------------------------------------------------------------
 
 function $$(selectedElements) {
