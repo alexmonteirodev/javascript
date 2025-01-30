@@ -24,7 +24,6 @@
    console.log(cursoInativo)
 
 
-
     //se tentasse fazer assim, daria errado:
 
     cursoAtivo = cursoInativo // JavaScript = HTML, ou seja, cursoAtivo é HTML, porque js recebe html
