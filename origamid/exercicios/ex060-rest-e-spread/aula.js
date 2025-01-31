@@ -91,3 +91,62 @@
         // sem spread:
         const comidas2 = [frutas, 'pizza', legumes];
         console.log(comidas2) //[Array(3), 'pizza', Array(2)]
+//-----------------------------------------------------------------------------------------------------
+
+    //Spread Argument
+      //O Spread pode ser muito útil para funções que recebem uma lista de argumentos ao invés de uma array.
+      
+      //sem spread:
+      const numeroMaximo = Math.max(4,5,20,10,30,2,33,5) // 33
+
+      // com spread:
+      const listaNumeros = [4,5,20,10,30,2,33,5]
+      const numeroMaximoSpread = Math.max(...listaNumeros) // 33
+//-----------------------------------------------------------------------------------------------------
+
+    //Transformar em Array
+      //É possível transformar itens iteráveis em uma array real com o spread.
+
+      // transformando sem spread:
+      const btns = document.querySelectorAll('button') // btns retorna nodelist (protótipo de nodelist)
+      const btnsArray = Array.from(btns) // btnsArray retorna Array (protótipo de array)
+
+      // Transformando com spread:
+
+      const btnsArraySpread = [...btns]
+
+//-----------------------------------------------------------------------------------------------------
+
+                                                  // Exercícios:
+
+    // Reescreva a função utilizando valores iniciais de parâmetros com ES6
+
+      // function createButton(background, color) {
+      //   background = background || 'blue';
+      //   if(color === undefined) {
+      //     color = 'red';
+      //   }
+      //   const buttonElement = document.createElement('button');
+      //   buttonElement.style.background = background;
+      //   return buttonElement;
+      // } 
+
+      // const redButton = createButton();
+      // console.log(redButton)
+
+      function createButton(background = 'blue', color = 'red') {
+          const buttonElement = document.createElement('button')
+          buttonElement.style.background = background
+          buttonElement.style.color = color
+          return buttonElement
+      }
+      const blueButton = createButton()
+      console.log(blueButton)
+//-----------------------------------------------------------------------------------------------------
+
+    // Utilize o método push para inserir as frutas ao final de comidas.
+    const frutas1 = ['Banana', 'Uva', 'Morango'];
+    const comidas1 = ['Pizza', 'Batata'];
+
+    comidas1.push(...frutas1)
+    console.log(comidas1)
