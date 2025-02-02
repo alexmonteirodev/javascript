@@ -79,6 +79,7 @@
 
     //Spread
         //Assim como o rest, o operador Spread também utiliza os ... para ser ativado. O spread irá distribuir um item iterável, um por um.
+        //Obs: o Spread só pode ser utilizado em itens que são iteráveis, ou seja, contenham o Symbol.iterator em seu prototype.
         // a diferença entre o spread e o rest é que não utilizamos o spread como um parametro. Utilizamos o spread para destribuir um item iterável, ou seja, vai pegar um item e iterar sobre ele um por um:
 
         const frutas = ['Banana', 'Uva', 'Morango'];
