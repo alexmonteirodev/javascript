@@ -122,3 +122,7 @@
         for (const style in btnStyles) {
           console.log(`${style}: ${btnStyles[style]}`)
         }
+//-----------------------------------------------------------------------------------------------------
+
+                                                  // Exercícios
+                                                  console.log('Exercícios:')
