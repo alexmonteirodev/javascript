@@ -126,3 +126,22 @@
 
                                                   // Exercícios
                                                   console.log('Exercícios:')
+
+// Crie 4 li's na página. Utilizando o for...of adicione uma classe a cada li
+
+  const liList = document.querySelectorAll('li')
+  console.log(liList)
+
+  for (const li of liList) {
+      li.classList.add('className')
+      console.log(li)
+  }
+//-----------------------------------------------------------------------------------------------------
+
+// Utilize o for...in para listar todos as propriedades e valores do objeto window
+
+console.log(window)
+
+for (const key in window) {
+  console.log(`${key}: ${window[key]}`)
+}
