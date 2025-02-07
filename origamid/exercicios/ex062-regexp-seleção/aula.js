@@ -7,6 +7,12 @@
     // Lembrete rápido: (um super ctrl F)
       // /teste/g - busca no escopo global um t, seguido de e, s, t, e (logo, temos a busca da palavra)
       // /[teste]/g - busca no escopo global todas as letras t,e,s
+
+    //flags: /exemplo/flag
+      // as mais utilizadas:
+      //g - global: atribui o escopo global
+      //i - case insensitive: busca entre maiusculas e minuscultas
+      //m - multiline: atribui para todas as linhas disponíveis
 //-----------------------------------------------------------------------------------------------------
                                       
     // Regular Expression
@@ -290,11 +296,79 @@
       const regexpDigitoNotWordBoundary = /\B\d+\B/gi;
 
       '11_22 33-44 55é66 77e88'.replace(regexpDigitoNotWordBoundary, 'X') // 1X_X2 33-44 55é66 7XeX8 - seleciona o que está entre alfanuméricos
+//-----------------------------------------------------------------------------------------------------
+
+    //Anchor Beginning
+      //Com o ^ é possível informar que a busca deve ser iniciada no início da linha.
+
+      // Procura: sequência de alfanuméricos
+      // no início da linha.
+      const regexpAnchorB = /^\w+/g;
+
+      `andre@origamid.com
+      contato@origamid.com`.replace(regexpAnchorB, 'X');
+      // X@origamid.com
+      // contato@origamid.com
+
+
+    //Anchor End
+      //Com o ^ é possível informar que a busca deve ser iniciada no início da linha.
+
+      // Procura: sequência de alfanuméricos
+      // no final da linha.
+      const regexpAnchorE = /\w+$/g;
+
+      `andre@origamid.com
+      contato@origamid.com`.replace(regexpAnchorE, 'X');
+      // andre@origamid.com
+      // contato@origamid.X
+//-----------------------------------------------------------------------------------------------------
+
+    //Flag: m
+      //Com a flag m de multiline, podemos informar que a busca de início ^ e final $ de linha devem ocorrer em todas as linhas disponíveis.
+
+      // Procura: sequência de alfanuméricos
+      // no início da linha.
+      const regexpMultBeg = /^\w+/gm;
+
+      `andre@origamid.com
+      contato@origamid.com`.replace(regexpMultBeg, 'X');
+      // X@origamid.com
+      // X@origamid.com
+
+
+      // Procura: sequência de alfanuméricos
+      // no final da linha.
+      const regexpMultEnd = /\w+$/gm;
+
+      `andre@origamid.com
+      contato@origamid.com`.replace(regexpMultEnd, 'X');
+      // andre@origamid.X
+      // contato@origamid.X
+//-----------------------------------------------------------------------------------------------------
+
+    //Line Feed \n
+      //O \n irá selecionar o final de uma linha, quando criamos uma nova.
+      //\n é como se fosse o br do html, é onde a linha quebra. (quando ta escrevendo e da enter para ir pra proxima linha, isso é o n)
+
+      const regexpLine = /\n/g;
+
+      `andre@origamid.com\ncontato@origamid.com`.replace(regexpLine, '---');
+      // andre@origamid.com---contato@origamid.com
       
+      `andre@origamid.com
+      contato@origamid.com`.replace(regexpLine, 'X');
+      // andre@origamid.com---contato@origamid.com
+//-----------------------------------------------------------------------------------------------------
 
-                              
+    //Unicode \u
+      //O \u irá selecionar o respectivo caracter unicode, de acordo com o código passado em \uXXXX. Ex: \u0040 seleciona o @.
 
+      // Procura: @ ou ©
+      const regexpUnicodeEspecialChar = /\u0040|\u00A9/g;
 
+      'andre@origamid.com ©'.replace(regexpUnicodeEspecialChar, '---');
+      // andre---origamid.com ---
 
 
 
