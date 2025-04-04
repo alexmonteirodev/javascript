@@ -27,13 +27,27 @@ export default class ValidarCpf{
     validarNaMudanca(cpfElement){
         if (this.validar(cpfElement.value)) {
             cpfElement.value = this.formatar(cpfElement.value)
+            cpfElement.classList.add('valido')
+            cpfElement.classList.remove('erro')
+            cpfElement.nextElementSibling.classList.remove('ativar')
         } else {
-            
+            cpfElement.classList.add('erro')
+            cpfElement.classList.remove('valido')
+            cpfElement.nextElementSibling.classList.add('ativar')
         }
         console.log(this.validar(cpfElement.value))
     }
+    adicionarErroSpan(){
+        const erroElement = document.createElement('span')
+        erroElement.classList.add('erro-text')
+        erroElement.innerText = 'CPF Inválido'
+        this.element.parentElement.insertBefore(erroElement, this.element.nextElementSibling) // parent = formulário e o segundo argumento é em qual tag
+
+    }//obs: poderia criar o span direto no html mas criando direto no js da pra reaproveitar em outro código sem que o outro código precise de uma tag span em seu html.
     iniciar(){
         this.adicionarEvento()
+        this.adicionarErroSpan()
+
         return this //tem que retornar algo para não dar undefined
     }
 
