@@ -14,6 +14,7 @@
                                         
     // Grupo de Captura
       // É possível definirmos diferentes grupos de captura, que poderão ser referenciados durante a substituição. Basta envolvermos um grupo entre () parênteses. A referência se cada grupo será feita com $n, sendo o primeiro $1.
+      //obs: caso queira apenas englobar o grupo mas não queira usar a captura tem que usar o ?: na frente
 
       // Procura: sequência alfanumérica, seguida
       // de @, seguido de alfanumérico ou .
