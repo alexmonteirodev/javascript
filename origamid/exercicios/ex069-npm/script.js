@@ -13,6 +13,10 @@
 
         //ao instalar o lodash ele trouxa algumas pastas.
         //dentre elas a package-lock.json que contém todas as versões e nomes dos pacotes que foram instalados. dentro dessa pasta tem um objeto que tem uma propriedade chamada de dependencias. Ela é importante porque quando for trabalhar com alguem, as dependencias que você instalou ficam somente na sua maquina então o outro cara por essa propriedade consegue ver o que o projeto já está usando de dependencia. Aí ele na maquina dele para não ter que instalar dependencia por dependencia, pode usar o npm install e isso vai instalar tudo que estiver na propriedade dependencias. Ou seja, se eu instalei react e jquery na minha maquina nesse projeto, quando o joão fizer o pull do projeto ele basta usar o npm install que já vai baixar o que eu havia baixado na minha que é o react e o jquery. pq puxa da propriedade dependencias.
+
+        // devDependencia x Dependencia
+            // devDependencia: serve apenas para o dev na hora de criar o site mas quando o site for rodar não vai utilizar a dependencia para funcionar nada no site
+            // Dependencia: vai rodar toda hora, quando for criar e quando for funcionar o site
 //-----------------------------------------------------------------------------------------------------
 
     // Atalhos
