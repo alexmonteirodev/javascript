@@ -31,7 +31,7 @@
 
             // package.json - Arquivo local com as configurações e dependências de pacotes NPM
             
-            // $ npm init - Inicia uma nova configuração local do npm.
+            // $ npm init - Inicia uma nova configuração local do npm. (cria o package.json) obs: pode usar npm init -y para ja dar yes para tudo e ele instalar de uma vez ao invez de ficar dando y y y...
             
             // $ npm install - Instala todas as dependências listadas no arquivo package.json
 
