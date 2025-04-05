@@ -43,3 +43,14 @@
             // Mac - 
                 // $ defaults write com.apple.Finder AppleShowAllFiles true 
                 // $ killall Finder
+//-----------------------------------------------------------------------------------------------------
+
+        // NPX
+            // O npx é uma ferramenta que vem junto com o Node.js (desde a versão 5.2 do npm) e serve para executar pacotes Node.js diretamente da linha de comando, sem precisar instalar eles globalmente no seu sistema.
+
+            // exemplo: usa o npm install eslint para instalar o pacote no arquivo e depois o npx eslint js/** para buscar no arquivo se as regras do eslint estão sendo seguidas.
+            // basicamente: npm instala/atualiza/deleta pacotes e o npx ativa ferramentas desses pacotes
+
+
+
+        
