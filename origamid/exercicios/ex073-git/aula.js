@@ -63,7 +63,20 @@
             // obs: no final geralmente o pessoal faz o merge e o pull e depois exclui a branch porque aquilo já foi resolvio e pra não ficar um monte de branchs. a pessoa que fez o commit continua tendo a branch na maquina e para deletar da maquina tbm basta usar o 'git branch -d nomedabranch'
 
             //depois de tudo ao fazer o pull da master já virá o projeto com as alterações feitas.
+//-----------------------------------------------------------------------------------------------------
 
+    // Mais Git
+        // gitignore - Lista de arquivos que não devem ser manipulados pelo git. node_modules é um bom exemplo.
+
+        // Commit sem texto - Ao usar o $ git commit você entra no modo completo de comentário, com um editor de texto direto na linha de comando. Utilize esc + :wq para sair do mesmo.
+
+        // Bitbucket - Permite repositórios privados e gratuitos. https://bitbucket.org/product
+
+
+
+
+
+                                               
 
 
 
