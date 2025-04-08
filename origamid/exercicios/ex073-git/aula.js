@@ -71,6 +71,12 @@
         // Commit sem texto - Ao usar o $ git commit você entra no modo completo de comentário, com um editor de texto direto na linha de comando. Utilize esc + :wq para sair do mesmo.
 
         // Bitbucket - Permite repositórios privados e gratuitos. https://bitbucket.org/product
+//-----------------------------------------------------------------------------------------------------
+
+    // processo para criar um novo repositorio:
+        // no terminal na pasta do arquivo: cd pasta correta; git init; git add -A (se quiser dar um git status pra ver se foi tudo); git commit -m 'primeiro commit projeto refatornando'.
+        // depois, no git hub: cria um repositorio; publica o repositorio; vai no github e pega o git remote (o link do site, no caso: git remote add origin https://github.com/alexmonteirodev/animais-fantasticos.git); git push -u origin master 
+
 
 
 
