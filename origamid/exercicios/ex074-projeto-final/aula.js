@@ -1,1 +1,3 @@
 // foi criado um repositorio rpóprio para o projeto final no github e a partir daí, foram feitas branchs para trabalhar na refatoração das animações js.
+
+// ao rafatorar o projeto transformamos as functions de js em class e usando o constructor, para caso alguem queira copiar as funções, poder usar tbm. para ver com mais detalhes, compare o projeto com a ultima aula que tinha ainda o codigo antes de refatorar, no ex072-babel. 

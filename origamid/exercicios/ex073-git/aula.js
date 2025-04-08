@@ -78,6 +78,10 @@
         // depois, no git hub: cria um repositorio; publica o repositorio; vai no github e pega o git remote (o link do site, no caso: git remote add origin https://github.com/alexmonteirodev/animais-fantasticos.git); git push -u origin master 
 
 
+        // cria a branch para trabalhar: git checkout -b 'refatorar-scrollsuave'; depois de desenvolver o codigo, na pasta da branch faz o git add -A e o comit git commit -m 'scrollsuave transformado em class' (se não fizer o commit e voltar para a main, vai perder as oisas que fez); faz o checkout pra main, da o git pull pra ver se teve alguma mudança na main e depois faz o checkout de volta pra pasta e da o merge na main e depois o git push (ao fazer o push, o terminal vai mandar um comando git pra por no ar, setupstream, aí usa ele).
+        //depois vai no github e aprova o pull request, merge, e deleta a branch.
+        //para visualizar melhor assistir a aula refatorar scroll suave origamid a partir dos 15 min.
+        // Dpois volta na main de da o git pull pra atualizar o projeto inteiro
 
 
 
