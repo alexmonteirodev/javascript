@@ -1,0 +1,1 @@
+// foi criado um repositorio rpóprio para o projeto final no github e a partir daí, foram feitas branchs para trabalhar na refatoração das animações js.
