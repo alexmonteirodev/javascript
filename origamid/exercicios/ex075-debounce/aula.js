@@ -46,3 +46,5 @@ const debouncedScroll = debounce(onScroll, 200);
 window.addEventListener("scroll", debouncedScroll);
 
 //obs: no fundo no fundo é dar um delay para a função ocorrer, pq antes ao scrollar ja disparava diversas vezes e agora vai disparar apenas algumas vezes em um intervalo maior de tempo e isso economiza o processamento e otimiza o site.
+
+//debounce é bom para eventos de scroll (scrolar a tela) e de resize (aumentar e diminuir a janela do browser) que são os eventos que disparam muitas vezes
