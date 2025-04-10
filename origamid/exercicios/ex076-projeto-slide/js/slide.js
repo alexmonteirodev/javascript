@@ -2,22 +2,39 @@ export default class Slide {
   constructor(slide, wrapper) {
     this.slide = document.querySelector(slide);
     this.wrapper = document.querySelector(wrapper);
+    this.dist = {
+      finalPosition: 0,
+      startX: 0, //startX serve para pegar a referencia inicial de onde o mouse clicou
+      movement: 0,
+    };
   }
   // lógica consite em usar o css .slide transform: translate3d(Xpx,0px,0px), para fazer o carrosel andar de acordo com o translate3d no eixo x. pra isso, tem que add o evento de mouse click e depois de clicado, o mouse move (pro slide não ficar mexendo sem ter clicado) e atualizar isso com o translate3d:
+  moveSlide(distX) {
+    this.dist.movePosition = distX;
+    this.slide.style.transform = `translate3d(${distX}px, 0px, 0px)`;
+  }
+
+  updatePosition(clientX) {
+    this.dist.movement = (this.dist.startX - clientX) * 1.6; //para deixar o movimento 1.6* mais rápido
+    return this.dist.finalPosition - this.dist.movement; // - para inverter a posição do slide
+  }
 
   onStart(event) {
     event.preventDefault();
     console.log("mouseDown");
+    this.dist.startX = event.clientX;
     this.wrapper.addEventListener("mousemove", this.onMove); //add dentro do onstart pra só começar a contar depois que clicar. se add no addSlideEvents, ao colocar o mouse dentro do slide, já ia contar. porém agora se tirar o mouse da div e recolocar ele continua disparando e por isso se usa o onEnd.
   }
 
   onMove(event) {
-    console.log("moveu");
+    const finalPosition = this.updatePosition(event.clientX);
+    this.moveSlide(finalPosition);
   }
 
   onEnd() {
     console.log("acabou");
     this.wrapper.removeEventListener("mousemove", this.onMove);
+    this.dist.finalPosition = this.dist.movePosition;
   }
 
   addSlideEvents() {
