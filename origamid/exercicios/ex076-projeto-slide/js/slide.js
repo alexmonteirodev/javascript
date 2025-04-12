@@ -60,9 +60,47 @@ export default class Slide {
     this.onEnd = this.onEnd.bind(this);
   }
 
+  //slides config (transformar slides em uma array que tenha a posição de cada elementon )
+
+  slidePosition(slide) {
+    //a logica aqui é pegar o tamanho da tela - o temanho do elemento e dividir por 2 (cada margem)
+    const margin = (this.wrapper.offsetWidth - slide.offsetWidth) / 2;
+    return -(slide.offsetLeft - margin); //negativo pq o carrosel tem que ir pra direita
+  }
+
+  slidesIndexNav(index) {
+    const last = this.slideArray.length - 1; //pega tamanho da array para usar no ternario do objeto abaixo para verificar se o next e o prev existem porque só o objeto cru, se o index tivesse em 0 ele diria que o prev é -1 e o -1 não existe. (antes era prev: index -1 e next: index + 1)
+    this.index = {
+      prev: index ? index - 1 : undefined, //pq se o index for 0, da false
+      active: index,
+      next: index === last ? undefined : index + 1,
+    };
+  }
+
+  // metodo que muda o slide de acordo com index de cada img
+
+  changeSlide(index) {
+    const activeSlide = this.slideArray[index];
+    this.moveSlide(activeSlide.position);
+    this.slidesIndexNav(index);
+    this.dist.finalPosition = activeSlide.position;
+  }
+
+  slidesConfig() {
+    this.slideArray = [...this.slide.children].map((element) => {
+      const position = this.slidePosition(element); //retorna a posição do elemento porém grudado na borda e p/ calcular pro elemento ficar no centro criamos a slidePosition()
+      return {
+        position,
+        element,
+      };
+    });
+    console.log(this.slideArray);
+  }
+
   init() {
     this.bindEvents();
     this.addSlideEvents();
+    this.slidesConfig();
     return this;
   }
 }
