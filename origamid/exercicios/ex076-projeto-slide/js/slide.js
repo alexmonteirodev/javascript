@@ -10,6 +10,8 @@ export class Slide {
       movement: 0,
     };
     this.activeClass = "active";
+
+    this.changeEvent = new Event("changeEvent");
   }
   // lógica consite em usar o css .slide transform: translate3d(Xpx,0px,0px), para fazer o carrosel andar de acordo com o translate3d no eixo x. pra isso, tem que add o evento de mouse click e depois de clicado, o mouse move (pro slide não ficar mexendo sem ter clicado) e atualizar isso com o translate3d:
 
@@ -100,6 +102,7 @@ export class Slide {
     this.slidesIndexNav(index);
     this.dist.finalPosition = activeSlide.position;
     this.changeActiveClass();
+    this.wrapper.dispatchEvent(this.changeEvent);
   }
 
   changeActiveClass() {
@@ -168,6 +171,11 @@ export class Slide {
 }
 
 export class SlideNav extends Slide {
+  constructor(slide, wrapper) {
+    super(slide, wrapper); //pra puxar da class Slide
+    this.bindControlEvents();
+  }
+
   addArrow(prev, next) {
     this.prevElement = document.querySelector(prev);
     this.nextElement = document.querySelector(next);
@@ -177,5 +185,51 @@ export class SlideNav extends Slide {
   addArrowEvent() {
     this.prevElement.addEventListener("click", this.activePrevSlide);
     this.nextElement.addEventListener("click", this.activeNextSlide);
+  }
+
+  createControl() {
+    //add 1 li pra cada item
+    const control = document.createElement("ul");
+    control.dataset.control = "slide";
+    this.slideArray.forEach((item, index) => {
+      control.innerHTML += `<li><a href="#slide${index + 1}">${
+        index + 1
+      }</a></li>`;
+    });
+    this.wrapper.appendChild(control);
+    console.log(control);
+    return control;
+  }
+
+  eventControl(item, index) {
+    item.addEventListener("click", (event) => {
+      event.preventDefault();
+      this.changeSlide(index);
+    });
+    this.wrapper.addEventListener("changeEvent", this.activeControlItem);
+  }
+
+  activeControlItem() {
+    //feedback visual posição do item (bolinha colorida)
+    this.controlArray.forEach((item) => {
+      //foreach e limpa e depois adiciona o item selecionado pra não ficar colorindo todas as bolinhas a cada item que clicar
+      item.classList.remove(this.activeClass);
+    });
+    this.controlArray[this.index.active].classList.add(this.activeClass);
+  }
+
+  addControl(customControl) {
+    this.control =
+      document.querySelector(customControl) || this.createControl();
+    this.controlArray = [...this.control.children];
+    this.controlArray.forEach((item, index) => {
+      this.eventControl(item, index); //poderia passar forEach(this.eventControl)
+    });
+    this.activeControlItem();
+  }
+
+  bindControlEvents() {
+    this.eventControl = this.eventControl.bind(this);
+    this.activeControlItem = this.activeControlItem.bind(this);
   }
 }
