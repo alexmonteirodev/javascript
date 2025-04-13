@@ -9,6 +9,11 @@ export default class Slide {
     };
   }
   // lógica consite em usar o css .slide transform: translate3d(Xpx,0px,0px), para fazer o carrosel andar de acordo com o translate3d no eixo x. pra isso, tem que add o evento de mouse click e depois de clicado, o mouse move (pro slide não ficar mexendo sem ter clicado) e atualizar isso com o translate3d:
+
+  transition(active) {
+    this.slide.style.transition = active ? "transform .3s" : "";
+  }
+
   moveSlide(distX) {
     this.dist.movePosition = distX;
     this.slide.style.transform = `translate3d(${distX}px, 0px, 0px)`;
@@ -30,6 +35,7 @@ export default class Slide {
       moveType = "touchmove";
     }
     this.wrapper.addEventListener(moveType, this.onMove); //add dentro do onstart pra só começar a contar depois que clicar. se add no addSlideEvents, ao colocar o mouse dentro do slide, já ia contar. porém agora se tirar o mouse da div e recolocar ele continua disparando e por isso se usa o onEnd.
+    this.transition(false);
   }
 
   onMove(event) {
@@ -45,6 +51,18 @@ export default class Slide {
     const moveType = event.type === "mouseup" ? "mousemove" : "touchmove";
     this.wrapper.removeEventListener(moveType, this.onMove);
     this.dist.finalPosition = this.dist.movePosition;
+    this.transition(true);
+    this.changeSlideOnEnd();
+  }
+
+  changeSlideOnEnd() {
+    if (this.dist.movement > 120 && this.index.next !== undefined) {
+      this.activeNextSlide();
+    } else if (this.dist.movement < -120 && this.index.prev !== undefined) {
+      this.activePrevSlide();
+    } else {
+      this.changeSlide(this.index.active); //para não mudar quando chegar nas bordas
+    }
   }
 
   addSlideEvents() {
@@ -97,10 +115,24 @@ export default class Slide {
     console.log(this.slideArray);
   }
 
+  activePrevSlide() {
+    if (this.index.prev !== undefined) {
+      this.changeSlide(this.index.prev);
+    }
+  }
+
+  activeNextSlide() {
+    if (this.index.next !== undefined) {
+      this.changeSlide(this.index.next);
+    }
+  }
+
   init() {
+    this.transition(true);
     this.bindEvents();
     this.addSlideEvents();
     this.slidesConfig();
+    this.changeSlide(0);
     return this;
   }
 }
