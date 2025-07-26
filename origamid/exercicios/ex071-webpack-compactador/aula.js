@@ -23,5 +23,4 @@
 //deixei comentado o teste deles
 //jquery e lodash são basicamente bibliotecas de scripts, ou seja, tem funções prontas que você pode importar e usar sem precisar escrever na mão do zero.
 
-
 //obs: CLI quer dizer Command Line Interface, ou seja, Interface de Linha de Comando. webpack-cli é o pacote que permite você usar o Webpack via terminal (linha de comando), rodando comandos como: npx webpack
